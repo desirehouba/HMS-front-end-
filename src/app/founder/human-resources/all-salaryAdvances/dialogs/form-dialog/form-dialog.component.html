@@ -1,0 +1,82 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="noteFraisForm">
+        <div class="row">
+          <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 mb-2">
+            <div *ngIf="staff" class="tbl-spinner">
+              <mat-progress-spinner color="primary"
+                [diameter]="20" mode="indeterminate">
+              </mat-progress-spinner>
+            </div>
+            <mat-form-field appearance="outline" *ngIf="!staff"
+              class="example-full-width mb-3">
+              <mat-label> {{"app.staff" | translate }}</mat-label>
+              <mat-select formControlName="user" required>
+                <mat-option [value]="user.id"
+                  *ngFor="let user of staffs">
+                  {{ user.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+            <mat-form-field appearance="outline"
+              class="example-full-width mb-3">
+              <mat-label> {{"app.amount" | translate }}</mat-label>
+              <input matInput formControlName="amount" type="number"
+                required>
+              <mat-error
+                *ngIf="noteFraisForm.get('amount')?.hasError('required')">
+                amount is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3"
+              appearance="outline">
+              <mat-label>{{"app.reasons" | translate }}</mat-label>
+              <textarea matInput formControlName="reason"
+                rows="4"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!noteFraisForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="SalaryAdvancesActions()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button
+              color="warn" (click)="onNoClick()"
+              tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

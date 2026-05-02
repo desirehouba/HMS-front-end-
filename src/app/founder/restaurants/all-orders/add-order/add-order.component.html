@@ -1,0 +1,128 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_order" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="orderForm">
+              <div class="row">
+                <div class="col-xl-8 col-lg-9 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.customer" | translate }}</mat-label>
+                    <mat-select formControlName="customer_id">
+                      <mat-option [value]="customer.id"
+                        *ngFor="let customer of customers">
+                        {{ customer.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div> 
+                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.date" | translate }}</mat-label>
+                    <input matInput [matDatepicker]="rpicker"
+                      formControlName="delivery_date">
+                    <mat-datepicker-toggle matSuffix [for]="rpicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #rpicker></mat-datepicker>
+                  </mat-form-field>
+                </div>  
+              </div>  
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!orderForm.valid || loading"
+                    class="btn-space" (click)="editCallOrder()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button>
+                  <button mat-raised-button color="primarys" class="btn-space primarys"
+                    style="background-color: #028b5b; color: white;"
+                    (click)="editCall()">
+                    {{"app.add_customer" | translate}} 
+                  </button>
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div *ngIf="product" class="tbl-spinner">
+                  <mat-progress-spinner color="primary" [diameter]="40"
+                    mode="indeterminate">
+                  </mat-progress-spinner>
+                </div>
+                <div class="row" *ngIf="!product">
+                  <div class="col-md-3" *ngFor="let item of products">
+                    <div class="course-card course-card-blog">
+                      <div class="course-card-image">
+                        <img class="img" [src]="image+item.image">
+                      </div>
+                      <div class="blog-table">
+                        <div class="post-user mt-3">
+                          <h4 class="mb-xs mt-xs"> 
+                            {{"app.name" | translate }} : {{item.name}} 
+                          </h4>
+                        </div>
+                        <div class="post-user mt-3">
+                          <h5 class="mb-xs mt-xs"> 
+                            {{"app.price" | translate }} : {{item.price}} FCFA |  
+                            <span *ngIf="item.stock_quantity === 0" style="color: red;">
+                              {{"app.stock_indisponible" | translate }} dede
+                            </span>
+                            <span style="color: red;" >
+                              {{"app.stock" | translate }} : {{item.stock_quantity}}
+                            </span>
+                            <span *ngIf="item.alert_quantity < item.stock_quantity">
+                              {{"app.stock" | translate }} : {{item.stock_quantity}}
+                            </span>
+                          </h5>
+                        </div> 
+                        <div>
+                          <p>{{ item.description | slice : 0 : 100 }} ... </p>
+                        </div>
+                        <div class="text-center mb-3">
+                          <button mat-raised-button (click)="addRoom(item.id)" 
+                            *ngIf="SelectProducts.indexOf(item.id) === -1"
+                            style="background-color: #028b5b; color: white;">
+                            {{"app.select" | translate }}
+                          </button>
+                          <button mat-raised-button (click)="removeRoom(item.id)"
+                            *ngIf="SelectProducts.indexOf(item.id) != -1" color="warn">
+                            {{"app.un_select" | translate }}
+                          </button>
+                        </div>
+                        <!-- <div class="row"> 
+                          <div class="col-xl-12 col-lg-3 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field appearance="outline"
+                              class="example-full-width mb-3">
+                              <mat-label>{{"app.number" | translate }}</mat-label>
+                              <mat-select formControlName="nbrOrder"
+                                required (selectionChange)="getOrders()">
+                                <mat-option [value]="nbr"
+                                  *ngFor="let nbr of numbersOrders">
+                                  {{ nbr }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div> 
+                        </div> -->
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

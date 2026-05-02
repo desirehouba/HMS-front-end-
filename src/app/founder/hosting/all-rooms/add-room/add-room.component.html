@@ -1,0 +1,137 @@
+<section class="content">
+  <div class="content-block">
+
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_room" | translate }} </h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="roomForm">
+              <div class="row">
+                <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.name" | translate }}</mat-label>
+                    <input matInput formControlName="name"
+                      required>
+                    <mat-error
+                      *ngIf="roomForm.get('name')?.hasError('required')">
+                      name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-5">
+                  <app-file-upload formControlName="photo">
+                  </app-file-upload>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.etage_numbert" | translate }}</mat-label>
+                    <input matInput formControlName="number" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="roomForm.get('number')?.hasError('required')">
+                      price is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3" *ngIf="!istyperoom">
+                    <mat-label> {{"app.type" | translate }}</mat-label>
+                    <mat-select formControlName="room_type_id" required>
+                      <mat-option [value]="type.id"
+                        *ngFor="let type of typeRooms">
+                        {{ type.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="istyperoom" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="40"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3" *ngIf="!istyperoom">
+                    <mat-label> {{"app.categorie" | translate }}</mat-label>
+                    <mat-select formControlName="room_category_id" required>
+                      <mat-option [value]="type.id"
+                        *ngFor="let type of categoriesRooms">
+                        {{ type.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="istyperoom" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="40"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.capacity" | translate }}</mat-label>
+                    <input matInput formControlName="capacity" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="roomForm.get('capacity')?.hasError('required')">
+                      capacity is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.price" | translate }}</mat-label>
+                    <input matInput formControlName="price" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="roomForm.get('price')?.hasError('required')">
+                      price is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="description" required rows="6">
+                    </textarea>
+                    <mat-error
+                      *ngIf="roomForm.get('description')?.hasError('required')">
+                      reason is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="btn-space" color="primary"
+                    [disabled]="!roomForm.valid || loading"
+                    [class.auth-spinner]="loading"
+                    (click)="addRoom()" mat-raised-button>
+                    {{"app.save" | translate }}
+                  </button>
+                  <button type="button" (click)="cancel()"
+                    mat-raised-button color="warn">
+                    {{"app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

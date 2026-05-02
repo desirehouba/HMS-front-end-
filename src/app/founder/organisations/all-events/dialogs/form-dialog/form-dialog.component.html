@@ -1,0 +1,104 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="eventForm">
+      <div class="row">
+        <div class="col-xl-12 col-lg-9 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.name" | translate }} </mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error
+              *ngIf="eventForm.get('name')?.hasError('required')">
+              name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="type" required>
+              <mat-option [value]="'internal'">
+                {{"app.interne" | translate }}
+              </mat-option>
+              <mat-option [value]="'external'">
+                {{"app.externe" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.start_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="start_date" required>
+            <mat-datepicker-toggle matSuffix
+              [for]="rpicker"></mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.end_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpickers"
+              formControlName="end_date" required>
+            <mat-datepicker-toggle matSuffix
+              [for]="rpickers"></mat-datepicker-toggle>
+            <mat-datepicker #rpickers></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.budget" | translate }}</mat-label>
+            <input matInput formControlName="budget" type="number">
+          </mat-form-field>
+        </div> 
+      </div> 
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description" rows="4">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!eventForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="updateEvents()" mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

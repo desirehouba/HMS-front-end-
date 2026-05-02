@@ -1,0 +1,512 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.list_insolvent" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="insolventForm">
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.type" | translate }}</mat-label>
+                    <mat-select formControlName="types">
+                      <mat-option [value]="1">
+                        {{ "app.pension" | translate }}
+                      </mat-option>
+                      <mat-option [value]="2">
+                        {{ "app.fee" | translate }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2"
+                  *ngIf="this.insolventForm.controls['types'].value === 1">
+                  <div *ngIf="tranche" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.select_slice" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="slice"
+                      (selectionChange)="[getStudentss(),getStudentsSovable()]">
+                      <mat-option [value]="tranche"
+                        *ngFor="let tranche of tranches">
+                        {{ tranche }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2"
+                  *ngIf="this.insolventForm.controls['types'].value === 1">
+                  <div *ngIf="classe" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!classe"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.select_classroom" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="classroom"
+                      (selectionChange)="[getStudentss(),getStudentsSovable(), getAllFeess()]">
+                      <mat-option [value]="classe"
+                        *ngFor="let classe of classrooms">
+                        {{ classe.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <!-- <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2"
+                  *ngIf="this.insolventForm.controls['types'].value === 2">
+                  <div *ngIf="level" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!level"
+                    class="example-full-width mb-3">
+                    <mat-label *ngIf="scholar_level != 'CF'">
+                      {{"app.level" | translate }}
+                    </mat-label>
+                    <mat-label *ngIf="scholar_level === 'CF'">
+                      {{"app.specialties" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="level"
+                      (selectionChange)="[getAllFeess()]">
+                      <mat-option [value]="level"
+                        *ngFor="let level of levels">
+                        {{ level.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div> -->
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2"
+                  *ngIf="this.insolventForm.controls['types'].value === 2">
+                  <div *ngIf="classe" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!classe"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.select_classroom" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="classroom1"
+                    (selectionChange)="[getStudentssFeeInsolvable(),getStudentsFeeSovable()]">
+                      <mat-option [value]="classe"
+                        *ngFor="let classe of classrooms">
+                        {{ classe.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2"
+                  *ngIf="this.insolventForm.controls['types'].value === 2">
+                  <div *ngIf="feess" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!feess"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.fee" | translate }}</mat-label>
+                    <mat-select formControlName="fee"
+                      (selectionChange)="[getStudentssFeeInsolvable(),getStudentsFeeSovable()]">
+                      <mat-option [value]="fee.id"
+                        *ngFor="let fee of fees">
+                        {{ fee.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2"
+                  *ngIf="students.length != 0 
+                  && this.insolventForm.controls['types'].value === 1
+                  && this.insolventForm.controls['Pensiontype'].value === 'insvolvable'">
+                  <div class="export-button m-l-10" matTooltip="Telecharger">
+                    <img src="assets/images/icons/pdfs.png" alt
+                      class="imgs" (click)="exportPDF()" />
+                    <img src="assets/images/icons/xlsx.png" alt
+                      (click)="exportExcel()" />
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2"
+                  *ngIf="filteredStudents.length != 0 
+                  && this.insolventForm.controls['types'].value === 1
+                  && this.insolventForm.controls['Pensiontype'].value === 'solvable'">
+                  <div class="export-button m-l-10" matTooltip="Telecharger">
+                    <img src="assets/images/icons/pdfs.png" alt
+                      class="imgs" (click)="exportPDFSolv()" />
+                    <img src="assets/images/icons/xlsx.png" alt
+                      (click)="exportExcelSol()" />
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2"
+                  *ngIf="studentsFeeFeeInsolvable.length != 0 
+                  && this.insolventForm.controls['types'].value === 2
+                  && this.insolventForm.controls['Feetype'].value === 'insvolvable'">
+                  <div class="export-button m-l-10" matTooltip="Telecharger">
+                    <img src="assets/images/icons/pdfs.png" alt
+                      class="imgs" (click)="exportPDFFee()" />
+                    <img src="assets/images/icons/xlsx.png" alt
+                      (click)="exportExcelFee()" />
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2"
+                  *ngIf="filteredStudentsSovable.length != 0 
+                  && this.insolventForm.controls['types'].value === 2
+                  && this.insolventForm.controls['Feetype'].value === 'solvable'">
+                  <div class="export-button m-l-10" matTooltip="Telecharger">
+                    <img src="assets/images/icons/pdfs.png" alt
+                      class="imgs" (click)="exportPDFSolvFee()" />
+                    <img src="assets/images/icons/xlsx.png" alt
+                      (click)="exportExcelSolFee()" />
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="this.insolventForm.controls['types'].value === 1">
+                <div class="row">
+                  <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3"
+                      appearance="outline">
+                      <mat-label>{{"app.message" | translate }}</mat-label>
+                      <textarea matInput formControlName="message">
+                      </textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <button class="btn-space" color="primary"
+                        [disabled]="!insolventForm.valid || loadingSmS"
+                        [class.auth-spinner]="loadingSmS" mat-raised-button
+                        (click)="addSms(idSmsPension)">
+                        {{"app.send" | translate }}
+                      </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <mat-label class="msr-3">Choisir:</mat-label>
+                  <mat-radio-group aria-label="selectionner le type"
+                    formControlName="Pensiontype">
+                    <mat-radio-button value="insvolvable">
+                      {{"app.list_insolvent" | translate }}
+                    </mat-radio-button>
+                    <mat-radio-button value="solvable">
+                      {{"app.list_solvent" | translate }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="row"
+                  *ngIf="this.insolventForm.controls['Pensiontype'].value === 'insvolvable'">
+                  <div *ngIf="loadingpensioninsolvable" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2"
+                    *ngIf="!loadingpensioninsolvable">
+                    <table class="class7 bord">
+                      <thead>
+                        <tr style="background-color:white ; color: #028b5b;">
+                          <th style="width: 5%;"></th>
+                          <th style="width: 40%;" class="lef">
+                            Sommes
+                          </th>
+                          <th style="width: 30%; text-align: right;">
+                          </th>
+                          <th style="width: 10%; text-align: right;">
+                          </th>
+                          <th style="width: 20%; text-align: right;"
+                            class="rig">
+                            {{montantRestantTranche | number }}
+                          </th>
+                        </tr>
+                        <tr style="background-color:#028b5b; ; color: white">
+                          <th style="width: 5%; text-align: right;"
+                            class="rig"> N°
+                          </th>
+                          <th style="width: 40%;" class="lef"
+                            *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                            {{"app.student" | translate }} 
+                          </th>
+                          <th style="width: 40%;" class="lef"
+                            *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                            {{"app.students-u" | translate }} 
+                          </th>
+                          <th style="width: 30%;" class="lef">
+                            {{"app.classroom" | translate }} 
+                          </th>
+                          <th style="width: 12.5%; text-align: right;">
+                            {{"app.totalPercu" | translate }}
+                          </th>
+                          <th style="width: 12.5%; text-align: right;"
+                            class="rig">
+                            {{"app.totalRestant" | translate }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        *ngFor="let item of students; let  index = index">
+                        <tr style="background-color:white;">
+                          <td align="right" class="text tile rig">
+                            {{ index+1 }} 
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.name }}
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.classe.name }}
+                          </td>
+                          <td align="right" class="text tile">
+                            {{ item.totalDejaPaye | number }} 
+                          </td>
+                          <td align="right" class="text tile rig">
+                            {{ item.montantRestant | number}} 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row"
+                  *ngIf="this.insolventForm.controls['Pensiontype'].value === 'solvable'">
+                  <div *ngIf="loadingpensionsolvable" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2"
+                  *ngIf="!loadingpensionsolvable">
+                    <table class="class7 bord">
+                      <thead>
+                        <tr style="background-color:white ; color: #028b5b;">
+                          <th style="width: 5%;"></th>
+                          <th style="width: 50%;" class="lef">
+                            Sommes
+                          </th>
+                          <th style="width: 30%; text-align: right;">
+                          </th>
+                          <th style="width: 15%; text-align: right;"
+                            class="rig">
+                            {{totalDejaPayeSolvable | number }}
+                          </th>
+                        </tr>
+                        <tr style="background-color:#028b5b; ; color: white">
+                          <th style="width: 5%; text-align: right;"
+                            class="rig"> N°
+                          </th>
+                          <th style="width: 50%;" class="lef"
+                            *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                            {{"app.student" | translate }} 
+                          </th>
+                          <th style="width: 50%;" class="lef"
+                            *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                            {{"app.students-u" | translate }} 
+                          </th>
+                          <th style="width: 30%;" class="lef">
+                            {{"app.classroom" | translate }} 
+                          </th>
+                          <th style="width: 40%; text-align: right;"
+                            class="rig">
+                            {{"app.totalPercu" | translate }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        *ngFor="let item of filteredStudents let  index = index">
+                        <tr style="background-color:white;">
+                          <td align="right" class="text tile rig">
+                            {{ index+1 }} 
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.name }}
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.classe.name }}
+                          </td>
+                          <td align="right" class="text tile rig">
+                            {{ item.totalDejaPaye | number }} 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="this.insolventForm.controls['types'].value === 2">
+                <div class="row">
+                  <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3"
+                      appearance="outline">
+                      <mat-label>{{"app.message" | translate }}</mat-label>
+                      <textarea matInput formControlName="message">
+                      </textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <button class="btn-space" color="primary"
+                        [disabled]="!insolventForm.valid || loadingSmS"
+                        [class.auth-spinner]="loadingSmS" mat-raised-button
+                        (click)="addSms(idSmsFee)">
+                        {{"app.send" | translate }}
+                      </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <mat-label class="msr-3">Choisir:</mat-label>
+                  <mat-radio-group aria-label="selectionner le type"
+                    formControlName="Feetype">
+                    <mat-radio-button value="insvolvable">
+                      {{"app.list_insolvent" | translate }}
+                    </mat-radio-button>
+                    <mat-radio-button value="solvable">
+                      {{"app.list_solvent" | translate }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="row"
+                  *ngIf="this.insolventForm.controls['Feetype'].value === 'insvolvable'">
+                  <div *ngIf="loadingFeeinsolvable" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2"
+                  *ngIf="!loadingFeeinsolvable">
+                    <table class="class7 bord">
+                      <thead>
+                        <tr style="background-color:white ; color: #028b5b;">
+                          <th style="width: 5%;"></th>
+                          <th style="width: 45%;" class="lef">
+                            Sommes
+                          </th>
+                          <th style="width: 20%;"></th>
+                          <th style="width: 5%;"></th>
+                          <th style="width: 30%; text-align: right;"
+                            class="rig">
+                            {{restefeesInsolvable | number }}
+                          </th>
+                        </tr>
+                        <tr style="background-color:#028b5b; ; color: white">
+                          <th style="width: 5%; text-align: right;"
+                            class="rig"> N°
+                          </th>
+                          <th style="width: 40%;" class="lef"
+                            *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                            {{"app.student" | translate }} 
+                          </th>
+                          <th style="width: 40%;" class="lef"
+                            *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                            {{"app.students-u" | translate }} 
+                          </th>
+                          <th style="width: 15%;" class="lef">
+                            {{"app.classroom" | translate }} 
+                          </th>
+                          <th style="width: 15%; text-align: right;">
+                            {{"app.totalPercu" | translate }}
+                          </th>
+                          <th style="width: 15%; text-align: right;"
+                            class="rig">
+                            {{"app.totalRestant" | translate }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        *ngFor="let item of studentsFeeFeeInsolvable ; let  index = index">
+                        <tr style="background-color:white;">
+                          <td align="right" class="text tile rig">
+                            {{ index+1 }} 
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.name }}
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.classe.name }}
+                          </td>
+                          <td align="right" class="text tile">
+                            {{ item.totalDejaPaye | number }} 
+                          </td>
+                          <td align="right" class="text tile rig">
+                            {{ item.resteAPayer | number}} 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row"
+                  *ngIf="this.insolventForm.controls['Feetype'].value === 'solvable'">
+                  <div *ngIf="loadingFeesolvable" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2"
+                  *ngIf="!loadingFeesolvable">
+                    <table class="class7 bord">
+                      <thead>
+                        <tr style="background-color:white ; color: #028b5b;">
+                          <th style="width: 5%;"></th>
+                          <th style="width: 45%;" class="lef">
+                            Sommes
+                          </th>
+                          <th style="width: 30%;"></th>
+                          <th style="width: 20%; text-align: right;" class="rig">
+                            {{totalDejaPayeFee | number }}
+                          </th>
+                        </tr>
+                        <tr style="background-color:#028b5b; ; color: white">
+                          <th style="width: 5%; text-align: right;"
+                            class="rig"> N°
+                          </th>
+                          <th style="width: 45%;" class="lef"
+                            *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                            {{"app.student" | translate }} 
+                          </th>
+                          <th style="width: 45%;" class="lef"
+                            *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                            {{"app.students-u" | translate }} 
+                          </th>
+                          <th style="width: 30%;" class="lef">
+                            {{"app.classroom" | translate }} 
+                          </th>
+                          <th style="width: 20%; text-align: right;"
+                            class="rig">
+                            {{"app.totalPercu" | translate }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        *ngFor="let item of filteredStudentsSovable; let  index = index">
+                        <tr style="background-color:white;">
+                          <td align="right" class="text tile rig">
+                            {{ index+1 }} 
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.name }}
+                          </td>
+                          <td align="left" class="text lef tile">
+                            {{ item.classe.name }}
+                          </td>
+                          <td align="right" class="text tile rig">
+                            {{ item.totalDejaPaye | number }} 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

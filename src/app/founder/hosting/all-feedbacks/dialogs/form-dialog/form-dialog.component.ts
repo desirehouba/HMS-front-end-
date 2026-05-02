@@ -1,0 +1,108 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import {
+  UntypedFormControl,
+  Validators,
+  UntypedFormGroup,
+  UntypedFormBuilder,
+} from '@angular/forms';
+import { Feedbacks } from 'src/app/core/models/feedbacks.model';
+import { AuthService } from 'src/app/core/service/auth.service';
+import { ServicesService } from 'src/app/core/service/services.service';
+import { Sections } from 'src/app/core/models/sections.model';
+
+
+export interface DialogData {
+  id: number;
+  action: string;
+  feedbacks: Feedbacks;
+}
+
+@Component({
+  selector: 'app-form-dialog',
+  templateUrl: './form-dialog.component.html',
+  styleUrls: ['./form-dialog.component.scss'],
+})
+export class FeedbacksDialogComponent {
+  action: string;
+  dialogTitle!: string;
+  feedbackForm: UntypedFormGroup;
+  feedbacks: Feedbacks;
+  route = 'feedbacks';
+  loading = false;
+  sec!: any;
+  services: any[] = [];
+  section = false
+  constructor(
+    public dialogRef: MatDialogRef<FeedbacksDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private fb: UntypedFormBuilder,
+    private authService: AuthService,
+    private servicesService : ServicesService
+  ) {
+    // Set the defaults
+    this.action = data.action; 
+      this.feedbacks = data.feedbacks;
+    this.feedbackForm = this.createContactForm();
+  }
+  formControl = new UntypedFormControl('', [
+    Validators.required,
+    // Validators.email,
+  ]);
+  createContactForm(): UntypedFormGroup {
+    return this.fb.group({
+      id: [this.feedbacks.id],
+      service_id: [this.feedbacks.service.id],
+      message: [this.feedbacks.message],
+    });
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit(): void {
+    this.getServicess();
+  }
+  getServicess() {
+    const paylaod = { 
+      hotel_id : this.authService.currentUserValue.hotel_id
+    }
+    this.servicesService.getObjetss(
+      this.servicesService.route.departements[1], paylaod
+    ).subscribe({
+      next: (res) => {
+        this.services = res.data;
+      },
+    });
+  } 
+
+  get f() {
+    return this.feedbackForm.controls;
+  }
+
+  updateFeedbacks() {
+    this.loading = true;
+    const payload = {
+      message: this.f['message'].value,
+      service_id : this.f['service_id'].value,
+    };
+
+    this.servicesService.updateObjets(
+      this.servicesService.route.feedbacks[0],
+      this.feedbacks.id, payload
+    ).subscribe({
+      next: (data) => {
+        this.loading = false;
+        this.dialogRef.close(1);
+      },
+      error: (error) => {
+        this.loading = false; 
+        if( error.message){
+          this.servicesService.showCustomPositionEchec(error.message);
+        } else {
+          this.servicesService.showCustomPositionEchec(error);
+        }
+      },
+    });
+  }
+}

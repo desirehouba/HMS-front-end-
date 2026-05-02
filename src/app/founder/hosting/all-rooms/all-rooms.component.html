@@ -1,0 +1,343 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <div class="mt-5">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="materialTableHeader">
+                    <div class="left">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="tbl-title">
+                          <h2>{{"app.room" | translate }}</h2>
+                        </li>
+                        <li class="tbl-search-box">
+                          <label for="search-input">
+                            <i class="material-icons search-icon">
+                              search</i>
+                          </label>
+                          <input placeholder="Search" type="text" #filter
+                            class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="SEARCH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              #filter (click)="filterButton()">
+                              <mat-icon class="col-white">search</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="body">
+                            <form [formGroup]="roomForm">
+                              <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline" 
+                                  style="margin-bottom: -2rem" class="example-full-width">
+                                    <mat-label>
+                                      {{"app.status" | translate }}
+                                    </mat-label>
+                                    <mat-select formControlName="status" 
+                                    (selectionChange)="[setStatus()]">
+                                      <mat-option [value]="null" >
+                                        {{"app.alls" | translate }} 
+                                      </mat-option> 
+                                      <mat-option [value]="'free'" >
+                                        {{"app.free" | translate }} 
+                                      </mat-option> 
+                                      <mat-option [value]="'busy'" >
+                                        {{"app.busy" | translate }} 
+                                      </mat-option>  
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div> 
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="right">
+                      <ul class="tbl-export-btn">
+                        <li class="tbl-search-box butun">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button type="button test" color="primary"
+                              style="background-color: #028b5b;"
+                              mat-raised-button (click)="addTypeRoom()">
+                              {{"app.type" | translate }}s
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-search-box butun">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button type="button test" color="primary"
+                              style="background-color: #028b5b;"
+                              mat-raised-button (click)="addCategorieRoom()">
+                              {{"app.categorie" | translate }}s
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button mat-mini-fab (click)="addNew()"
+                              style="background-color: #028b5b;">
+                              <mat-icon class="col-white">add</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab (click)="refresh()"
+                              style="background-color: #028b5b;">
+                              <mat-icon class="col-white">refresh</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" [hidden]=!selection.hasValue()
+                            matTooltip="DELETE">
+                            <button mat-mini-fab color="warn"
+                              (click)="removeSelectedRows()">
+                              <mat-icon class="col-white">delete
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt
+                              (click)="exportExcel()" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="body overflow-auto">
+                    <div class="responsive_table">
+                      <table mat-table #table [dataSource]="dataSource" matSort
+                        class="mat-cell">
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                          <mat-header-cell *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="image">
+                          <mat-header-cell mat-header-cell *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'">
+                            {{"app.picture" | translate }}
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="table-img tbl-col-width-per-6">
+                            <span class="mobile-label">
+                              {{"app.picture" | translate }}:
+                            </span> 
+                            <img [src]="this.image+row.image" *ngIf="row.image != '' && row.image != null"/>
+                            <img src="../assets/images/user/admin.jpg" *ngIf="row.image=== '' || row.image === null"/>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="room_type">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            {{"app.type" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.type" | translate }}:
+                            </span>
+                            {{row.room_type?.name}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="room_category">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            {{"app.categorie" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.categorie" | translate }}:
+                            </span>
+                            {{row.room_category?.name}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{"app.name" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.name" | translate }}:
+                            </span>
+                            {{row.name}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="capacity">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="capacity">
+                              {{"app.capacity" | translate }} 
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label capacity">
+                              {{"app.capacity" | translate }}:
+                            </span>
+                            <span class="capacity">
+                              {{row.capacity}} 
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.statut" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="taille">
+                            <span class="mobile-label">
+                              {{"app.statut" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='free'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.free' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='busy'">
+                              <span class="badge badge-solid-red amounts">
+                                {{'app.busy' | translate}}</span>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.date" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.date" | translate }}:
+                            </span>
+                            <span class="amounts">
+                              {{row.date | date:'dd/MM/yyyy'}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="price">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amount">
+                              {{"app.price" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.amount" | translate }}:
+                            </span>
+                            <span class="amount">
+                              {{row.price | number }}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- actions -->
+                        <ng-container matColumnDef="actions">
+                          <mat-header-cell class="pr-0 s-room "
+                            *matHeaderCellDef>Actions
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row; let i=index;"
+                            class="pr-0 s-room "> 
+                            <button mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="editCall(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'edit'"
+                                [class]="'tbl-fav-edit'">
+                              </app-feather-icons>
+                            </button>
+                            <button mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="About(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'eye'"
+                                [class]="'tbl-fav-edit'">
+                              </app-feather-icons>
+                            </button>
+                            <button mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="deleteItem(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'trash-2'"
+                                [class]="'tbl-fav-delete'">
+                              </app-feather-icons>
+                            </button>
+                          </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row (click)="editCall(row)"
+                          *matRowDef="let row; columns: displayedColumns;"
+                          [style.cursor]="'pointer'" matRipple>
+                        </mat-row>
+                      </table>
+                      <!-- Loading spinner -->
+                      <div *ngIf="exampleDatabase?.isTblLoading"
+                        class="tbl-spinner">
+                        <mat-progress-spinner color="primary" [diameter]="40"
+                          mode="indeterminate">
+                        </mat-progress-spinner>
+                      </div>
+                      <!-- context menu start -->
+                      <div style="visibility: hidden; position: fixed"
+                        [style.left]="contextMenuPosition.x"
+                        [style.top]="contextMenuPosition.y">
+                      </div>
+                      <!-- context menu end -->
+                      <div *ngIf="!exampleDatabase?.isTblLoading"
+                        class="no-results"
+                        [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
+                        No results
+                      </div>
+                      <mat-paginator #paginator
+                        (page)="dataSource.connect(valueFilter)"
+                        [length]="dataSource.meta"
+                        [pageIndex]="0" [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100, 200]">
+                      </mat-paginator>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</section>

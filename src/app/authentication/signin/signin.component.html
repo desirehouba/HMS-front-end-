@@ -1,0 +1,239 @@
+<div class="auth-container  centeredBox imagess"
+    style="background: url(assets/images/2.png); background-position-y: center;">
+    <div class="signin">
+        <div class="connexion">
+            <h2 class="centered" *ngIf="log===''">
+                <img src="../assets/images/logo.png" style="width: 6rem;">
+            </h2>
+            <h2 class="centered" *ngIf="log!=''">
+                <!-- <img src={{log}} style="width: 9rem; "> -->
+                <img src="../assets/images/pessi.jpeg" style="width: 6rem; border-radius: 5px;">
+            </h2>
+            <div class="spacer"></div>
+            <form class="validate-form form-signin" [formGroup]="authForm"
+                (ngSubmit)="onSubmit()" *ngIf="cle">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width">
+                            <mat-label> {{ 'app.username'|translate}}
+                            </mat-label>
+                            <input matInput formControlName="phone" />
+                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-error
+                                *ngIf="authForm.get('phone')?.hasError('required')">
+                                {{"app.username_is_required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width">
+                            <mat-label> {{ 'app.password'| translate}}
+                            </mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'"
+                                formControlName="password">
+                            <a class="show-pwd-icon" href="#"
+                                onClick="return false;" matSuffix
+                                (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon> {{hide ? 'visibility_off'
+                                    :'visibility'}}
+                                </mat-icon>
+                            </a>
+                            <mat-error
+                                *ngIf="authForm.get('password')?.hasError('required')">
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div
+                    class="d-flex justify-content-between align-items-center mb-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"
+                                value>
+                            {{ 'app.remember_me'| translate}}
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="container-auth-form-btn">
+                    <div style="text-align:center">
+                        <button mat-raised-button style="color: #028b5b;"
+                            [class.auth-spinner]="loading"
+                            [disabled]="loading" type="submit"
+                            class="auth-form-btn changeColor"
+                            [disabled]="!authForm.valid">
+                            Connexion
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <form class="validate-form form-signin" [formGroup]="keyForm"
+                (ngSubmit)="validateKey()" *ngIf="!cle">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>{{ 'app.cle'| translate}}</mat-label>
+                            <input matInput [type]="hide ? 'key' : 'text'"
+                                formControlName="key">
+                            <a class="show-pwd-icon" href="#"
+                                onClick="return false;" matSuffix
+                                (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>
+                                    {{hide ? 'visibility_off' :'visibility'}}
+                                </mat-icon>
+                            </a>
+                            <mat-error
+                                *ngIf="keyForm.get('key')?.hasError('required')">
+                                key is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>
+                                {{ 'app.select_lang'| translate}}
+                            </mat-label>
+                            <mat-select formControlName="lang"
+                                (selectionChange)="setLangage()">
+                                <mat-option
+                                    *ngFor="let lang of langs"
+                                    [value]="lang.code">
+                                    {{ lang.name | translate}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+                <div class="container-auth-form-btn">
+                    <div style="text-align:center">
+                        <button mat-raised-button style="background-color: #028b5b;"
+                            [class.auth-spinner]="loadings"
+                            class="auth-form-btn changeColor"
+                            [disabled]="!keyForm.valid || loadings"
+                            type="submit"
+                            (click)="validateKey()">
+                            {{"app.send" | translate}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="boxrigth">
+            <div class="suite">
+                <div class="slider">
+                    <div class="cadre2">
+                        <div class>
+                            <div class="img">
+                                <img src="../assets/images/hotel1.jpeg">
+                            </div>
+                            <div class="titre">
+                                <h5>Gestion des reservations</h5>
+                            </div>
+                            <div class="description">
+                                <p>
+                                    {{ 'app.title_1' | translate }}
+                                </p>
+                            </div>
+                            <div style="text-align:center">
+                                <a href="https://HMS.net/">
+                                    <button mat-raised-button color="primary"
+                                        class="auth-form-btn changeColor"
+                                        type="submit">
+                                        visiter le site
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cadre2">
+                        <div class>
+                            <div class="img">
+                                <img src="../assets/images/hotel2.jpg">
+                            </div>
+                            <div class="titre">
+                                <h5>Application Mobile</h5>
+                            </div>
+                            <div class="description">
+                                <p>{{ 'app.title_2' | translate }} </p>
+                            </div>
+                            <div style="text-align:center">
+                                <a href="https://HMS.net/">
+                                    <button mat-raised-button color="primary"
+                                        class="auth-form-btn changeColor"
+                                        type="submit">
+                                        visiter le site
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cadre2">
+                        <div class>
+                            <div class="img">
+                                <img src="../assets/images/hotel3.jpg">
+                            </div>
+                            <div class="titre">
+                                <h5>Gestion des Clients </h5>
+                            </div>
+                            <div class="description">
+                                <p>
+                                    HMS vous donne la possibilité
+                                    <br>d'optimiser la communication avec vos
+                                    <br>clients et d'ameliorer leur
+                                    <br>sejour dans votre hotel
+                                </p>
+                            </div>
+                            <div style="text-align:center">
+                                <a href="https://HMS.net/">
+                                    <button mat-raised-button color="primary"
+                                        class="auth-form-btn changeColor"
+                                        type="submit">
+                                        visiter le site
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cadre2">
+                        <div class>
+                            <div class="img">
+                                <img src="../assets/images/hotel5.jpg">
+                            </div>
+                            <div class="titre">
+                                <h5>Confort des enseignants </h5>
+                            </div>
+                            <div class="description">
+                                <p>
+                                    vous pouvez ameliorer le rendu et <br>
+                                    confort de votre personnel <br> grace à
+                                    application ils <br>pourront travailler de
+                                    partout
+                                </p>
+                            </div>
+                            <div style="text-align:center">
+                                <a href="https://HMS.net/">
+                                    <button mat-raised-button color="primary"
+                                        class="auth-form-btn changeColor"
+                                        type="submit">
+                                        visiter le site
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

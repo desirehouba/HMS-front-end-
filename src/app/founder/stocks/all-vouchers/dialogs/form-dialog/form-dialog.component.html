@@ -1,0 +1,253 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='vouchers.photo' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="voucherForm">
+      <div class="row">
+        <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div *ngIf="user" class="tbl-spinner">
+            <mat-progress-spinner style="color: #028b5b;"
+              [diameter]="20"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+            <mat-form-field appearance="outline" *ngIf="!user"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.responsable" | translate }}</mat-label>
+            <mat-select formControlName="responsible_id" required>
+              <mat-option [value]="user.id"
+                *ngFor="let user of users">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="voucherForm.get('responsable')?.hasError('required')">
+              role is required
+            </mat-error>
+          </mat-form-field> 
+        </div>
+        <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div *ngIf="user" class="tbl-spinner">
+            <mat-progress-spinner style="color: #028b5b;"
+              [diameter]="20"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+            <mat-form-field appearance="outline" *ngIf="!user"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.supplier" | translate }}</mat-label>
+            <mat-select formControlName="supplier_id" required>
+              <mat-option [value]="user.id"
+                *ngFor="let user of suppliers">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="voucherForm.get('responsable')?.hasError('required')">
+              role is required
+            </mat-error>
+          </mat-form-field> 
+        </div>
+        <div
+          class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            style="margin-bottom: -2rem"
+            class="example-full-width">
+            <mat-label>
+              {{"app.priority" | translate }}
+            </mat-label>
+            <mat-select formControlName="priority" required>
+              <mat-option [value]="'low'">
+                {{"app.small" | translate }}
+              </mat-option>
+              <mat-option [value]="'medium'">
+                {{"app.medium" | translate }}
+              </mat-option>
+              <mat-option [value]="'high'">
+                {{"app.high" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <!-- <div *ngIf="vouchers.quotation_file != '' && vouchers.quotation_file != null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img [src]="image+vouchers.quotation_file" class="user-img margi" alt>
+        </div>
+        <div *ngIf="vouchers.quotation_file === '' || vouchers.quotation_file === null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img src="../assets/images/user/admin.jpg" class="user-img margi" alt>
+        </div> -->
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
+          <app-file-upload formControlName="quotation_file" >
+            </app-file-upload> 
+        </div>
+      </div>
+      <!-- <div class="row"> 
+        <div
+          class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            style="margin-bottom: -2rem"
+            class="example-full-width">
+            <mat-label>
+              {{"app.status" | translate }}
+            </mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option [value]="'requesting_price'">
+                {{"app.requesting_price" | translate }}
+              </mat-option>
+              <mat-option [value]="'purchase_order'">
+                {{"app.purchase_order" | translate }}
+              </mat-option>
+              <mat-option [value]="'paid'">
+                {{"app.paid" | translate }}
+              </mat-option>
+              <mat-option [value]="'delivered'">
+                {{"app.delivered" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="row" *ngIf="vouchers.status === 'requesting_price'">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+      <div class="row bordure">
+        <p-table [value]="voucherArrys"
+          (onEditInit)="onEditInit($event)"
+          (onEditCancel)="onEditCancel($event)">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 50%; font-size: 18px;">
+                {{"app.article" | translate }}
+              </th>
+              <th style="width: 35%;font-size: 18px;">
+                {{"app.unit_price" | translate }}
+              </th>
+              <th style="width: 15%;font-size: 18px;">
+                {{"app.quantity" | translate }}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-book>
+            <tr>
+              <td pEditableColumn style="width: 50%; font-size: 18px;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <mat-select [(ngModel)]="book.id">
+                        <mat-option [value]="article.id"
+                          *ngFor="let article of articles">
+                          {{ article.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+              <td pEditableColumn style="width: 35%;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <input matInput type="number"
+                        [(ngModel)]="book.unit_price">
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+              <td pEditableColumn style="width: 15%; ">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <input matInput type="number"
+                        [(ngModel)]="book.quantity">
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <form class="register-form m-4" [formGroup]="voucherForm"> 
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space" 
+              *ngIf="vouchers.status==='requesting_price'" 
+              [disabled]="!voucherForm.valid || loading"
+              [class.auth-spinner]="loading" 
+              [disabled]="loading" color="primary" 
+              (click)="updateVouchers('requesting_price')"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button class="btn-space"
+              *ngIf="vouchers.status==='requesting_price'"
+              [disabled]="!voucherForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="updateVouchers('purchase_order')"
+              mat-raised-button>
+              {{"app.create_purchase_order" | translate }}
+            </button> 
+            <button mat-raised-button color="primarys" 
+              [disabled]="!voucherForm.valid || loading"
+              [class.auth-spinner]="loading"
+              class="btn-space primarys"
+              *ngIf="vouchers.status==='purchase_order'"
+              style="background-color: #028b5b; color: white;"
+              (click)="updateVouchers('paid')">
+              {{"app.payer" | translate}} 
+            </button>
+            <button mat-raised-button color="primarys" 
+              [disabled]="!voucherForm.valid || loading"
+              [class.auth-spinner]="loading"
+              class="btn-space primarys"
+              *ngIf="vouchers.status==='paid'"
+              style="background-color: #028b5b; color: white;"
+              (click)="updateVouchers('delivered')">
+              {{"app.receive" | translate}} 
+            </button>
+            <button  type="button" (click)="updateVouchers('cancelled')"
+            [disabled]="!voucherForm.valid || loading"
+            [class.auth-spinner]="loading"
+              *ngIf="vouchers.status==='requesting_price' || vouchers.status==='purchase_order'"
+              mat-raised-button color="warn">
+                {{"app.cancel_order" | translate }}
+            </button> 
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

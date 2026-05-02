@@ -1,0 +1,196 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about"> {{"app.add_customer" | translate}} 
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="customerForm">
+      <div class="row">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.firstname" | translate }}</mat-label>
+            <mat-icon matSuffix>face</mat-icon>
+            <input matInput formControlName="firstname" required>
+            <mat-error
+              *ngIf="customerForm.get('firstname')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.lastname" | translate }}</mat-label>
+            <mat-icon matSuffix>face</mat-icon>
+            <input matInput formControlName="lastname" required>
+            <mat-error
+              *ngIf="customerForm.get('lastname')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-5">
+          <app-file-upload formControlName="photo">
+          </app-file-upload>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.gender" | translate }}</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option [value]="'male'">
+                {{"app.male" | translate }}
+              </mat-option>
+              <mat-option [value]="'female'">
+                {{"app.female" | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="customerForm.get('gender')?.hasError('required')">
+              gender is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.phone" | translate }}</mat-label>
+            <input matInput formControlName="phone" required
+              placeholder="EX: (237) 690 340 540" />
+            <span matSuffix>
+              <mat-icon class="msr-2">phone</mat-icon>
+            </span>
+            <mat-error
+              *ngIf="customerForm.get('phone')?.hasError('required')">
+              phone is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.phone" | translate }} 2 </mat-label>
+            <input matInput formControlName="phone2" 
+              placeholder="EX: (237) 690 340 540" />
+            <span matSuffix>
+              <mat-icon class="msr-2">phone</mat-icon>
+            </span>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.email" | translate }}</mat-label>
+            <mat-icon matSuffix>email</mat-icon>
+            <input matInput formControlName="email"
+              placeholder="exemple@gmail.com">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.address" | translate }}</mat-label>
+            <input matInput formControlName="address">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.nationality" | translate }}</mat-label>
+            <input matInput formControlName="nationality">
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.birthday" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="rpicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.birth_place" | translate }}</mat-label>
+            <input matInput formControlName="birth_place">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.nui" | translate }}</mat-label>
+            <input matInput formControlName="nui">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.cni_passport" | translate }}</mat-label>
+            <input matInput formControlName="cni">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.passport_issue_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker1"
+              formControlName="passport_issue_date">
+            <mat-datepicker-toggle matSuffix [for]="rpicker1">
+            </mat-datepicker-toggle>
+            <mat-datepicker #rpicker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.passport_issue_place" | translate }}</mat-label>
+            <input matInput formControlName="passport_issue_place">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!customerForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="addCustomer()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button
+              color="warn" tabindex="-1"
+              (click)="onNoClick()">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

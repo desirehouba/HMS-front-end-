@@ -1,0 +1,186 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='products.photo' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="productForm">
+      <div class="row">
+        <div class="col-xl-5 col-lg-9 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.name" | translate }} </mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error
+              *ngIf="productForm.get('name')?.hasError('required')">
+              name is required
+            </mat-error>
+          </mat-form-field>
+        </div>  
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.alert_quantity" | translate }}</mat-label>
+            <input matInput formControlName="alert_quantity" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
+          <app-file-upload formControlName="image" >
+            </app-file-upload> 
+        </div>
+        <div *ngIf="products.image != '' && products.image != null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img [src]="image+products.image" class="user-img margi" alt>
+        </div>
+        <div *ngIf="products.image === '' || products.image === null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img src="../assets/images/user/admin.jpg" class="user-img margi" alt>
+        </div>
+      </div>
+      <div class="row"> 
+        <!-- <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="type" required>
+              <mat-option [value]="'consumable'">
+                {{"app.consumable" | translate }}
+              </mat-option>
+              <mat-option [value]="'storable'">
+                {{"app.storable" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>  -->
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.manufacturing_cost" | translate }}</mat-label>
+            <input matInput formControlName="manufacturing_cost" type="number">
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.selling_price" | translate }}</mat-label>
+            <input matInput formControlName="price" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.expiry_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="expiry_date">
+            <mat-datepicker-toggle matSuffix [for]="rpicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.number" | translate }}</mat-label>
+            <mat-select formControlName="nbrProduct"
+              required (selectionChange)="getProducts()">
+              <mat-option [value]="nbr"
+                *ngFor="let nbr of numbersProducts">
+                {{ nbr }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+      <div class="row bordure" *ngIf="!article">
+        <p-table [value]="productArrys"
+          (onEditInit)="onEditInit($event)"
+          (onEditCancel)="onEditCancel($event)">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 60%; font-size: 18px;">
+                {{"app.article" | translate }}
+              </th>
+              <th style="width: 40%;font-size: 18px;">
+                {{"app.quantity" | translate }}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-book>
+            <tr>
+              <td pEditableColumn style="width: 35%; font-size: 18px;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <mat-select [(ngModel)]="book.id">
+                        <mat-option [value]="article.id"
+                          *ngFor="let article of articles">
+                          {{ article.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+              <td pEditableColumn style="width: 15%; font-size: 18px;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <input matInput type="number"
+                        [(ngModel)]="book.quantity">
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+       <form class="register-form m-4" [formGroup]="productForm"> 
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!productForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="updateProducts()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

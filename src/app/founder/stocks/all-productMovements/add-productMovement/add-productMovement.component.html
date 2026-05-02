@@ -1,0 +1,106 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_productMovement" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="productMovementForm">
+              <div class="row">
+                <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="service" class="tbl-spinner">
+                    <mat-progress-spinner style="color: #028b5b;"
+                      [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!service"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.service" | translate }}</mat-label>
+                    <mat-select formControlName="service_id" (selectionChange)="getProductss()">
+                      <mat-option [value]="service.id"
+                        *ngFor="let service of services">
+                        {{ service.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="user" class="tbl-spinner">
+                    <mat-progress-spinner style="color: #028b5b;"
+                      [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!user"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.responsable" | translate }}</mat-label>
+                    <mat-select formControlName="responsible_id">
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of users">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div> 
+              <div class="row"> 
+                <div class="col-xl-8 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="product" class="tbl-spinner">
+                    <mat-progress-spinner style="color: #028b5b;"
+                      [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!product"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.product" | translate }}</mat-label>
+                    <mat-select formControlName="product_id">
+                      <mat-option [value]="product.id"
+                        *ngFor="let product of products">
+                        {{ product.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.quantity" | translate }}</mat-label>
+                    <input matInput formControlName="quantity" type="number">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="description" rows="6">
+                    </textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!productMovementForm.valid || loading"
+                    class="btn-space" (click)="addProductMovements()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button>
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

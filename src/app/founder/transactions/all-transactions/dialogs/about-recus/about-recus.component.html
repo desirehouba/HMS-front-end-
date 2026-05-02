@@ -1,0 +1,805 @@
+<div class="addContainer with">
+  <div mat-dialog-content>
+    <div *ngIf="!hide" class="tbl-spinner" style="margin-top: 50px;">
+      <mat-progress-spinner color="primary"
+        [diameter]="40" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+    <div>
+      <div id="content" #content *ngIf="hide && over && ecole != 'acf'">
+        <div class="entet">
+          <div class="class3">
+            <div class="class4" *ngIf="transaction[0].school.name.length<22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="transaction[0].school.name.length>22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{transaction[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{transaction[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{transaction[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.classroom" | translate }} :
+                </strong>
+                {{transaction[0].student.classe.name}}
+              </span>
+            </div>
+            <div class="class20" align="right">
+              <img [src]="logo" class="imgs" align="right" />
+            </div>
+          </div>
+          <table class="class7">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 20%;" class="text">
+                  {{"app.slice" | translate }}
+                </th>
+                <th style="width: 15%;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 20%; text-align: center;" class="text">
+                  {{"app.payment_mode" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f805;">
+              <tr *ngFor="let trans of transaction">
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{"app.slice" | translate}} {{trans.tranche.name}}
+                </td>
+                <td align="left" class="text">
+                  {{trans.tranche.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{trans.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment+trans.balancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="class1">
+            <div class="class80">
+              <span>
+                <strong>{{"app.total_boarding_school" | translate }} :</strong>
+              </span>
+            </div>
+            <div class="class20">
+              <strong>{{ pension | number }} Fcfa</strong>
+            </div>
+          </div>
+          <div class="class1">
+            <div class="class80">
+              <strong>
+                <span>
+                  {{"app.total_amount_paid2" | translate }} :
+                </span>
+              </strong>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ avancePension | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1" *ngIf="this.bourse != null">
+            <div class="class80">
+              <strong><span> {{"app.the" | translate}} {{
+                  this.bourse.name }}
+                  :</span></strong>
+            </div>
+            <div class="class20">
+              <strong>{{ this.bourse.amount | number }} Fcfa</strong>
+            </div>
+          </div>
+          <div class="class1 pad-t">
+            <div class="class80">
+              <strong><span> {{"app.rest" | translate }} :</span></strong>
+            </div>
+            <div class="class20 bordeT">
+              <strong>{{ restePension | number }}
+                Fcfa</strong>
+            </div>
+          </div>
+          <div class="tiret" *ngIf="type === 'a4'">
+            ----------------------------------------------------------------------------------------------------------------------------------------------------</div>
+          <div class="class3" *ngIf="type === 'a4'">
+            <div class="class4" *ngIf="transaction[0].school.name.length<22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="transaction[0].school.name.length>22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;" *ngIf="type === 'a4'">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{transaction[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{transaction[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{transaction[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.classroom" | translate }} :
+                </strong>
+                {{transaction[0].student.classe.name}}
+              </span>
+            </div>
+            <div class="class20" align="right">
+              <img [src]="logo" align="right"
+                style="max-height: 65px; max-width: 120px; border-radius: 1px; margin-right: 0px;" />
+            </div>
+          </div>
+          <table class="class7" *ngIf="type === 'a4'">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 20%;" class="text">
+                  {{"app.slice" | translate }}
+                </th>
+                <th style="width: 15%;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 20%; text-align: center;" class="text">
+                  {{"app.payment_mode" | translate }}
+                </th>
+                <th style="width: 15%;text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f8f6 ;">
+              <tr *ngFor="let trans of transaction">
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{"app.slice" | translate}} {{trans.tranche.name}}
+                </td>
+                <td align="left" class="text">
+                  {{trans.tranche.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{trans.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment+trans.balancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="class1" *ngIf="type === 'a4'">
+            <div class="class80">
+              <span>
+                <strong>{{"app.total_boarding_school" | translate }} :</strong>
+              </span>
+            </div>
+            <div class="class20">
+              <strong>{{ pension | number }} Fcfa</strong>
+            </div>
+          </div>
+          <div class="class1" *ngIf="type === 'a4'">
+            <div class="class80">
+              <strong><span> {{"app.total_amount_paid2" | translate }}
+                  :</span></strong>
+            </div>
+            <div class="class20">
+              <strong>{{ avancePension | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1" *ngIf="this.bourse != null && type === 'a4'">
+            <div class="class80">
+              <strong><span> {{"app.the" | translate}} {{
+                  this.bourse.name }}
+                  :</span></strong>
+            </div>
+            <div class="class20">
+              <strong>{{ this.bourse.amount | number }} Fcfa</strong>
+            </div>
+          </div>
+          <div class="class1 pad-t" *ngIf="type === 'a4'">
+            <div class="class80">
+              <strong><span> {{"app.rest" | translate }} :</span></strong>
+            </div>
+            <div class="class20 bordeT">
+              <strong>
+                {{ restePension | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="content" #content *ngIf="hide && over && ecole === 'acf'">
+        <div class="entet">
+          <div class="class3-acf">
+            <div class="class4" *ngIf="transaction[0].school.name.length<22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="transaction[0].school.name.length>22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{transaction[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{transaction[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{transaction[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.classroom" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.specialtie" | translate }} :
+                </strong>
+                {{transaction[0].student.classe.name}}
+              </span>
+            </div>
+            <div class="class20" align="right">
+              <img [src]="logo" class="imgs-acf" align="right" />
+            </div>
+          </div>
+          <table class="class7">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 20%;" class="text">
+                  {{"app.slice" | translate }}
+                </th>
+                <th style="width: 15%;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 20%; text-align: center;" class="text">
+                  {{"app.payment_mode" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f805;">
+              <tr *ngFor="let trans of transaction">
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{"app.slice" | translate}} {{trans.tranche.name}}
+                </td>
+                <td align="left" class="text">
+                  {{trans.tranche.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{trans.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment+trans.balancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="class20 " *ngIf="qrObject!=''" id="content" #content>
+              <div align="center" style="height: 10px; width: 10px;">
+                <qrcode [qrdata]="qrObject" [width]="30" [margin]="0"
+                  colorDark="#008000"
+                  style="height: 84px;width: 84px; color: red;"></qrcode>
+              </div>
+            </div>
+            <div class="class80">
+              <div class="class1" *ngIf="type === 'a4'">
+                <div class="class80">
+                  <span>
+                    <strong>{{"app.total_boarding_school" | translate }}
+                      :</strong>
+                  </span>
+                </div>
+                <div class="class20">
+                  <strong>{{ pension | number }} Fcfa</strong>
+                </div>
+              </div>
+              <div class="class1" *ngIf="type === 'a4'">
+                <div class="class80">
+                  <strong><span> {{"app.total_amount_paid2" | translate }}
+                      :</span></strong>
+                </div>
+                <div class="class20">
+                  <strong>{{ avancePension | number }} Fcfa
+                  </strong>
+                </div>
+              </div>
+              <div class="class1" *ngIf="this.bourse != null && type === 'a4'">
+                <div class="class80">
+                  <strong><span> {{"app.the" | translate}} {{ this.bourse.name
+                      }}
+                      :</span></strong>
+                </div>
+                <div class="class20">
+                  <strong>{{ this.bourse.amount | number }} Fcfa</strong>
+                </div>
+              </div>
+              <div class="class1 pad-t" *ngIf="type === 'a4'">
+                <div class="class80">
+                  <strong><span> {{"app.rest" | translate }} :</span></strong>
+                </div>
+                <div class="class20 bordeT">
+                  <strong>
+                    {{ restePension | number }} Fcfa
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; width: 100%; margin-top: 5px;">
+              <div class="class6">
+                <div class="class80" align="left">
+                  <strong>
+                    {{"app.fee_rembrousable" | translate}}
+                  </strong>
+                </div>
+              </div>
+              <div class="class20" align="right">
+                <img src="assets/logo/cachet.jpeg" align="right"
+                  style="max-height: 20px; max-width: 50px; border-radius: 1px;" />
+              </div>
+            </div>
+          </div>
+          <div class="tiret-acf" *ngIf="type === 'a4'">
+            ----------------------------------------------------------------------------------------------------------------------------------------------------</div>
+          <div class="class3-acf" *ngIf="type === 'a4'">
+            <div class="class4" *ngIf="transaction[0].school.name.length<22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="transaction[0].school.name.length>22">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;" *ngIf="type === 'a4'">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{transaction[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{transaction[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{transaction[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.classroom" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.specialtie" | translate }} :
+                </strong>
+                {{transaction[0].student.classe.name}}
+              </span>
+            </div>
+            <div class="class20" align="right">
+              <img [src]="logo" class="imgs-acf" align="right" />
+            </div>
+          </div>
+          <table class="class7" *ngIf="type === 'a4'">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 20%;" class="text">
+                  {{"app.slice" | translate }}
+                </th>
+                <th style="width: 15%;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 20%; text-align: center;" class="text">
+                  {{"app.payment_mode" | translate }}
+                </th>
+                <th style="width: 15%;text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f8f6 ;">
+              <tr *ngFor="let trans of transaction">
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{"app.slice" | translate}} {{trans.tranche.name}}
+                </td>
+                <td align="left" class="text">
+                  {{trans.tranche.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{trans.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment+trans.balancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{trans.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" *ngIf="type === 'a4'">
+            <div class="class20" *ngIf="qrObject!=''" id="content" #content>
+              <div align="center" style="height: 10px; width: 10px;">
+                <qrcode [qrdata]="qrObject" [width]="30" [margin]="0"
+                  colorDark="#008000"
+                  style="height: 84px;width: 84px; color: red;"></qrcode>
+              </div>
+            </div>
+            <div class="class80">
+              <div class="class1">
+                <div class="class80">
+                  <span>
+                    <strong>{{"app.total_boarding_school" | translate }}
+                      :</strong>
+                  </span>
+                </div>
+                <div class="class20">
+                  <strong>{{ pension | number }} Fcfa</strong>
+                </div>
+              </div>
+              <div class="class1">
+                <div class="class80">
+                  <strong><span> {{"app.total_amount_paid2" | translate }}
+                      :</span></strong>
+                </div>
+                <div class="class20">
+                  <strong>{{ avancePension | number }} Fcfa
+                  </strong>
+                </div>
+              </div>
+              <div class="class1" *ngIf="this.bourse != null && type === 'a4'">
+                <div class="class80">
+                  <strong><span> {{"app.the" | translate}} {{ this.bourse.name
+                      }}
+                      :</span></strong>
+                </div>
+                <div class="class20">
+                  <strong>{{ this.bourse.amount | number }} Fcfa</strong>
+                </div>
+              </div>
+              <div class="class1 pad-t">
+                <div class="class80">
+                  <strong><span> {{"app.rest" | translate }} :</span></strong>
+                </div>
+                <div class="class20 bordeT">
+                  <strong>
+                    {{ restePension | number }} Fcfa
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; width: 100%; margin-top: 5px;"
+              *ngIf="type === 'a4'">
+              <div class="class6">
+                <div class="class80" align="left">
+                  <strong>
+                    {{"app.fee_rembrousable" | translate}}
+                  </strong>
+                </div>
+              </div>
+              <div class="class20" align="right">
+                <img src="assets/logo/cachet.jpeg" align="right"
+                  style="max-height: 20px; max-width: 50px; border-radius: 1px;" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- apercu du recu -->
+      <div id="content" #content *ngIf="hide  && !over">
+        <div style="width: 50rem; padding-left: 12px; padding-right: 12px;">
+          <div class="class33">
+            <div class="class44">
+              <span>{{transaction[0].school.name}}</span>
+            </div>
+            <div class="class55">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;">
+            <div class="class66">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{transaction[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{transaction[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{transaction[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.classroom" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.specialtie" | translate }} :
+                </strong>
+                {{transaction[0].student.classe.name}}
+              </span>
+            </div>
+
+            <div class="class220" align="right">
+              <img [src]="logo" align="right"
+                style="max-height: 110px; max-width: 170px; border-radius: 1px; margin-right: 0px;" />
+            </div>
+          </div>
+          <table class="class77">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;"
+                class="text1">
+                <th style="width: 20%;" class="text1 pad-l">
+                  {{"app.slice" | translate }}
+                </th>
+                <th style="width: 15%;" class="text1">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 20%; text-align: center;" class="text1">
+                  {{"app.payment_mode" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text1">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text1">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%;text-align: right;" class="text1 pad-r">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f8f6;" class="text1">
+              <tr *ngFor="let trans of transaction">
+                <td align="left" style=" padding-left: 1px;" class="text1">
+                  {{"app.slice" | translate}} {{trans.tranche.name}}
+                </td>
+                <td align="left" class="text1">
+                  {{trans.tranche.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text1">
+                  {{trans.payment_mode}}
+                </td>
+                <td align="right" class="text1">
+                  {{trans.advancePayment+trans.balancePayment | number}}
+                </td>
+                <td align="right" class="text1">
+                  {{trans.advancePayment | number}}
+                </td>
+                <td align="right" class="text1">
+                  {{trans.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="class1">
+            <div class="class880 text1">
+              <span>
+                {{"app.total_boarding_school" | translate }} :
+              </span>
+            </div>
+            <div class="class220 text1">
+              {{ pension | number }} Fcfa
+            </div>
+          </div>
+          <div class="class1">
+            <div class="class80 text1">
+              <span> {{"app.total_amount_paid2" | translate }} :</span>
+            </div>
+            <div class="class220 text1">
+              {{ alreadyPaid | number }} Fcfa
+            </div>
+          </div>
+          <div class="class1" *ngIf="this.bourse != null">
+            <div class="class880 text1">
+              <span> {{"app.the" | translate}} {{
+                this.bourse.name }}
+                :</span>
+            </div>
+            <div class="class220 text1">
+              {{ this.bourse.amount | number }} Fcfa
+            </div>
+          </div>
+          <div class="class1 pad-t">
+            <div class="class880 text1">
+              <span> {{"app.rest" | translate }} :</span>
+            </div>
+            <div class="class220 text1 bordeT">
+              {{ restePension | number }} Fcfa
+            </div>
+          </div>
+          <div *ngIf="ecole === 'acf'">
+            <div style="display: flex; width: 100%; margin-top: 5px;">
+              <div class="class11">
+                <div class="class880" align="left">
+                  <strong>
+                    {{"app.fee_rembrousable" | translate}}
+                  </strong>
+                </div>
+              </div>
+              <!-- <div class="class220" *ngIf="qrObject!=''">
+                <div align="center" style="height: 10px; width: 10px;">
+                  <qrcode [qrdata]="qrObject" [width]="30" [margin]="0"
+                    colorDark="#008000"
+                    style="height: 84px;width: 84px; color: red;"></qrcode>
+                </div>
+              </div> -->
+              <div class="class220" align="right">
+                <img src="assets/logo/cachet.jpeg" align="right"
+                  style="max-height: 50px; max-width: 50px; border-radius: 1px;" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mag-t">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <button class="btn-space butun"
+              [disabled]="loading" [class.auth-spinner]="loading"
+              mat-raised-button (click)="download('a5')">
+              {{"app.download_card" | translate }}
+            </button>
+            <button class="btn-space butun"
+              [disabled]="loading" [class.auth-spinner]="loading"
+              mat-raised-button (click)="download('a4')">
+              {{"app.download_card_double" | translate }}
+            </button>
+            <button type="button" color="warn"
+              mat-raised-button (click)="onNoClick()">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

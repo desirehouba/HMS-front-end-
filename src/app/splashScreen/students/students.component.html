@@ -1,0 +1,49 @@
+<div class="auth-container  centeredBox "
+  style="background: url(assets/images/slide.jpg);">
+  <div class="signin">
+    <div class="connexion">
+      <h2 style="text-align: center;">
+        {{"app.List_Of_your_student" | translate}}
+      </h2>
+      <p style="text-align: center;">
+        {{"app.Select_the_student_you_wish_to_managment" | translate}}
+      </p>
+    </div>
+    <div *ngIf="!hide" align="center"
+      style="margin-top: 50px;">
+      <mat-spinner [value]="10000" color="#028b5b">
+      </mat-spinner>
+    </div>
+    <div class="boxrigth" *ngIf="hide === true">
+      <div class="row mt-5 ml-0 mr-0" *ngIf="students.length != 0">
+        <div class="col-md-4" *ngFor="let student of students">
+          <div class="card border-apply">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header l-bg-blue">
+                  <div class="user-name">{{student.name}}</div>
+                </div>
+                <img [src]="image+student.photo" class="user-img photo" alt>
+                <p> {{student.level.name}} --- {{student.classe.name}}
+                  <br>{{student.gender}}<br>
+                </p>
+                <div class="profile-userbuttons">
+                  <button style="background-color: #028b5b; color: white;"
+                    mat-flat-button (click)="onSubmit(student)">
+                    {{"app.select" | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row  ml-0 mr-0" *ngIf="students.length === 0">
+        <div class="user-name">{{"app.not_student" | translate}}</div> <br>
+        <div class="user-name">{{"app.not_student_answer" | translate}}</div>
+        <br>
+      </div>
+
+    </div>
+  </div>
+</div>

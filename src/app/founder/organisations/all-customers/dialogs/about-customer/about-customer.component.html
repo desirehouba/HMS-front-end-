@@ -1,0 +1,146 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='customers.photo' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card mcont">
+    <div class="row clearfix mag-5">
+      <div class="col-lg-4 col-md-12">
+        <div>
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <br />
+                <div class="user-name">  {{ customers.firstname }}</div>
+                <br />
+              </div>
+              <img [src]="image"
+                class="user-img" alt />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template mat-tab-label class="mag3">
+              <mat-icon class="example-tab-icon msr-2">face</mat-icon>
+              Informations
+            </ng-template>
+            <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+              <div class="project_widget mag2">
+                <div class="body">
+                  <div class="row">
+                    <div class="col-md-8 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.name" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.name }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.gender" | translate }}
+                      </strong>
+                      <br />
+                      <p *ngIf="customers.gender==='male'">
+                        <span class="badge badge-solid-green">
+                          {{'app.male' | translate}}</span>
+                        </p>
+                      <p *ngIf="customers.gender==='female'">
+                        <span class="badge badge-solid-purple">
+                          {{'app.female' | translate}}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row"> 
+                    <div class="col-md-4 col-6">
+                      <strong class="text-muted">
+                        {{"app.phone" | translate }}
+                      </strong>
+                      <br />
+                      <p>
+                        {{ customers.phone }}
+                      </p>
+                    </div>
+                    <div class="col-md-4 col-6">
+                      <strong class="text-muted">
+                        {{"app.phone" | translate }} 2
+                      </strong>
+                      <br />
+                      <p>
+                        {{ customers.phone2 }}
+                      </p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.nationality" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.nationality }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.email" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.email }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.address" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.address }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.nui" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.nui }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.cni_passport" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.cni }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.passport_issue_date" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.passport_issue_date }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.passport_issue_place" | translate }}
+                      </strong>
+                      <br />
+                      <p>{{ customers.passport_issue_place }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,293 @@
+<section class="content">
+  <div class="content-block">
+
+    <!-- Widgets -->
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start dashbord">
+              <img src="assets/images/banner/client.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{"app.all_students" | translate }}
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.clients_count}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12"
+        *ngIf="scholar_level != 'University' && scholar_level != 'CF'">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/reservation.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{"app.all_parents" | translate }}
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.total_bookings}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/personnel.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{"app.all_staffs" | translate }}
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.staff_count}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/tapis-rouge.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{"app.event" | translate }}
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide"> 
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.event_count}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-orange psr-2">
+                trending_down</i> 07% Less Then Last Year
+            </p>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img4.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">{{"app.alle" | translate }}</h5>
+              </div>
+              <div class="col-green"*ngIf="hide">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.cash_in_by_service[0].total_amount + 
+                    statistiques.cash_in_by_service[1].total_amount + 
+                    statistiques.cash_in_by_service[2].total_amount + 
+                    statistiques.cash_in_by_service[3].total_amount | number }}
+                  Fcfa</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">trending_up</i>
+              {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12" *ngFor="let item of statistiques.cash_in_by_service">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img4.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{item.service_name}}
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide"> 
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{item.total_amount | number }} Fcfa</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div> 
+      
+    </div>
+    <!-- #END# Widgets -->
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <apx-chart [series]="areaChartOptions.series!"
+              [chart]="areaChartOptions.chart!"
+              [xaxis]="areaChartOptions.xaxis!"
+              [yaxis]="areaChartOptions.yaxis!"
+              [colors]="areaChartOptions.colors!"
+              [stroke]="areaChartOptions.stroke!"
+              [legend]="areaChartOptions.legend!"
+              [grid]="areaChartOptions.grid!"
+              [tooltip]="areaChartOptions.tooltip!"
+              [dataLabels]="areaChartOptions.dataLabels!"></apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <!-- <div class="header">
+            <h2>Staff Performance Chart</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu"
+              class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div> -->
+          <div class="body">
+            <apx-chart [series]="barChartOptions.series!"
+              [chart]="barChartOptions.chart!"
+              [dataLabels]="barChartOptions.dataLabels!"
+              [plotOptions]="barChartOptions.plotOptions!"
+              [grid]="barChartOptions.grid!" [yaxis]="barChartOptions.yaxis!"
+              [xaxis]="barChartOptions.xaxis!"
+              [fill]="barChartOptions.fill!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+       <div class="col-lg-3 col-md-3 col-sm-12" >
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img4.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end"> 
+                  <span class="amounts"  >
+                    <span class=" amounts">
+                      {{"app.expense" | translate }}s</span>
+                  </span>
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide"> 
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{statistiques.disbursements_sum | number }} Fcfa</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12" *ngFor="let item of statistiques.cash_in_by_payment_method">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/img4.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  <span class="amounts" *ngIf="item.payment_method==='MOMO'">
+                    <span class=" col-green  amounts">
+                      Mobile Money</span>
+                  </span>
+                  <span class="amounts" *ngIf="item.payment_method==='OM'">
+                    <span class="col-orange  amounts">
+                      Orange Money</span>
+                  </span>
+                  <span class="amounts" *ngIf="item.payment_method==='Cash'">
+                    <span class=" amounts">
+                      {{item.payment_method}}</span>
+                  </span>
+                </h5>
+              </div>
+              <div class="col-green" *ngIf="hide"> 
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{item.total_amount | number }} Fcfa</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-content msl-4 mb-3">
+            <p class="m-b-0 d-flex">
+              <i class="material-icons col-green psr-2">
+                trending_up</i> {{"app.higher_then_last_month" | translate }}
+            </p>
+          </div>
+        </div>
+      </div> 
+      
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+.custom-scroll-bar {
+    height: 30vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+
+  .bord{
+    border: 1px  solid #028b5b;/* 
+    border-right: 1px  solid #028b5b; */
+  }
+
+  .rig {
+    padding-right: 10px;
+  }
+
+  .lef {
+    padding-left: 10px;
+  }
+
+  .tile{
+    font-weight: bold;
+  }
+
+  .text-color{
+    color: black !important;
+  }
+
+  .class7 {
+    width: 100%;
+  }
+
+  th{
+    height: 3rem;
+    border-bottom: 1px solid #028b5b;
+  }
+
+  td{
+    height: 3rem;
+    border-bottom: 1px solid #028b5b;
+  }
+
+img {
+    margin: 0px 10px 0px 10px;
+    height: 50px !important;
+    width: 50px !important;
+    box-shadow: 5px 5px 5px 5px rgba(0.2, 0.2, 0.2, 0.2) !important;
+}

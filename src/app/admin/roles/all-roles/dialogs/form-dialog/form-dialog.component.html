@@ -1,0 +1,95 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='roles.image' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="roleForm">
+      <div class="row">
+        <div class="col-xl-6 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.name" | translate }} </mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error *ngIf="roleForm.get('name')?.hasError('required')">
+              Name of role is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="type">
+              <mat-option [value]="type"
+                *ngFor="let type of types">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.privileges" | translate }}</mat-label>
+            <input #multiUserSearch type="text" matInput
+              placeholder="Recherche permissions"
+              (input)="onInputChange($event)" />
+            <mat-selection-list formControlName="permissions"
+              (selectionChange)="
+                selectionChangePermissions($event.options)"
+              class="custom-scroll-bar">
+              <ng-container *ngFor="let p of filteredPermissions">
+                <mat-list-option [value]="p.id"
+                  [selected]=" permissionsControl.value &&
+                    permissionsControl.value?.indexOf(p.id) >= 0">
+                  {{ p.name }} : {{ p.description }}
+                </mat-list-option>
+              </ng-container>
+            </mat-selection-list>
+            <br />
+            <p>
+              {{ permissionsControl.value?.length }}
+            </p>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!roleForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="updateRole()" mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

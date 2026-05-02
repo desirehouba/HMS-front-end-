@@ -1,0 +1,144 @@
+<section class="content">
+  <div class="content-block">
+
+    <!-- Widgets -->
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/om5.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{"app.all_amount" | translate }}
+                </h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{ sommeOM.sommeTotal | number }} Fcfa
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/om5.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{ "app.all_retrait" | translate }}
+                </h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{ sommeOM.sommeRetire | number }} Fcfa
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon-only shadow-primary float-start">
+              <img src="assets/images/banner/om5.png" alt>
+            </div>
+            <div class="card-right">
+              <div>
+                <h5 class="float-end">
+                  {{ "app.all_en_caisse" | translate }}
+                </h5>
+              </div>
+              <div class="col-green">
+                <h3 class="font-weight-bold float-end mb-0">
+                  {{ sommeOM.sommeTotalDisponible | number }} Fcfa
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!fin" class="tbl-spinner">
+      <mat-progress-spinner color="primary"
+        [diameter]="40" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+    <div *ngIf="fin">
+      <div class="row" *ngFor="let item of sommeOM.schools">
+        <div class="col-lg-4 col-md-3 col-sm-12">
+          <div class="card card-statistic-2">
+            <div class="clearfix">
+              <div class="card-icon-only shadow-primary float-start">
+                <img src="assets/images/banner/img4.png" alt>
+              </div>
+              <div class="card-right">
+                <div>
+                  <h5 class="float-end">
+                    {{ item.schoolName }}
+                  </h5>
+                </div>
+                <div class="col-green">
+                  <h3 class="font-weight-bold float-end mb-0">
+                    {{ item.sommeTotal | number }} Fcfa
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-12">
+          <div class="card card-statistic-2">
+            <div class="clearfix">
+              <div class="card-icon-only shadow-primary float-start">
+                <img src="assets/images/banner/img4.png" alt>
+              </div>
+              <div class="card-right">
+                <div>
+                  <h5 class="float-end">
+                    {{ "app.all_retrait" | translate }}
+                  </h5>
+                </div>
+                <div class="col-green">
+                  <h3 class="font-weight-bold float-end mb-0">
+                    {{ item.sommeRetire | number }} Fcfa
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-12">
+          <div class="card card-statistic-2">
+            <div class="clearfix">
+              <div class="card-icon-only shadow-primary float-start">
+                <img src="assets/images/banner/img4.png" alt>
+              </div>
+              <div class="card-right">
+                <div>
+                  <h5 class="float-end">
+                    {{"app.all_en_caisse" | translate }}
+                  </h5>
+                </div>
+                <div class="col-green">
+                  <h3 class="font-weight-bold float-end mb-0">
+                    {{ item.sommeTotalDisponible | number }} Fcfa
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

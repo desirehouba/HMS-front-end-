@@ -1,0 +1,433 @@
+<div class="addContainer with">
+  <div mat-dialog-content>
+    <div>
+      <div id="content" #content>
+        <div *ngIf="over"
+          style="width: 450px; padding-left: 20px; padding-right: 20px; margin-top: 1.5rem;">
+          <div class="class3">
+            <div class="class4" *ngIf="feeUser.school.name.length<22">
+              <span>{{feeUser.school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="feeUser.school.name.length>22">
+              <span>{{feeUser.school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{feeUser.created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{feeUser.student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{feeUser.student.matricule }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.classroom" | translate }} :
+                </strong>
+                {{feeUser.student.classe.name}}
+              </span>
+            </div>
+            <div class="class20">
+              <img [src]="logo"
+                style="max-height: 65px; max-width: 120px; border-radius: 1px; margin-right: 0px;" />
+            </div>
+          </div>
+          <table class="class7">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 25%;" class="text">
+                  {{"app.fee" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.mode" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f805;">
+              <tr>
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{feeUser.fee.name}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.advancePayment + feeUser.balancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="class1">
+            <div class="class80">
+              <span>
+                <strong>
+                  {{"app.total_boarding_school" | translate }} :
+                </strong>
+              </span>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.fee.price | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1">
+            <div class="class80">
+              <strong>
+                <span>
+                  {{"app.total_amount_paid" | translate }} :
+                </span>
+              </strong>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.fee.price - feeUser.balancePayment | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1">
+            <div class="class80">
+              <strong>
+                <span>
+                  {{"app.rest" | translate }} :
+                </span>
+              </strong>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.balancePayment | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="tiret" *ngIf="type === 'a4'">
+            ----------------------------------------------------------------------------------------------------------------------------------------------------</div>
+          <div class="class3" *ngIf="type === 'a4'">
+            <div class="class4" *ngIf="feeUser.school.name.length<22">
+              <span>{{feeUser.school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="feeUser.school.name.length>22">
+              <span>{{feeUser.school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;" *ngIf="type === 'a4'">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{feeUser.created_at}}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.student" | translate }} :
+                </strong>
+                {{feeUser.student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{feeUser.student.matricule }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.classroom" | translate }} :
+                </strong>
+                {{feeUser.student.classe.name}}
+              </span>
+            </div>
+            <div class="class20">
+              <img [src]="logo"
+                style="max-height: 65px; max-width: 120px; border-radius: 1px; margin-right: 0px;" />
+            </div>
+          </div>
+          <table class="class7" *ngIf="type === 'a4'">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 25%;" class="text">
+                  {{"app.fee" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.mode" | translate }}
+                </th>
+                <th style="width: 15%;text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f805;">
+              <tr>
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{feeUser.fee.name}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.fee.price | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="class1" *ngIf="type === 'a4'">
+            <div class="class80">
+              <span>
+                <strong>
+                  {{"app.total_boarding_school" | translate }} :
+                </strong>
+              </span>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.fee.price | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1" *ngIf="type === 'a4'">
+            <div class="class80">
+              <strong>
+                <span>
+                  {{"app.total_amount_paid" | translate }} :</span>
+              </strong>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.fee.price - feeUser.balancePayment | number }} Fcfa
+              </strong>
+            </div>
+          </div>
+          <div class="class1" *ngIf="type === 'a4'">
+            <div class="class80">
+              <strong>
+                <span>
+                  {{"app.rest" | translate }} :
+                </span>
+              </strong>
+            </div>
+            <div class="class20">
+              <strong>
+                {{ feeUser.balancePayment | number }}Fcfa
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- apercu du recu -->
+        <div id="content" #content *ngIf="!over">
+          <div style="width: 50rem; padding-left: 12px; padding-right: 12px;">
+            <div class="class33">
+              <div class="class44">
+                <span>{{feeUser.school.name}}</span>
+              </div>
+              <div class="class55">
+                <span> {{"app.receipt" | translate }}</span>
+              </div>
+            </div>
+            <div style="display: flex; width: 100%;">
+              <div class="class66">
+                <span>
+                  <strong>
+                    {{"app.date" | translate }}:
+                  </strong>
+                  {{feeUser.created_at}}
+                </span><br>
+                <span>
+                  <strong
+                    *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                    {{"app.student" | translate }} :
+                  </strong>
+                  <strong
+                    *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                    {{"app.students-u" | translate }} :
+                  </strong>
+                  {{feeUser.student.name }}
+                </span><br>
+                <span>
+                  <strong>
+                    {{"app.matricule" | translate }} :
+                  </strong>
+                  {{feeUser.student.matricule }}
+                </span><br>
+                <span>
+                  <strong>
+                    {{"app.classroom" | translate }} :
+                  </strong>
+                  {{feeUser.student.classe.name}}
+                </span>
+              </div>
+              <div class="class220">
+                <img [src]="logo"
+                  style="max-height: 110px; max-width: 170px; border-radius: 1px; margin-right: 0px;" />
+              </div>
+            </div>
+            <table class="class77">
+              <thead>
+                <tr style="background-color:#028b5b ; color: white;"
+                  class="text1">
+                  <th style="width: 25%;" class="text1 pad-l">
+                    {{"app.fee" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text1">
+                    {{"app.deadline" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text1">
+                    {{"app.mode" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text1">
+                    {{"app.price" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text1">
+                    {{"app.amount" | translate }}
+                  </th>
+                  <th style="width: 15%;text-align: right;" class="text1 pad-r">
+                    {{"app.rest" | translate }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody style="background-color:#f6f8f8f6;">
+                <tr class="text">
+                  <td align="left" class="text1 pad-l">
+                    {{feeUser.fee.name}}
+                  </td>
+                  <td align="center" class="text1">
+                    {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                  </td>
+                  <td align="center" class="text1">
+                    {{feeUser.payment_mode}}
+                  </td>
+                  <td align="right" class="text1">
+                    {{feeUser.fee.price | number}}
+                  </td>
+                  <td align="right" class="text1">
+                    {{feeUser.advancePayment | number}}
+                  </td>
+                  <td align="right" class="text1 pad-r">
+                    {{feeUser.balancePayment | number}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="class11">
+              <div class="class880">
+                <span>
+                  <strong>{{"app.total_boarding_school" | translate }}
+                    :</strong>
+                </span>
+              </div>
+              <div class="class220">
+                <strong>{{ feeUser.fee.price | number }} Fcfa</strong>
+              </div>
+            </div>
+            <div class="class11">
+              <div class="class880">
+                <strong>
+                  <span>
+                    {{"app.total_amount_paid" | translate }}:
+                  </span>
+                </strong>
+              </div>
+              <div class="class220">
+                <strong>
+                  {{ feeUser.fee.price - feeUser.balancePayment| number }} Fcfa
+                </strong>
+              </div>
+            </div>
+            <div class="class11">
+              <div class="class880">
+                <strong>
+                  <span>
+                    {{"app.rest" | translate }} :
+                  </span>
+                </strong>
+              </div>
+              <div class="class220">
+                <strong>
+                  {{ feeUser.balancePayment | number }} Fcfa
+                </strong>
+              </div>
+            </div>
+          </div>
+          <div class="row mag-t">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+              <button class="btn-space butun"
+                [disabled]="loading" [class.auth-spinner]="loading"
+                mat-raised-button (click)="download('a5')">
+                {{"app.download_card" | translate }}
+              </button>
+              <button class="btn-space butun"
+                [disabled]="loading" [class.auth-spinner]="loading"
+                mat-raised-button (click)="download('a4')">
+                {{"app.download_card_double" | translate }}
+              </button>
+              <button type="button" color="warn"
+                mat-raised-button (click)="onNoClick()">
+                {{"app.cancel" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

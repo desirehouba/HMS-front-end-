@@ -1,0 +1,450 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 "
+              *ngFor="let stat of statistique" (click)="action(stat.id)">
+              <div class="card card-statistic-2 hov"
+                *ngIf="stat.id != statTrue">
+                <div class="clearfix">
+                  <div class="card-icon-only shadow-primary float-start">
+                    <img src="assets/images/banner/mone.png" alt>
+                  </div>
+                  <div class="card-right txt tt">
+                    <div class="row">
+                      <h5 class="float-end">
+                        {{stat.name}}
+                      </h5>
+                    </div>
+                    <div class="row">
+                      <h5 class="float-end">
+                        {{stat.title}}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-statistic-2 hov blue"
+                *ngIf="stat.id === statTrue">
+                <div class="clearfix">
+                  <div class="card-icon-only shadow-primary float-start">
+                    <img src="assets/images/banner/mone.png" alt>
+                  </div>
+                  <div class="card-right txt tt">
+                    <div class="row">
+                      <h5 class="float-end">
+                        {{stat.name}}
+                      </h5>
+                    </div>
+                    <div class="row">
+                      <h5 class="float-end">
+                        {{"app.all_en_caisse" | translate }}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!loading" class="tbl-spinner" style="margin-top: 50px;">
+          <mat-progress-spinner color="primary"
+            [diameter]="40" mode="indeterminate">
+          </mat-progress-spinner>
+        </div>
+        <div class="card" *ngIf="statTrue === 1 && loading">
+          <div class="body">
+            <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+              <div class="project_widget mag2">
+                <div class="header titl">
+                  <h2><strong>
+                      {{"app.details_pension" | translate }}
+                    </strong></h2>
+                </div>
+                <div class="header titl">
+                  <div class="m-b-20" [formGroup]="statForm">
+                    <mat-label class="msr-3">Choisir:</mat-label>
+                    <mat-radio-group aria-label="selectionner le type"
+                      formControlName="type" required>
+                      <mat-radio-button
+                        value="pensions">any</mat-radio-button>
+                      <mat-radio-button value="fees">Frais Annexes
+                      </mat-radio-button>
+                      <!-- <mat-radio-button value="all">Tout </mat-radio-button> -->
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div class="body"
+                  *ngIf="this.statForm.controls['type'].value === 'pensions'">
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <th style="width: 20%;" class="lef">
+                          {{"app.level" | translate }}
+                        </th>
+                        <th style="width: 5%; text-align: right;">
+                          {{"app.effectifs" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalApercevoirPension" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalPercu" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;" class="rig">
+                          {{"app.totalRestant" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tr style="background-color:#028b5b ; color: white;">
+                      <td align="left" class="text lef tile">
+                        {{ finances.ecole.name }}
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ finances.ecole.effectif }}
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ finances.ecole.totalPensionApercevoir | number}} Fcfa
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ finances.ecole.totalPensionDejaPercu | number}} Fcfa
+                      </td>
+                      <td align="right" class="text rig tile">
+                        {{ finances.ecole.totalPensionRestant | number}} Fcfa
+                      </td>
+                    </tr>
+                    <tbody style="background-color:#f6f8f805;"
+                      *ngFor="let item of finances.levels">
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <td align="left" class="text lef tile">
+                          {{ item.name }}
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ item.effectifLevel }}
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ item.totalApercevoirPension | number}} Fcfa
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ item.totalPercuPension | number}} Fcfa
+                        </td>
+                        <td align="right" class="text rig tile">
+                          {{ item.totalRestantPension | number}} Fcfa
+                        </td>
+                      </tr>
+                      <tr *ngFor="let its of item.pension[0].classes">
+                        <td align="left"
+                          class="text-color lef">
+                          {{ its.name }}
+                        </td>
+                        <td align="right" class="text-color"
+                          style="color: black;">
+                          {{ its.effectifClasse }}
+                        </td>
+                        <td align="right" class="text-color">
+                          {{ its.pensionUserAPercevoir }} Fcfa
+                        </td>
+                        <td align="right" class="text-color">
+                          {{ its.pensionUserPercu }} Fcfa
+                        </td>
+                        <td align="right" class="text-color rig">
+                          {{ its.pensionUserRestante }} Fcfa
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="body"
+                  *ngIf="this.statForm.controls['type'].value === 'fees'">
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <th style="width: 20%;" class="lef">
+                          {{"app.name" | translate }}
+                        </th>
+                        <th style="width: 5%; text-align: right;">
+                          {{"app.amount" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalApercevoirPension" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalPercu" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;" class="rig">
+                          {{"app.totalRestant" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tr style="background-color:#028b5b ; color: white;">
+                      <td align="left" class="text lef tile">
+                        {{ finances.ecole.name }}
+                      </td>
+                      <td align="right" class="text tile">
+
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ finances.ecole.totalFeeAPercevoir | number}} Fcfa
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ finances.ecole.totalFeeDejaPercu | number}} Fcfa
+                      </td>
+                      <td align="right" class="text rig tile">
+                        {{ finances.ecole.totalFeeRestant | number}} Fcfa
+                      </td>
+                    </tr>
+                    <tbody style="background-color:#f6f8f805;"
+                      *ngFor="let fee of finances.fees">
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <td align="left" class="text lef tile">
+                          {{ fee.name }}
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ fee.price | number}}
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ fee.totalAPercevoir | number}} Fcfa
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ fee.totalDejaPercu | number}} Fcfa
+                        </td>
+                        <td align="right" class="text rig tile">
+                          {{ fee.totalRestant | number}} Fcfa
+                        </td>
+                      </tr>
+                      <tr *ngFor="let its of fee.levels">
+                        <td align="left"
+                          class="text-color lef">
+                          {{ its.name }}
+                        </td>
+                        <td align="right" class="text-color"
+                          style="color: black;">
+                          {{ its.effectif }}
+                        </td>
+                        <td align="right" class="text-color">
+                          {{ its.totalAPercevoir | number}} Fcfa
+                        </td>
+                        <td align="right" class="text-color">
+                          {{ its.totalDejaPercu | number}} Fcfa
+                        </td>
+                        <td align="right" class="text-color rig">
+                          {{ its.totalRestant | number}} Fcfa
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="body"
+                  *ngIf="this.statForm.controls['type'].value === 'all'">
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <th style="width: 20%;" class="lef">
+                          {{"app.name" | translate }}
+                        </th><!-- 
+                        <th style="width: 5%; text-align: right;">
+                          {{"app.amount" | translate }}
+                        </th> -->
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalApercevoirPension" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;">
+                          {{"app.totalPercu" | translate }}
+                        </th>
+                        <th style="width: 25%; text-align: right;" class="rig">
+                          {{"app.totalRestant" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tr style="background-color:#028b5b ; color: white;">
+                      <td align="left" class="text lef tile">
+                        {{ finances.ecole.name }}
+                      </td><!-- 
+                      <td align="right" class="text tile">
+                      </td> -->
+                      <td align="right" class="text tile">
+                        {{ (finances.ecole.totalFeeAPercevoir +
+                        finances.ecole.totalPensionApercevoir) | number}} Fcfa
+                      </td>
+                      <td align="right" class="text tile">
+                        {{ (finances.ecole.totalFeeDejaPercu +
+                        finances.ecole.totalPensionDejaPercu) | number}} Fcfa
+                      </td>
+                      <td align="right" class="text rig tile">
+                        {{ (finances.ecole.totalFeeRestant +
+                        finances.ecole.totalPensionRestant) | number}} Fcfa
+                      </td>
+                    </tr>
+                    <tbody style="background-color:#f6f8f805;"
+                      *ngFor="let fee of finances.fees">
+                      <tr style="background-color:white ; color: #028b5b;">
+                        <td align="left" class="text lef tile">
+                          {{ fee.name }}
+                        </td><!-- 
+                        <td align="right" class="text tile">
+                          {{ fee.price | number}}
+                        </td> -->
+                        <td align="right" class="text tile">
+                          {{ fee.totalAPercevoir | number}} Fcfa
+                        </td>
+                        <td align="right" class="text tile">
+                          {{ fee.totalDejaPercu | number}} Fcfa
+                        </td>
+                        <td align="right" class="text rig tile">
+                          {{ fee.totalRestant | number}} Fcfa
+                        </td>
+                      </tr>
+                      <tr *ngFor="let its of fee.levels">
+                        <td align="left"
+                          class="text-color lef">
+                          {{ its.name }}
+                        </td><!-- 
+                        <td align="right" class="text-color"
+                          style="color: black;">
+                          {{ its.effectif }}
+                        </td> -->
+                        <td align="right" class="text-color">
+                          {{ its.totalAPercevoir | number}} Fcfa
+                        </td>
+                        <td align="right" class="text-color">
+                          {{ its.totalDejaPercu | number}} Fcfa
+                        </td>
+                        <td align="right" class="text-color rig">
+                          {{ its.totalRestant | number}} Fcfa
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="statTrue === 3 && loading">
+          <div class="body">
+            <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+              <div class="project_widget mag2">
+                <div class="header titl">
+                  <h2><strong>
+                      {{"app.details_expenses" | translate }}
+                    </strong></h2>
+                </div>
+                <div class="header titl">
+                  <div class="m-b-20" [formGroup]="statForm">
+                    <mat-label class="msr-3">selectionner le type :</mat-label>
+                    <mat-radio-group aria-label="selectionner le type"
+                      formControlName="type" required>
+                      <mat-radio-button value="type">
+                        par type de dépense
+                      </mat-radio-button>
+                      <mat-radio-button value="month">
+                        par mois
+                      </mat-radio-button><!-- 
+                      <mat-radio-button value="month">
+                        Complet
+                      </mat-radio-button> -->
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div class="body"
+                  *ngIf="this.statForm.controls['type'].value === 'type'">
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:white; ; color: #028b5b;">
+                        <td style="width: 60%;" align="left"
+                          class="text lef tile">
+                          {{ expenses.name }}
+                        </td>
+                        <td align="right" style="width: 40%; text-align: right;"
+                          class="text rig tile">
+                          {{ expenses.somme | number}} Fcfa
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody style="background-color:#f6f8f805;">
+                      <tr style="background-color:#028b5b ; color: white;">
+
+                        <th class="lef">
+                          {{"app.type" | translate }}
+                        </th>
+                        <th class="rig" style="text-align: right;">
+                          {{"app.amount" | translate }}
+                        </th>
+                      </tr>
+                      <tr *ngFor="let item of expenses.types">
+                        <td align="left"
+                          class="text-color lef">
+                          {{ item.type }}
+                        </td>
+                        <td align="right" class="text-color rig">
+                          {{ item.somme | number}} Fcfa
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="body"
+                  *ngIf="this.statForm.controls['type'].value === 'month'">
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:white; ; color: #028b5b;">
+                        <th style="width: 40%;" class="lef">
+                          Annuel
+                        </th>
+                        <th style="width: 20%;" class="lef">
+                          Tous les types
+                        </th>
+                        <th style="width: 35%; text-align: right;" class="rig">
+                          {{ expenses.somme | number}} Fcfa
+                        </th>
+                      </tr>
+                    </thead>
+                    <tr style="background-color:#028b5b ; color: white;">
+                      <td align="left" class="text lef tile">
+                        <!-- {{ expenses.name }} -->
+                        {{"app.months" | translate }}
+                      </td>
+                      <td align="left" class="text lef tile">
+                        {{"app.type" | translate }}
+                      </td>
+                      <td align="right" class="text rig tile">
+                        {{"app.amount" | translate }}
+                      </td>
+                    </tr>
+                    <tbody style="background-color:#f6f8f805;"
+                      *ngFor="let month of expenses.months">
+                      <tr style="background-color:white; ; color: #028b5b;">
+                        <td align="left" class="text lef tile">
+                          {{ month.month }}
+                        </td>
+                        <td align="left" class="text lef tile">
+                          Tous les types
+                        </td>
+                        <td align="right" class="text rig tile">
+                          {{ month.somme | number}} Fcfa
+                        </td>
+                      </tr>
+                      <tr *ngFor="let type of month.types">
+                        <td align="left" class="text lef tile">
+                        </td>
+                        <td align="left"
+                          class="text-color lef">
+                          {{ type.type }}
+                        </td>
+                        <td align="right" class="text-color rig">
+                          {{ type.somme | number}} Fcfa
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

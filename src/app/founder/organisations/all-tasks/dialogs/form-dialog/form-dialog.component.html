@@ -1,0 +1,150 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="taskForm">
+      <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.libele" | translate }} </mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error
+              *ngIf="taskForm.get('name')?.hasError('required')">
+              name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.status" | translate }}</mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option [value]="'created'">
+                {{"app.on_hold" | translate }}
+              </mat-option>
+              <mat-option [value]="'started'">
+                {{"app.in_progress" | translate }}
+              </mat-option>
+              <mat-option [value]="'finished'">
+                {{"app.finish" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.responsable" | translate }}</mat-label>
+            <mat-select formControlName="responsible_id" required>
+              <mat-option [value]="user.id"
+                *ngFor="let user of users">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.time_limit" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="due_date" required>
+            <mat-datepicker-toggle matSuffix [for]="rpicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.priority" | translate }}</mat-label>
+            <mat-select formControlName="priority" required>
+              <mat-option [value]="'low'">
+                {{"app.small" | translate }}
+              </mat-option>
+              <mat-option [value]="'medium'">
+                {{"app.medium" | translate }}
+              </mat-option>
+              <mat-option [value]="'high'">
+                {{"app.high" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description"
+              [rows]="12">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div *ngIf="user" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="20"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.for" | translate }} </mat-label>
+            <input #multiUserSearch type="text" matInput
+              placeholder="Recherche etudiant"
+              (input)="onInputChangeUsers($event)" />
+            <mat-selection-list formControlName="users"
+              (selectionChange)="
+                selectionChangeUsers($event.options)"
+              class="custom-scroll-bar">
+              <ng-container *ngFor="let p of filteredUsers">
+                <mat-list-option [value]="p.id"
+                  [selected]=" usersControl.value &&
+                  usersControl.value?.indexOf(p.id) >= 0">
+                  {{ p.name }}
+                </mat-list-option>
+              </ng-container>
+            </mat-selection-list>
+            <br> <p> nombre:
+              {{ usersControl.value?.length }}
+            </p>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space" color="primary"
+              [disabled]="!taskForm.valid || loading"
+              [class.auth-spinner]="loading" [disabled]="loading"
+              (click)="updateTasks()" mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

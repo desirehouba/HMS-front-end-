@@ -1,0 +1,92 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card">
+    <mat-tab-group>
+      <mat-tab>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+          <div class="project_widget mag2">
+            <div class="body">
+              <div class="row">
+                <div class="col-md-3 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.by" | translate }}
+                  </strong>
+                  <br />
+                  <p *ngIf="notesFrais.user">
+                    {{ notesFrais.user.name }}
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.responsable" | translate }}
+                  </strong>
+                  <br />
+                  <p *ngIf="notesFrais.user">
+                    {{ notesFrais.userApprove.name }}
+                  </p>
+                </div>
+                <div class="col-md-2 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.amount" | translate }}
+                  </strong>
+                  <br />
+                  <p>{{ notesFrais.amount }}</p>
+                </div>
+                <div class="col-md-2 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.date" | translate }}
+                  </strong>
+                  <br />
+                  <p>{{ notesFrais.date }}</p>
+                </div>
+                <div class="col-md-2 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.status" | translate }}
+                  </strong>
+                  <br />
+                  <p>{{ notesFrais.status }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-6">
+                  <strong class="text-muted">
+                    {{"app.libelle" | translate }}
+                  </strong>
+                  <br />
+                  <p>
+                    {{ notesFrais.libelle }}
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-6">
+                  <strong class="text-muted">
+                    {{"app.description" | translate }}
+                  </strong>
+                  <br />
+                  <p>
+                    {{ notesFrais.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

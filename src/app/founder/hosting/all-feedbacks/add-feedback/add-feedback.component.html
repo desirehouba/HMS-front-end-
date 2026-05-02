@@ -1,0 +1,70 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{ "app.add_feedback" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="ratingForm">
+              <div class="row">
+                <div class="col-xl-8 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.service" | translate }} </mat-label>
+                    <mat-select formControlName="service_id">
+                      <mat-option [value]="service.id"
+                        *ngFor="let service of services">
+                        {{ service.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.anonymous" | translate }}</mat-label>
+                    <mat-select formControlName="is_anonyme">
+                      <mat-option [value]="true">
+                        {{"app.yes" | translate }}
+                      </mat-option>
+                      <mat-option [value]="false">
+                        {{"app.no" | translate }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="message"
+                      [rows]="10">
+                    </textarea>
+                  </mat-form-field>
+                </div> 
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!ratingForm.valid || loading"
+                    class="btn-space" (click)="addFeedback()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button>
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

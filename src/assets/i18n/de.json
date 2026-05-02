@@ -1,0 +1,835 @@
+{
+ "MENUITEMS": {
+   "MAIN": {
+     "TEXT": "Principal"
+   },
+   "DASHBOARD": {
+     "TEXT": "Cuadro de mandos",
+     "LIST": {
+       "DASHBOARD2": "Cuadro de mandos"
+     }
+   },
+   "ACCESS": {
+     "TEXT": "Gestión de accesos",
+     "LIST": {
+       "PRIVILEGES": "Privileges",
+       "ROLES": "Funciones"
+     }
+   },
+   "PEDAGOGY": {
+     "TEXT": "Enseñanza",
+     "LIST": {
+       "CYCLES": "Ciclos",
+       "STREAMS": "Oficinas",
+       "LEVELS": "Niveles",
+       "OPTIONLEVELS": "Serie",
+       "SPECIALTIES": "Especialidades",
+       "CLASSROOMS": "Clases"
+     }
+   },
+
+
+   "ORGANISATION": {
+     "TEXT": "Organización",
+     "LIST": {
+       "STAFFS": "Personal administrativo",
+       "TEACHERS": "Profesores",
+       "PREINSCRIPTIONS": "Preinscripción",
+       "STUDENTS": "Estudiantes",
+       "STUDENTS-U": "Estudiantes",
+       "PARENTS": "Padres",
+       "EVENTS": "Eventos"
+     }
+   },
+   "DISCIPLINE": {
+     "TEXT": "Disciplina"
+   },
+   "EXPENSES": {
+     "TEXT": "Gastos"
+   },
+   
+   "ANSWERS-HOMEWORKS": {
+      "TEXT": "Respuestas a los deberes"
+    },
+    
+    "SALARY-ADVANCES": {
+      "TEXT": "Anticipos salariales"
+    },
+   "RH": {
+      "TEXT": "Recursos Humanos"
+    },
+   "STUDENT-FOLLOW-UP": {
+     "TEXT": "Seguimiento de padres y alumnos"
+   },
+   "STAFFS": {
+     "TEXT": "Personal administrativo "
+   },
+   "COEFFICIENTS": {
+     "TEXT": "Coeficientes"
+   },
+   "ASSESSMENTS-TYPES": {
+     "TEXT": "Tipo de evaluación"
+   },
+   "PREINSCRIPTIONS": {
+     "TEXT": "Preinscripción"
+   },
+   "PRESENCETEACHERS": {
+     "TEXT": "Asistencia de profesores"
+   },
+   "PRESENCES": {
+     "TEXT": "Asistencia"
+   },
+   "PRESENCESTAFFS": {
+     "TEXT": "Prestaciones a los empleados"
+   },
+   "SUMMARIES": {
+     "TEXT": "Resúmenes de los cursos"
+   },
+   
+   "STUDENTS": {
+     "TEXT": "Estudiantes"
+   },
+   "RESPONSES": {
+     "TEXT": "Respuestas"
+    },
+    "SANCTIONS-BLAME": {
+     "TEXT": "Sanciones / Culpas"
+    },
+   "WARNINGS": {
+    "TEXT": "Advertencias"
+  },
+  "PAYROLL_DEDUCTIONS": {
+    "TEXT": "Retenciones salariales"
+  },
+   "STUDENTS-U": {
+     "TEXT": "Estudiantes"
+   },
+   "PARENTS": {
+     "TEXT": "Padres"
+   },
+   "EVENTS": {
+     "TEXT": "Eventos"
+   },
+   "SCOLARITE": {
+     "TEXT": "Escuela"
+   },
+   "STAT": {
+     "TEXT": "Tesoro"
+   },
+   "PAYMENTTYPES": {
+     "TEXT": "Tipos de pago"
+   },
+   "CUSTOMERS": {
+     "TEXT": "Clientes"
+   },
+   "BOURSES": {
+     "TEXT": "Becas"
+   },
+   "SUPPLIERS": {
+     "TEXT": "Proveedores"
+   },
+   "STRUCTURE": {
+     "TEXT": "Estructura"
+   },
+   "PACKAGES": {
+     "TEXT": "Paquetes"
+   },
+   "BONUSES": {
+      "TEXT": "Primas"
+    },
+
+   "FONDATEURS": {
+     "TEXT": "Fundadores"
+   },
+   "ESTABLISHMENTS": {
+     "TEXT": "Establecimiento"
+   },
+   "SCHOOLS": {
+     "TEXT": "Escuelas"
+   },
+   "SECTIONS": {
+     "TEXT": "Secciones"
+   },
+   "REQUESTS": {
+     "TEXT": "Solicitudes"
+   },
+   "REQUESTS-STAFFS": {
+     "TEXT": "Peticiones del personal"
+   },
+   "CYCLES": {
+     "TEXT": "Ciclos"
+   },
+   "LEVELS": {
+     "TEXT": "Niveles"
+   },
+   "OPTIONLEVELS": {
+     "TEXT": "Opciones de nivel"
+   },
+   "CLASSROOMS": {
+     "TEXT": "Clases"
+   },
+   "TRANSACTIONS": {
+     "TEXT": "Transacciones"
+   },
+   "TRANSACTIONS-FEES": {
+     "TEXT": "Pago de tasas"
+   },
+   "OMS": {
+     "TEXT": "Dinero naranja"
+   },
+   "MOMO": {
+     "TEXT": "Dinero móvil"
+   },
+   "ASSESSMENTS-TYPE": {
+     "TEXT": "Tipo de evaluación"
+   },
+
+
+   "INVOICES": {
+     "TEXT": "Facturas"
+   },
+
+
+   "INSOLVENTS": {
+     "TEXT": "Insolubles"
+   },
+   "REPORT-CARD": {
+     "TEXT": "Boletines"
+   },
+
+
+   "ACCOUNTING": {
+     "TEXT": "Contabilidad",
+     "LIST": {
+       "INSOLVENTS": "Insolubles",
+       "INVOICES": "Facturas",
+       "TRANSACTIONS": "Transacciones"
+     }
+   },
+
+
+   "MATTERS": {
+     "TEXT": "Materiales"
+   },
+   "COURSES": {
+     "TEXT": "Cursos"
+   },
+
+   "QUESTIONNAIRES": {
+     "TEXT": "Cuestionarios"
+   },
+
+   "ASSESSMENTS": {
+     "TEXT": "Clasificaciones"
+   },
+
+
+   "SCHEDULE": {
+     "TEXT": "Uso del tiempo"
+   },
+
+   "DOCUMENTS": {
+     "TEXT": "Documentos"
+   },
+
+
+   "PENSIONS": {
+     "TEXT": "Pensiones"
+   },
+   "TRANCHES": {
+     "TEXT": "Soportes"
+   },
+
+
+   "SCHOOL-SUPPLY": {
+     "TEXT": "Material escolar"
+   },
+   "MATTER-GROUPS": {
+     "TEXT": "Grupos temáticos"
+   },
+   "PROGRESSIONS": {
+     "TEXT": "Programa del curso"
+   },
+   "RATINGS": {
+     "TEXT": "Notas"
+   },
+   "FEES": {
+     "TEXT": "Costes adicionales"
+   },
+   "TRIMESTRES": {
+     "TEXT": "Cuartos"
+   },
+   "RETRAITS": {
+     "TEXT": "Retiradas"
+   },
+   "ABSENCES": {
+     "TEXT": "Ausencias"
+   },
+
+
+   "SANCTIONS": {
+     "TEXT": "Sanciones"
+   },
+
+
+   "HOMEWORKS": {
+     "TEXT": "Deberes"
+   },
+   "OBSERVATIONS": {
+     "TEXT": "Comentarios"
+   },
+
+   
+    "SMS": {
+      "TEXT": "SMS"
+    },
+
+
+   "TASKS": {
+     "TEXT": "Tareas"
+   },
+
+
+   "SEQUENCES": {
+     "TEXT": "Secuencias"
+   },
+
+
+   "SEMESTRE": {
+     "TEXT": "Semestres"
+   },
+   "CC": {
+     "TEXT": "CC"
+   }
+
+
+   
+ },
+ "app": {
+  "ar": "Árabe",
+  "es" : "Español",
+  "Hour": "Tiempo",
+  "name": "Nombre",
+    "failed" : "fallido",
+    "success" : "éxito",
+  "libele": "libelle",
+  "Welcome_to_MS_School": "Bienvenido a MS-Hotel",
+  "add_staff": "Añadir un miembro del personal",
+  "gender": "Sexe",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "phone": "Teléfono",
+  "sms": "Sms",
+  "nationality": "Nacionalidad",
+  "level": "Niveles",
+  "message" : "Mensaje",
+  "country": "Pays",
+  "sms_dispo" : "SMS disponible",
+  "send_sms": "Enviar un mensaje",
+  "city": "Ciudad",
+  "presentation": "Presentación",
+  "reglement": "Reglamentación",
+  "starter": "Comienza",
+  "validate": "Confirmación",
+  "entreprise": "Empresa",
+  "personnel": "Persona",
+  "nui": "Número de contribuyente",
+  "rc": "Registro mercantil",
+   "home" : "Inicio",
+   "holiday": "Día festivo",
+   "add_holiday" : "Añadir un día festivo",
+  "already_paid":"Ya vertido",
+   "outstanding_balance":"Resto por pagar",
+   "submit": "Enviar",
+   "cancel": "Cancelar",
+   "by" : "Por",
+   "choose_file": "Elija un archivo",
+   "birthday": "Fecha de nacimiento",
+   "add_slice": "Añade una rodaja",
+   "add_fees": "Añadir costes adicionales",
+   "working_hours" : "Horario de trabajo",
+   "service_Benefits": "Prestaciones de servicio",
+   "pension": "Pensión",
+   "slice": "Tramo",
+   "warning" : "Advertencia",
+   "add_warning" : "Añadir una advertencia",
+   "fee": "Gastos accesorios",
+   "order": "Pida",
+   "cdd" : "Contrato de duración determinada",
+   "cdi" : "Contrato indefinido",
+   "consulting" : "Consultor",
+   "partnership" : "Asociación",
+   "contract" : "Contrato",
+   "add_contract" : "Añadir un contrato",
+   "apercu_receipt": "Resumen de recibos",
+   "price": "Precios",
+   "mobile": "Móvil",
+   "amount": "Importe",
+   "deadline": "Plazo",
+   "payroll_deductions" : "Retenciones salariales",
+   "add_payroll_deduction" : "Añadir una deducción de nómina",
+   "number": "Número",
+   "plus" : "Seguir leyendo",
+   "numbers": "Número",
+   "number_of_student" : "Número de participantes",
+   "course": "Cursos",
+   "students-u": "Estudiante",
+   "fee_rembrousable": "Nota: Las tasas no son reembolsables ni compensables.",
+   "alls_students":"Todos los alumnos",
+   "alls_assessments":"Todas las clasificaciones",
+   "personal_information": "Información personal",
+   "generate_card": "Genere",
+   "current_password": "Contraseña actual",
+   "new_password": "Nueva contraseña",
+   "update_password": "Cambiar la contraseña",
+   "matter": "Material",
+   "classroom": "Clase",
+   "stream": "Canal",
+   "specialties": "Especialidades",
+   "specialtie": "Especialidad",
+   "hour": "Tiempo",
+   "all_transactions_om" : "Todas las pensiones pagadas con dinero naranja",
+   "day": "Jour",
+   "assessment_true": "Se evaluará",
+   "code": "Código",
+   "qr": "Código QR",
+   "manual" : "Manuel",
+   "hour_scan": "Tiempo de exploración",
+   "scan": "Escanear",
+   "transaction_number" : "Numéro de transaction",
+   "message_transaction_error" : "el acuerdo fracasó",
+   "amount_total" : "Importe total incluidos los costes",
+   "generer_code_QR_teacher":"Generar el código QR para profesores  ",
+   "generer_code_QR_staff":"Generar el código QR para el personal      ",
+   "apen_door" : "Escuela/Abierto",
+   "administratif": "Administrativo",
+   "libelle": "Libelle",
+   "add_presenceStaff":"Registro de la presencia del personal",
+   "teacher": "Profesor",
+   "student": "Estudiante",
+   "The_Roll_of_Honour" : "Cuadro de honor",
+    "school_certificate" : "Certificado de escolaridad",
+   "cni": "Cni",
+   "bonuse" : "Prima",
+   "add_bonuse": "Añadir una prima ",
+   "reason" : "Razón",
+   "school_card" : "Cartografía escolar",
+   "date_start": "Fecha de inicio",
+   "date_end": "Fecha final",
+   "duration": "Duración",
+   "schedule": "Uso del tiempo",
+   "start": "Inicio",
+   "monday": "Lunes",
+   "tuesday": "Martes",
+   "a_approve" : "Pendiente de aprobación",
+   "wednesday": "Miércoles",
+   "thursday": "Jueves",
+   "friday": "Viernes",
+   "saturday": "Sábado",
+   "homeworks": "Deberes",
+   "assessments": "Clasificaciones",
+   "type": "Tipo",
+   "date": "Fecha",
+   "customers": "Clientes",
+   "add_stream": "Añadir un canal",
+   "expense": "Gastos",
+   "absence": "Ausencia",
+   "event": "Eventos",
+   "login": "Donnexion",
+   "logout": "Desconexión",
+   "download_card": "Descargar",
+   "reasons": "Razón",
+   "account": "Mi cuenta",
+   "actions": "Acciones",
+   "signin": "Inscríbete",
+   "add_bourse" : "Añadir una beca",
+   "bourse" : "Becas",
+   "grade" : "Grado",
+   "anciennete" : "Antiguo",
+   "connection": "conexión",
+   "coefficient": "coeficiente",
+   "send":"Enviar",
+   "add_transfert": "Realizar una transferencia",
+   "change_department":"Cambio de departamento",
+   "username_is_required":"Nombre de usuario obligatorio",
+   "Inf_about_your_estab": "Nom d'utilisateur requis",
+   "email": "Correo electrónico",
+   "father": "Padre",
+   "mother": "Madre",
+   "alls": "Todos",
+   "report-card": "Descargar el boletín",
+   "bank" : "Banco",
+   "download" : "Descargar",
+   "website": "Página web ",
+   "package": "Paquete",
+   "archiver_transaction" : "Archivar la transacción",
+   "download_card_double" : "Doble descarga",
+   "founder": "Fundador",
+   "religious_status": "Condición religiosa",
+   "administrative_status": "Situación administrativa",
+   "next": "Siguiente",
+   "list_Of_your_school": "Lista de sus escuelas",
+   "Select_managment": "Elegir la escuela en la que quieres trabajar",
+   "select": "Seleccione",
+   "french_section": "Sección francesa",
+   "english_section": "Sección inglesa",
+   "all": "Todos",
+   "request": "Todos",
+   "money": "Argent",
+   "cycle": "Ciclo",
+   "first_cycle": "Primer ciclo",
+   "second_cycle": "Segundo ciclo",
+   "Items_per_page": "Artículos por página",
+   "description": "Descripción",
+   "search": "Buscar en",
+   "serie": "Serie",
+   "main": "Principal",
+   "job": "Posición",
+   "typeInvoice": "Tipos de gastos",
+   "recipient": "Destinatario",
+   "read_all_notifications":"Ver todas las notificaciones",
+   "not_lesson" : "Ninguna lección en este capítulo",
+   "role": "Papel",
+   "generate_qrCode" : "generar el código Qr",
+   "left": "Salida",
+   "arrived" : "Llegada",
+   "semestre": "Semestre",
+   "precedent": "Anterior",
+   "finished": "Acabado",
+   "female" : "Mujer",
+   "male" : "Mujer",
+   "CC" : "CC",
+   "interne" : "Interno",
+   "externe" : "Exterior",
+   "price_hour": "Precio por hora",
+   "salary": "Salario",
+   "First-registration": "Preinscripción",
+   "parent": "Padres",
+   "birth_Certificate": "Partida de nacimiento",
+   "last_Diploma": "Último diploma",
+   "last_Bulletin": "Último boletín",
+   "medical_Certificate": "Certificado médico",
+   "select_file": "Seleccione",
+   "back": "Volver a la página",
+   "reset": "Volver a empezar",
+   "finish": "Terminado",
+   "sequences": "Secuencias",
+   "trimestre": "Cuartos",
+   "school_folder": "Expediente escolar",
+   "registered_student": "Estudiantes matriculados",
+   "check_if_the_parent_already_exists": "Comprobar si el padre ya existe",
+   "start_date": "Fecha de inicio",
+   "end_date": "Fecha final",
+   "budget": "Presupuesto",
+   "created_at" : "Creado el",
+   "parental_Contribution": "Contribución",
+   "save": "Regístrese en",
+   "Task": "Tarea",
+   "for": "Para",
+   "paid": "Pagado",
+   "unpaid": "No pagado",
+   "add_supplier": "Añadir un proveedor",
+   "supplier": "Proveedor",
+   "competences": "COMPETENCIAS",
+   "first": "PRIMERO",
+   "not_student" : "no tiene hijos en esta escuela",
+   "not_student_answer" : "Póngase en contacto con la administración de su centro",
+   "second": "SEGUNDO",
+   "sa" : "SA",
+   "spa" : "SPA",
+   "sna" : "SNA",
+   "add_customer": "Añadir un cliente",
+   "add_expense": "Añadir un gasto",
+   "third": "TERCERA",
+   "month": "Unidad de aprendizaje",
+   "months": "Mes",
+   "term": "TIEMPO",
+   "evaluation-type": "Evaluación",
+   "priority": "Prioridad",
+   "time_limit": "Fecha límite",
+   "select_classroom_schedule": "Seleccione una clase para ver su horario",
+   "display": "Ver",
+   "number_of_slice": "Número de bandas",
+   "list_Insolvent": "Lista de insolubles",
+   "invoice": "Factura",
+   "for_Who": "Para quién",
+   "small": "Base",
+   "qr_staff_presence": "Para la presencia del personal",
+   "cash" : "Líquido",
+   "utiliser_bourse": "Uso de la bolsa",
+   "credit_card" : "Banco",
+   "high": "Alta",
+   "type_user" : "Tipo de personal",
+   "answer": "Respuesta",
+   "rejected" : "Rechazado",
+   "valide" : "validado",
+   "en_cours" : "En curso",
+   "details_expenses": "Detalle de los gastos",
+   "typeRequest" : "Tipos de solicitud",
+   "discipline": "Saber más",
+   "transactions": "Transacciones",
+   "payment_mode ": "Forma de pago ",
+   "mode": "Modo",
+   "rating": "Nota",
+   "category": "Categoría",
+   "receipt": "Recibido",
+   "add_request":"Añadir una solicitud",
+   "parent_monitoring": "Orientación parental",
+   "teacherObservations": "Comentarios",
+   "address": "Dirección",
+   "picture": "Foto",
+   "more_informations": "Más información",
+   "see_more": "Más",
+   "job_name": "Posición",
+   "are_you_sure": "¿estás seguro?",
+   "staffs": "Personal administrativo",
+   "add_First_registration": "Añadir una preinscripción",
+   "first_registrations": "Preinscripción",
+   "all_students": "Estudiantes",
+   "all_money": "Cuentas",
+   "student_survay": "Encuesta a estudiantes",
+   "all_teachers": "Profesores",
+   "student_performance_chart": "Gráfico de rendimiento de los alumnos",
+   "all_courses": "Cursos",
+   "add_cycle": "Añadir un ciclo",
+   "add_level": "Añadir un nivel",
+   "add_teacher": "Añadir un profesor",
+   "delete": "Borrar",
+   "main_teacher": "Profesor principal",
+   "confirm_registration": "Confirmar inscripción",
+   "parent_details": "Datos de los padres",
+   "first_inscription_details": "Detalles de la preinscripción",
+   "Modify_information_of": "Modificar el",
+   "student_registration_details": "Detalles sobre el estudiante",
+   "add_student": "Detalles sobre el estudiante",
+   "add_event": "Añadir un evento",
+   "add_task": "Añadir una tarea",
+   "task": "Tareas",
+   "status": "Estado",
+  
+   "details": "Detalles",
+   "course_duration": "Duración del curso (min)",
+   "choose_start_time": "Elija la hora",
+   "start_hour": "Hora de inicio",
+   "display_schedule": "Ver",
+   "add_course": "Ver",
+   "add_assessment": "Añadir una valoración",
+   "select_classroom": "Seleccione una clase",
+   "select_level": "Seleccione un nivel",
+   "select_slice": "Seleccione una rebanada",
+   "list_insolvent": "Listas de insolventes",
+   "list_solvent": "Listas de acreedores",
+   "add_transaction": "Realizar una transacción",
+   "select_student": "Seleccione un estudiante",
+   "payment_mode": "Forma de pago",
+   "number_slice": "Número de bandas",
+   "add_classroom": "Añadir una clase",
+   "add_serie": "Añadir una serie",
+   "add_fee": "Añadir costes adicionales",
+   "add_pension": "Añadir una pensión",
+   "schoolSupplys": "Material escolar",
+   "supply": "Suministros",
+   "value": "VALOR",
+   "coefficients": "Coeficientes",
+   "matterGroups": "Grupos de materiales",
+   "absences": "Ausencias",
+   "add_absence": "Recurso",
+   "add_sanction": "Añadir una sanción",
+   "sanctions": "Sanciones",
+   "add_schoolSupply": "Añadir material escolar",
+   "schedule_of_Classrom": "Horario de clases",
+   "schedule_of_Teacher": "Horario del profesor",
+   "assessments_type": "Secuencias",
+   "add_TextBook_Parts_hapters_Lessons": "Añadir un programa - Partes - Capítulos - Lecciones ",
+   "textBook": "Programa anual",
+   "part": "Pieza",
+   "chapter": "Capítulo",
+   "lesson": "Lección",
+   "open": "Abrir",
+   "parent_2": "Otro pariente",
+   "tutor": "Tutor",
+   "estimation": "Estimación",
+  "add_questionnaire":"Añadir una pregunta",
+   "questionnaires":"preguntas",
+   "in_progress" : "En curso",
+   "no_start" : "No Inicio",
+   "number_of_part": "Número de partidos",
+   "number_of_chapter": "Número de capítulos",
+   "number_of_lesson": "Número de lecciones",
+   "number_of_section": "Número de secciones",
+   "list_part": "Lista de partidos",
+   "list_chapter": "Lista de capítulos ",
+   "list_lesson": "Lista de lecciones",
+   "list_section": "Lista de secciones",
+   "edit": "Modifique",
+   "medium":"Media",
+   "sequence": "Secuencia",
+   "all_parents": "Padres",
+   "all_absences": "Ausencias",
+   "all_staffs": "Empleados",
+   "all_events": "Ausencias",
+   "all_classrooms": "Clases",
+   "all_matters": "Materiales",
+   "observation": "Observación",
+   "auteur" : "Observador",
+   "add_rating": "Introducir notas",
+   "make_the_call": "Hacer la llamada",
+   "no_assessments" :"No hay evaluación para el profesor en esta clase, por favor asegúrese de que el profesor ha recibido una evaluación antes de que las calificaciones puedan ser introducidas.",
+   "add_homework": "Añadir una misión",
+   "add_TeacherObservation": "Añadir un comentario sobre un estudiante",
+   "my_schedule": "Mi horario",
+   "details_pension": "Datos de la pensión",
+   "details_slices": "Detalles de los tramos",
+   "details_fees": "Detalle de los costes adicionales",
+   "left_time": "Hora de salida",
+   "arrived_time": "Hora de llegada",
+   "add_presenceteacher": "Registro de la presencia de un profesor",
+   "staff": "Empleados",
+   "presencestaffs" : "Presencia del personal",
+   "en": "Inglés",
+   "fr": "Francés",
+   "all_parentss" : "Todos los padres",
+   "disbursement" : "Desembolsos",
+   "incoming_payment" : "Colecciones",
+   "add_specialties" : "Añadir una especialidad",
+   "bourse_apprenant" : "Este alumno tiene un ",
+   "bourse_amount" : " por un importe de : ",
+   "bourse_recipt" : " de este alumno se ha aplicado a este pago",
+   "bourse_recipt2" : " de este alumno se ha aplicado",
+   "the" : "La",
+   "of" : "de",
+   "forgot_password": "¿Ha olvidado su contraseña?",
+   "remember_me": "Acuérdate de mí",
+   "select_lang": "Seleccionar idioma",
+   "not_assessement" : "Si no tiene una evaluación en esta clase, póngase en contacto con su administración para solicitar que se le asignen evaluaciones.",
+   "cle": "Clave de conexión",
+   "sections": "Secciones",
+   "classe_titulaire" : "Titular de",
+   "francophone": "Francófono",
+   "anglophone": "Inglés",
+   "add_permission": "Añadir un privilegio",
+   "ressource": "Recursos",
+   "permissions": "Privilegios",
+   "add_hotel": "Añadir un establecimiento",
+   "hotels": "Establecimientos",
+   "add_role": "Añadir una función",
+   "school": "Escuela",
+   "homeworksdones": "Respuestas a los deberes",
+   "add_homeworksdones" : "Añadir una respuesta",
+   "presenceteachers": "Asistencia de profesores",
+   "departureTime": "Hora de salida",
+   "arrivalTime": "Hora de llegada",
+   "section": "Sección",
+   "correction" : "Corrección",
+   "summaries": "Resúmenes de los cursos ",
+   "add_summaries" : "Añadir un resumen",
+   "fee_paid" : "Para acceder a todas las funciones de la aplicación y seguir los cursos es necesario abonar la cuota de inscripción.",
+   "registrationPaid" : "debe haber pagado la inscripción antes de poder pagar el consejo. Hasta que no haya abonado la inscripción, no podrá acceder a las funciones del software. ",
+   "add_founder": "Añadir un fundador",
+   "add_school": "Añadir una escuela",
+   "hotel": "Establecimiento",
+   "principal": "Principal",
+   "change_section": "Cambiar sección",
+   "select_classe": "Cambiar de clase",
+   "add_section": "Añadir una sección",
+   "add_evel": "Añadir un nivel",
+   "add_parent": "Añadir un padre",
+   "payement_pension" : "Pago de la pensión a",
+   "no_homework" : "No hay deberes disponibles: no puede responder a deberes cuyo plazo ya ha vencido.",
+   "total_boarding_school": "Importe total",
+   "total_amount_paid": "Importe total pagado",
+   "total_amount_paid2": "Suma de todos los pagos efectuados",
+   "rest": "Resto",
+   "paid_registration": "pagar la inscripción",
+   "title_1" : "Ms-school ofrece ahora una versión móvil de su aplicación, que proporciona el mismo nivel de comodidad para controlar su escuela a distancia.",
+   "title_2" : "Ms-school ofrece ahora una versión móvil de su aplicación, que proporciona el mismo nivel de comodidad para controlar su escuela a distancia.",
+   "title_3" : "Con Ms-school, puedes gestionar tus finanzas de forma rápida y segura, estés donde estés.",
+   "reference": "Referencia",
+   "school_fees": "Gastos accesorios",
+   "imprimer": "Generar recibo",
+   "add_matter": "Generar recibo",
+   "Username_and_Password_not_valid": "nombre de usuario o contraseña no válidos",
+   "restaurants": "Tipo de evaluación",
+   "number_of_module": "Número de Partes",
+   "done": "Dato",
+   "you_are_now_done": "Has terminado",
+   "new_coefficients": "Nuevos coeficientes",
+   "coeficient": "Coeficiente",
+   "Add_matterGroup": "Añadir un grupo temático",
+   "all_assessments": "Evaluaciones",
+   "all_homeworks": "Deberes",
+   "List_Of_your_student": "Lista de sus hijos",
+   "Select_the_student_you_wish_to_managment": "Seleccione el niño que desea gestionar",
+   "all_sanctions": "Sanciones",
+   "select_child": "Elegir un hijo",
+   "matricule": "Número de personal",
+   "old": "Anterior",
+   "select_date" : "Seleccione una fecha ",
+   "new": "Nuevo",
+   "true": "Sí",
+   "salary_advances" : "Anticipos salariales",
+   "add_salary_advances" : "Añadir un anticipo salarial",
+   "date_approve" : "Fecha de validación",
+   "false": "Sí",
+   "alle" : "Total",
+   "number1" : "Número de referencia",
+   "is_required": "es necesario",
+   "redoublant": "Repetidor",
+   "statut": "Estado",
+   "place_of_birth": "Lugar de nacimiento",
+   "fees": "Pago de tasas",
+   "style": "Estilo",
+   "simple": "Simple",
+   "detail": "Detallado",
+   "all_fees": "Costes adicionales",
+   "yes": "Sí",
+   "is_justified": "justificado",
+   "end": "Fin",
+   "1": "NA",
+   "2": "ECA",
+   "3": "A",
+   "4": "E",
+   "style_maternelle" : "Estilo guardería",
+   "merit" : "Por mérito",
+   "alpha" : "Alfabético",
+   "switch_assessment" : "Evaluaciones duplicadas",
+   "all_transactions": "Todas las transacciones",
+   "no": "No",
+   "desease": "Enfermedades",
+   "raison" : "Razón",
+   "message_echec_transaction": "El acuerdo fracasó",
+   "notemax": "Puntuación máxima",
+   "totalApercevoirPension": "Ser percibido",
+   "totalPercu": "Recibido",
+   "totalRestant": "Resto",
+   "totalApercevoirFee": "Por recoger",
+   "effectifs": "Plantilla",
+   "typeEvaluations": "Tipo de evaluación",
+   "message_transaction_encour" : "Transacción en curso .......",
+   "methode": "Método",
+   "validation_payment" : "Escriba #150*50# en su teléfono para confirmar el pago",
+   "customer" : "A Mh Tech SARL",
+   "RIB" : "Transferencia bancaria",
+   "OM" : "Dinero naranja",
+   "mode_retrait" : "Método de retirada",
+   "info" : "Información escolar : ",
+   "company_name" : "Nombre de la escuela : ",
+   "montant_retrait_brut" : "Importe incluida la comisión : ",
+   "all_amount" : "Importe total recibido",
+   "all_retrait" : "Importe total retirado",
+   "all_en_caisse" : "Importe en metálico",
+   "all_dispo" : "Importe disponible",
+   "bank_name" : "Nombre del banco",
+   "error_amount" : "El importe solicitado es superior al disponible en la cuenta del centro escolar",
+   "error_amounts" : "Introduzca el importe correcto",
+   "add_retrait" : "Retirar dinero de su cuenta Orange Money",
+   "all_retraits_om": "Todas las solicitudes de retirada",
+   "all_ok": "Marque esta casilla si todo es correcto",
+   "numero_retrait" : "Número de reembolso OM",
+   "validation_code" : "Introduzca el código de validación recibido por correo electrónico",
+   "nb_rib_1" : "Los gastos bancarios son aplicables si ha elegido un reembolso por transferencia bancaria a un banco distinto de UBA.",
+   "nb_rib_2" : "Por favor, compruebe sus datos cuidadosamente antes de confirmar cualquier solicitud de reembolso.",
+   "nb_om_1" : "Para todos los reembolsos de Orange Money, tenga en cuenta que el importe máximo de reembolso por día es de 1 millón de FCFA.",
+   "nb_om_2" : "El importe máximo para un reembolso por Orange Money es de 500.000 francos CFA por solicitud."
+ }
+}

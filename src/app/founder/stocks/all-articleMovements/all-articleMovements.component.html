@@ -1,0 +1,277 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <div class="mt-5">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="materialTableHeader">
+                    <div class="left">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="tbl-title">
+                          <h2>{{"app.articleMovements" | translate }}</h2>
+                        </li>
+                        <li class="tbl-search-box">
+                          <label for="search-input">
+                            <i class="material-icons search-icon">
+                              search
+                            </i>
+                          </label>
+                          <input placeholder="Search"
+                            type="text" #filter
+                            class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="SEARCH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              #filter (click)="filterButton()">
+                              <mat-icon class="col-white">search</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="body">
+                            <form [formGroup]="articleMovementForm">
+                              <div class="row"> 
+                                <div
+                                  class="col-xl-12 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline"
+                                    style="margin-bottom: -2rem"
+                                    class="example-full-width">
+                                    <mat-label>
+                                      {{"app.type" | translate }}
+                                    </mat-label>
+                                    <mat-select formControlName="operationType"
+                                      (selectionChange)="settypeArticleMovement()">
+                                      <mat-option [value]="''">
+                                        {{"app.all" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'entry'">
+                                        {{"app.entry" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'exit'">
+                                        {{"app.exit" | translate }}
+                                      </mat-option> 
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="right">
+                      <ul class="tbl-export-btn">
+                        <!-- <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="addNew()">
+                              <mat-icon class="col-white">
+                                add
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li> -->
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="refresh()">
+                              <mat-icon class="col-white">
+                                refresh
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" [hidden]=!selection.hasValue()
+                            matTooltip="DELETE">
+                            <button mat-mini-fab color="warn"
+                              (click)="removeSelectedRows()">
+                              <mat-icon class="col-white">delete
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt
+                              (click)="exportExcel()" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="body overflow-auto">
+                    <div class="responsive_table">
+                      <table mat-table #table [dataSource]="dataSource" matSort
+                        class="mat-cell">
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                          <mat-header-cell *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="article">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header >
+                            {{"app.article" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" 
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.article" | translate }}:
+                            </span>
+                            <span *ngIf="row.article!=null">
+                              {{row.article.name}}
+                            </span>
+                            <span *ngIf="row.article===null">
+                              {{row.article}}
+                            </span>
+                          </mat-cell>
+                        </ng-container> 
+                        <ng-container matColumnDef="operationType">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.type" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="taille">
+                            <span class="mobile-label">
+                              {{"app.type" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.operationType==='entry'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.entry' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.operationType==='exit'">
+                              <span class="badge badge-solid-red amounts">
+                                {{'app.exit' | translate}}</span>
+                            </span> 
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="created_at">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.created_at" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.created_at" | translate }}:
+                            </span>
+                            <span class="amounts">
+                              {{row.created_at | date:'dd/MM/yyyy'}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="quantity">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amount">
+                              {{"app.quantity" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.quantity" | translate }}:
+                            </span>
+                            <span class="amount" *ngIf="row.operationType==='entry'">
+                              {{row.quantity }} ({{row.article.unit_of_measurement}})
+                            </span>
+                            <span class="amount" *ngIf="row.operationType==='exit'"> 
+                              {{row.quantity }} ({{row.article.container_unit}})
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="stock">
+                          <mat-header-cell *matHeaderCellDef>
+                            <span class="amount">
+                              {{"app.new_stock" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"  
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.new_stock" | translate }}:
+                            </span>
+                            <span class="amount"> 
+                              <span *ngIf="row.container_stock[0]>0">
+                                {{row.container_stock[0]}} {{row.article.unit_of_measurement }}
+                              </span>
+                              <span *ngIf="row.container_stock[1]>0">
+                                et {{row.container_stock[1]}} {{row.article.container_unit }}
+                              </span> 
+                            </span>
+                          </mat-cell>
+                        </ng-container> 
+                        <!-- actions -->
+                        <mat-header-row *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row
+                          *matRowDef="let row; columns: displayedColumns;"
+                          [style.cursor]="'pointer'" matRipple>
+                        </mat-row>
+                      </table>
+                      <!-- Loading spinner -->
+                      <div *ngIf="exampleDatabase?.isTblLoading"
+                        class="tbl-spinner">
+                        <mat-progress-spinner color="primary" [diameter]="40"
+                          mode="indeterminate">
+                        </mat-progress-spinner>
+                      </div>
+                      <!-- context menu start -->
+                      <div style="visibility: hidden; position: fixed"
+                        [style.left]="contextMenuPosition.x"
+                        [style.top]="contextMenuPosition.y">
+                      </div>
+                      <!-- context menu end -->
+                      <div *ngIf="!exampleDatabase?.isTblLoading"
+                        class="no-results"
+                        [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
+                        No results
+                      </div>
+                      <mat-paginator #paginator
+                        (page)="dataSource.connect(valueFilter)"
+                        [length]="dataSource.meta"
+                        [pageIndex]="0" [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100, 200]">
+                      </mat-paginator>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</section>

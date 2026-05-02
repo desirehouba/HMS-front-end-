@@ -1,0 +1,73 @@
+<section class="content">
+  <div class="content-block">
+
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_payroll_deduction" | translate }} </h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="salaryAdvanceForm">
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="staff" class="tbl-spinner">
+                    <mat-progress-spinner color="primary"
+                      [diameter]="20" mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!staff"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.responsable" | translate }}</mat-label>
+                    <mat-select formControlName="idUserApprove" required>
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of staffs">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.amount" | translate }}</mat-label>
+                    <input matInput formControlName="amount" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="salaryAdvanceForm.get('amount')?.hasError('required')">
+                      amount is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.reasons" | translate }}</mat-label>
+                    <textarea matInput formControlName="reason"
+                      rows="12"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="btn-space" color="primary"
+                    [disabled]="!salaryAdvanceForm.valid || loading"
+                    [class.auth-spinner]="loading"
+                    (click)="addSalaryAdvances()" mat-raised-button>
+                    {{"app.save" | translate }}
+                  </button>
+                  <button type="button" (click)="cancel()"
+                    mat-raised-button color="warn">
+                    {{"app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

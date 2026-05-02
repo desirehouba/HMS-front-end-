@@ -1,0 +1,95 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{ "app.add_categorie" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="ratingForm">
+              <div class="row">
+                <div class="col-xl-12 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.number" | translate }}</mat-label>
+                    <mat-select formControlName="nbrCategoriesRoom"
+                      required (selectionChange)="getCategoriesRoom()">
+                      <mat-option [value]="nbr"
+                        *ngFor="let nbr of numbersCategoriesRoom">
+                        {{ nbr }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <p-table [value]="ratings"
+                (onEditInit)="onEditInit($event)"
+                (onEditCancel)="onEditCancel($event)">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width: 40%; font-size: 18px;">
+                      {{"app.name" | translate }}
+                    </th>
+                    <th style="width: 60%; font-size: 18px;">
+                      {{"app.description" | translate }}
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-book>
+                  <tr>
+                    <td pEditableColumn style="width: 40%; font-size: 18px;">
+                      <p-celleditor>
+                        <div
+                          class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field appearance="outline"
+                            class="example-full-width mb-3">
+                            <mat-label></mat-label>
+                            <input matInput [(ngModel)]="book.name"
+                              placeholder="exemple : 1">
+                          </mat-form-field>
+                        </div>
+                      </p-celleditor>
+                    </td>
+                    <td pEditableColumn style="width: 60%; font-size: 18px;">
+                      <p-celleditor>
+                        <div
+                          class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field appearance="outline"
+                            class="example-full-width mb-3">
+                            <mat-label></mat-label>
+                            <input matInput [(ngModel)]="book.description"
+                              placeholder="exemple : 1">
+                          </mat-form-field>
+                        </div>
+                      </p-celleditor>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+            <form [formGroup]="ratingForm">
+              <br />
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!ratingForm.valid || loading"
+                    class="btn-space" (click)="addCategoriesRoom()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button>
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

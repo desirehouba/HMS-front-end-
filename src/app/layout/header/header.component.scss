@@ -1,0 +1,12 @@
+.bord{
+    border: 1px solid white;
+    margin-right: 1rem;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+    min-width: 20rem;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}

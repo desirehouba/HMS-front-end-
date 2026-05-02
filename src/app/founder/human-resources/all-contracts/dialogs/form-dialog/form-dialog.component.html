@@ -1,0 +1,158 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="contractForm">
+      <div class="row">
+        <div class="col-xl-5 col-lg-8 col-md-12 col-sm-12 mb-2">
+          <div *ngIf="staff" class="tbl-spinner">
+            <mat-progress-spinner color="primary"
+              [diameter]="20" mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+          <mat-form-field appearance="outline" *ngIf="!staff"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.staff" | translate }}</mat-label>
+            <mat-select formControlName="user" required>
+              <mat-option [value]="user.id"
+                *ngFor="let user of staffs">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-8 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="type" required>
+              <mat-option [value]="'cdd'">
+                {{"app.cdd" | translate }}
+              </mat-option>
+              <mat-option [value]="'cdi'">
+                {{"app.cdi" | translate }}
+              </mat-option>
+              <mat-option [value]="'consulting'">
+                {{"app.consulting" | translate }}
+              </mat-option>
+              <mat-option [value]="'partnership'">
+                {{"app.partnership" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.start_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="startDate" required>
+            <mat-datepicker-toggle matSuffix [for]="rpicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.duration" | translate }} ({{"app.months" | translate }}) </mat-label>
+            <input matInput formControlName="duration" type="number" min="1">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-5 col-lg-8 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.job" | translate }}</mat-label>
+            <input matInput formControlName="position">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-8 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.working_hours" | translate }}</mat-label>
+            <input matInput formControlName="workingHours">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.salary" | translate }} </mat-label>
+            <input matInput formControlName="grossSalary" type="number">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>
+              {{"app.status" | translate }}
+            </mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option [value]="'pending_approval'">
+                {{"app.a_approve" | translate }}
+              </mat-option>
+              <mat-option [value]="'in_progress'">
+                {{"app.in_progress" | translate }}
+              </mat-option>
+              <mat-option [value]="'Terminated'">
+                {{"app.finished" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.service_Benefits" | translate }}</mat-label>
+            <textarea matInput formControlName="serviceBenefits">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>{{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description"
+              [rows]="6">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space" color="primary"
+              [disabled]="!contractForm.valid || loading"
+              [class.auth-spinner]="loading" [disabled]="loading"
+              (click)="updateContracts()" mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

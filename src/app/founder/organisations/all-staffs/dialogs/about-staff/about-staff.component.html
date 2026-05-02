@@ -1,0 +1,142 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix"><!-- 
+        <img [src]='image' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card mcont">
+    <div class="row clearfix mag-5">
+      <div class="col-lg-4 col-md-12">
+        <div>
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <br/>
+                <div class="user-name">Username : </div>
+                <br/>
+              </div>
+              <img [src]="image"
+                class="user-img" alt />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template mat-tab-label class="mag3">
+              <mat-icon class="example-tab-icon msr-2">face</mat-icon>
+              Informations
+            </ng-template>
+            <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+              <div class="project_widget mag2">
+                <div class="body">
+                  <div class="row">
+                    <div class="col-md-8 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.name" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.name }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.job_name" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.role.description }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.gender" | translate }}
+                      </strong>
+                      <br/> 
+                      <p *ngIf="staffs.gender==='male'">
+                        <span class="badge badge-solid-green">
+                          {{'app.male' | translate}}</span>
+                        </p>
+                      <p *ngIf="staffs.gender==='female'">
+                        <span class="badge badge-solid-purple">
+                          {{'app.female' | translate}}</span>
+                      </p>
+                    </div>
+                    <div class="col-md-4 col-6">
+                      <strong class="text-muted">
+                        {{"app.phone" | translate }}
+                      </strong>
+                      <br/>
+                      <p> {{ staffs.phone }} </p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.nationality" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.nationality }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.email" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.email }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.address" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.address }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.cni" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.cni }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.birthday" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.birthday }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.birth_place" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.birth_place }}</p>
+                    </div>
+                    <div class="col-md-4 col-6 b-r">
+                      <strong class="text-muted">
+                        {{"app.cnps" | translate }}
+                      </strong>
+                      <br/>
+                      <p>{{ staffs.cnps }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>

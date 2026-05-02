@@ -1,0 +1,85 @@
+<section class="content">
+  <div class="content-block">
+
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_sanction" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="sanctionForm"
+              (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="staff" class="tbl-spinner">
+                    <mat-progress-spinner color="primary"
+                      [diameter]="20" mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!staff"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.staff" | translate }}</mat-label>
+                    <mat-select formControlName="user" required>
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of staffs">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.type" | translate }} </mat-label>
+                    <input matInput formControlName="type" required>
+                    <mat-error
+                      *ngIf="sanctionForm.get('type')?.hasError('required')">
+                      type is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-8 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.reasons" | translate }}</mat-label>
+                    <input matInput formControlName="reasons" required>
+                    <mat-error
+                      *ngIf="sanctionForm.get('reasons')?.hasError('required')">
+                      reasons is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="description"
+                      rows="12"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="btn-space"
+                    [disabled]="!sanctionForm.valid || loading"
+                    [class.auth-spinner]="loading"
+                    (click)="addSanction()" mat-raised-button
+                    color="primary">{{"app.save" | translate }}</button>
+                  <button type="button" mat-raised-button
+                    color="warn" (click)="cancel()">
+                    {{"app.cancel" | translate }}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

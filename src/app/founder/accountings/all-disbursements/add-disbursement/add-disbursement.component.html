@@ -1,0 +1,154 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_expense" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="disbursementForm">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3" *ngIf="!isexpenseType">
+                    <mat-label> {{"app.type" | translate }}</mat-label>
+                    <mat-select formControlName="expense_type_id" required>
+                      <mat-option [value]="type.id"
+                        *ngFor="let type of expenseTypes">
+                        {{ type.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="isexpenseType" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="40"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="user" class="tbl-spinner">
+                    <mat-progress-spinner style="color: #028b5b;"
+                      [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!user"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.responsable" | translate }}</mat-label>
+                    <mat-select formControlName="responsible_id">
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of users">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="disbursementForm.get('responsible_id')?.hasError('required')">
+                      responsable is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+                   <div *ngIf="isServiceLoading" class="tbl-spinner">
+                    <mat-progress-spinner style="color: #028b5b;"
+                      [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline" *ngIf="!isServiceLoading"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.service" | translate }} </mat-label>
+                    <mat-select formControlName="service_id">
+                      <mat-option [value]="service.id"
+                        *ngFor="let service of services">
+                        {{ service.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.amount" | translate }}</mat-label>
+                    <input matInput formControlName="total_amount" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="disbursementForm.get('total_amount')?.hasError('required')">
+                      amount is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.date" | translate }}</mat-label>
+                    <input matInput [matDatepicker]="rpicker"
+                      formControlName="date" required>
+                    <mat-datepicker-toggle matSuffix [for]="rpicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #rpicker>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.payment_mode" | translate }}</mat-label>
+                    <mat-select formControlName="payment_method">
+                      <mat-option [value]="'Cash'">
+                        {{"app.cash" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'Bank'">
+                        {{"app.credit_card" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'OM'">
+                        Orange Money
+                      </mat-option>
+                      <mat-option [value]="'MOMO'">
+                        Mobile Money
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div> 
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-5">
+                  <app-file-upload formControlName="photo">
+                  </app-file-upload>
+                </div>
+              </div> 
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.reason" | translate }}</mat-label> 
+                    <textarea matInput formControlName="reasons" required rows="6">
+                    </textarea>
+                    <mat-error
+                      *ngIf="disbursementForm.get('reasons')?.hasError('required')">
+                      reason is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!disbursementForm.valid || loading"
+                    class="btn-space" (click)="addDisbursements()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button> 
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

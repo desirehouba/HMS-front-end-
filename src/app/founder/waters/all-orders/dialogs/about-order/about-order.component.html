@@ -1,0 +1,255 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card test">
+    <mat-tab-group>
+      <mat-tab>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+          <div class="project_widget mag2">
+            <div class="body">
+              <div class="row">
+                <div class="col-md-6 col-6">
+                  <strong class="text-muted">
+                    {{"app.customer" | translate }}
+                  </strong>
+                  <br/>
+                  <p *ngIf="orders.customer != null">
+                    {{ orders.customer.name }}
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.date" | translate }}
+                  </strong>
+                  <br />
+                  <p *ngIf="orders.delivery_date === null || orders.delivery_date === undefined">
+                    {{ orders.created_at }}
+                  </p>
+                   <p *ngIf="orders.delivery_date != null ">
+                    {{ orders.delivery_date }}
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r" style=" text-align: right;">
+                  <strong class="text-muted ">
+                    {{"app.status" | translate }}
+                  </strong>
+                  <br/>
+                  <p class="amounts" *ngIf="orders.status==='confirmed'">
+                    <span class="badge badge-solid-green amounts">
+                      {{'app.confirmed' | translate}}
+                    </span>
+                  </p>
+                  <p class="amounts" *ngIf="orders.status==='paid'">
+                    <span class="badge badge-solid-green amounts">
+                      {{'app.paid' | translate}}
+                    </span>
+                  </p>
+                  <p class="amounts" *ngIf="orders.status==='cancelled'">
+                    <span class="badge badge-solid-red amounts">
+                      {{'app.cancelled' | translate}}
+                    </span>
+                  </p>
+                  <p class="amounts" *ngIf="orders.status==='pending'">
+                    <span class="badge badge-solid-blue amounts">
+                      {{'app.pending' | translate}}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" >
+                  <table class="class7 bord">
+                    <thead>
+                      <tr style="background-color:#028b5b; ; color: white">
+                        <th style="width: 5%; text-align: right;"
+                          class="rig"> N°
+                        </th>
+                        <th style="width: 40%;" class="lef" >
+                          {{"app.product" | translate }} 
+                        </th> 
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.quantity" | translate }} 
+                        </th>
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.unit_price" | translate }}
+                        </th>
+                        <th style="width: 20%; text-align: right;"
+                          class="rig">
+                          {{"app.amount" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      *ngFor="let item of orders.products; let  index = index">
+                      <tr style="background-color:white;">
+                        <td align="right" class="text rig">
+                          {{ index+1 }} 
+                        </td>
+                        <td align="left" class="text lef">
+                          {{ item.name }}
+                        </td>
+                        <td align="right" class="text lef">
+                          {{ item.quantity }}
+                        </td>
+                        <td align="right" class="text ">
+                          {{ item.unit_price | number }} 
+                        </td>
+                        <td align="right" class="text  rig">
+                          {{ (item.unit_price * item.quantity ) | number}} 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ orders.price | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount_paid" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ orders.amount_paid | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.rest" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ orders.price - orders.amount_paid | number }} Fcfa
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="!payment"> 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" >
+                    <button mat-raised-button color="primarys" 
+                      [disabled]="loading"
+                      [class.auth-spinner]="loading"
+                      class="btn-space primarys"
+                      *ngIf="orders.status==='pending'"
+                      style="background-color: #1480d8; color: white;"
+                      (click)="ordersActions('confirmed')">
+                      {{"app.confirmed" | translate}} 
+                    </button>
+                    <button mat-raised-button color="primarys" 
+                      [disabled]="loading"
+                      [class.auth-spinner]="loading"
+                      class="btn-space primarys"
+                      *ngIf="orders.payment_status!='completed' && !orders.is_free" 
+                      style="background-color: #028b5b; color: white;"
+                      (click)="getCashin(true)">
+                      {{"app.cash_in" | translate}} 
+                    </button>
+                    <button mat-raised-button  
+                      [disabled]="loading" color="warn"
+                      [class.auth-spinner]="loading"
+                      class="btn-space primarys"
+                      *ngIf="orders.payment_status!='completed'"  
+                      (click)="ordersActions('cancelled')">
+                      {{"app.cancel" | translate}} 
+                    </button>
+                    <!-- <button  type="button" (click)="dialogRef.close()"
+                    [disabled]="loading"
+                      [class.auth-spinner]="loading"
+                      *ngIf="orders.status==='confirmed' || orders.status==='pending'"
+                      mat-raised-button color="warn">
+                        {{"app.cancel" | translate }}
+                    </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2" *ngIf="payment">
+          <div class="project_widget mag2">
+              <div class="header">
+                    <h2>{{"app.add_cash_ins" | translate }} </h2>
+                </div>
+                <form class="register-form m-4" [formGroup]="orderForm">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field appearance="outline"
+                        class="example-full-width mb-3">
+                        <mat-label>{{"app.payment_mode" | translate }}</mat-label>
+                        <mat-select formControlName="payment_mode">
+                          <mat-option [value]="'Cash'">
+                            {{"app.cash" | translate }}
+                          </mat-option>
+                          <mat-option [value]="'OM'">
+                            Orange Money
+                          </mat-option>
+                          <mat-option [value]="'MoMo'">
+                            Mobile Money
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field appearance="outline"
+                        class="example-full-width mb-3">
+                        <mat-label> {{"app.amount" | translate }}</mat-label>
+                        <input matInput formControlName="amount" type="number" min="1"> 
+                      </mat-form-field>
+                    </div> 
+                    <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field appearance="outline"
+                        class="example-full-width mb-3">
+                        <mat-label> {{"app.date" | translate }}</mat-label>
+                        <input matInput [matDatepicker]="rpicker1"
+                          formControlName="date">
+                        <mat-datepicker-toggle matSuffix [for]="rpicker1">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #rpicker1></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <div class="example-button-row">
+                        <button class="btn-space"
+                          [disabled]="!orderForm.valid || loading"
+                          [class.auth-spinner]="loading"
+                          [disabled]="loading" color="primary"
+                          (click)="addCashIn()"
+                          mat-raised-button>
+                          {{"app.save" | translate }}
+                        </button> 
+                        <button  type="button" (click)="getCashin(false)"
+                          mat-raised-button color="warn">
+                            {{"app.cancel" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div> 
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

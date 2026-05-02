@@ -1,0 +1,115 @@
+<section class="content">
+  <div class="content-block">
+
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_expense" | translate }} </h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="payrollForm">
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.staff" | translate }}</mat-label>
+                    <mat-select formControlName="user" required>
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of staffs">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.number1" | translate }}</mat-label>
+                    <input matInput formControlName="number">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.amount" | translate }}</mat-label>
+                    <input matInput formControlName="amount" type="number"
+                      required>
+                    <mat-error
+                      *ngIf="payrollForm.get('amount')?.hasError('required')">
+                      amount is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.date" | translate }}</mat-label>
+                    <input matInput [matDatepicker]="rpicker"
+                      formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="rpicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #rpicker>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.payment_mode" | translate }}</mat-label>
+                    <mat-select formControlName="mode">
+                      <mat-option [value]="'Cash'">
+                        {{"app.cash" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'Bank'">
+                        {{"app.credit_card" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'OM'">
+                        Orange Money
+                      </mat-option>
+                      <mat-option [value]="'MOMO'">
+                        Mobile Money
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.reason" | translate }}</mat-label>
+                    <mat-icon matSuffix>face</mat-icon>
+                    <textarea matInput formControlName="reasons" required>
+                    </textarea>
+                    <mat-error
+                      *ngIf="payrollForm.get('reasons')?.hasError('required')">
+                      reason is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="btn-space" color="primary"
+                    [disabled]="!payrollForm.valid || loading"
+                    [class.auth-spinner]="loading"
+                    (click)="addPayroll()" mat-raised-button>
+                    {{"app.save" | translate }}
+                  </button>
+                  <button type="button" (click)="cancel()"
+                    mat-raised-button color="warn">
+                    {{"app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

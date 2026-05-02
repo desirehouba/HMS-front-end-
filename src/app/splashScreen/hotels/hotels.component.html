@@ -1,0 +1,89 @@
+<div class="auth-container  centeredBox "
+  style="background: url(assets/images/2.png);">
+
+  <div class="signin">
+    <div class="connexion">
+      <h2 style="text-align: center;">
+        {{ 'app.list_Of_your_hotel'| translate}}
+      </h2>
+      <p style="text-align: center;">
+        {{ 'app.Select_managment'| translate}}
+      </p>
+    </div>
+    <div *ngIf="!hide" align="center"
+      style="margin-top: 50px;">
+      <mat-spinner [value]="10000" color="#028b5b">
+      </mat-spinner>
+    </div>
+    <div class="boxrigth" *ngIf="hide">
+      <div class="row mt-5 ml-0 mr-0" *ngIf="hotels.length < 4">
+        <div class="col-md-4" *ngFor="let hotel of hotels">
+          <div class="card border-apply">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header l-bg-blue">
+                  <div class="user-name txt">
+                    {{hotel.name}} : {{hotel.city}}
+                  </div>
+                  <div class="name-center">
+                    {{hotel.manager.name}}
+                  </div>
+                </div>
+                <img src="assets/logo/logo-douala.jpeg" class="user-img" alt>
+                <br />
+                <span>Email : {{hotel.email}},  </span>
+                <br />
+                <span class="phone">
+                  {{ 'app.phone'| translate}} : {{hotel.phone}} / {{hotel.phone2}}
+                </span>
+                <div class="profile-userbuttons">
+                  <button mat-flat-button
+                    style="background-color: #028b5b; color: white;"
+                    [class.auth-spinner]="loading"
+                    [disabled]="loading"
+                    (click)="onSubmit(hotel)">
+                    {{ 'app.select'| translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-6 ml-0 mr-0" *ngIf="hotels.length > 3">
+        <div class="col-md-3" *ngFor="let hotel of hotels">
+          <div class="card border-apply">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header l-bg-blue">
+                  <div class="user-name txt">
+                    {{hotel.name}}
+                  </div>
+                  <div class="name-center">
+                    {{hotel.manager.name}}
+                  </div>
+                </div>
+                <img src="assets/logo/logo-douala.jpeg" class="user-img" alt>
+                <br />
+                <span>{{hotel.email}}, Etoile  : {{hotel.stars}}</span>
+                <br />
+                <span class="phone">
+                  {{ 'app.phone'| translate}} : {{hotel.phone}}
+                </span>
+                <div class="profile-userbuttons">
+                  <button mat-flat-button
+                    style="background-color: #028b5b; color: white;"
+                    [class.auth-spinner]="loading"
+                    [disabled]="loading"
+                    (click)="onSubmit(hotel)">
+                    {{ 'app.select'| translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

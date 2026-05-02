@@ -1,0 +1,167 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_supplyDemand" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="supplyDemandForm">
+              <div class="row">
+                <div class="col-xl-6 col-lg-9 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.responsable" | translate }}</mat-label>
+                    <mat-select formControlName="responsible_id">
+                      <mat-option [value]="responsible.id"
+                        *ngFor="let responsible of responsibles">
+                        {{ responsible.name }} 
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div
+                  class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    style="margin-bottom: -2rem"
+                    class="example-full-width">
+                    <mat-label>
+                      {{"app.priority" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="priority" required>
+                      <mat-option [value]="'low'">
+                        {{"app.small" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'medium'">
+                        {{"app.medium" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'high'">
+                        {{"app.high" | translate }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.number" | translate }}</mat-label>
+                    <mat-select formControlName="nbrSupplyDemand"
+                      required (selectionChange)="getSupplyDemands()">
+                      <mat-option [value]="nbr"
+                        *ngFor="let nbr of numbersSupplyDemands">
+                        {{ nbr }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label>{{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="description">
+                    </textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <p-table [value]="supplyDemandArrys"
+                (onEditInit)="onEditInit($event)"
+                (onEditCancel)="onEditCancel($event)">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width: 40%; font-size: 18px;">
+                      {{"app.article" | translate }}
+                    </th>
+                    <th style="width: 20%;font-size: 18px;">
+                      {{"app.quantity" | translate }}
+                    </th>
+                    <th style="width: 40%; font-size: 18px;">
+                      {{"app.supplier" | translate }}
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-book>
+                  <tr>
+                    <td pEditableColumn style="width: 35%; font-size: 18px;">
+                      <p-celleditor>
+                        <div
+                          class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field appearance="outline"
+                            class="example-full-width mb-3">
+                            <mat-label></mat-label>
+                            <mat-select [(ngModel)]="book.id">
+                              <mat-option [value]="article"
+                                *ngFor="let article of articles">
+                                {{ article.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </p-celleditor>
+                    </td>
+                    <td pEditableColumn style="width: 15%; font-size: 18px;">
+                      <p-celleditor>
+                        <div
+                          class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field appearance="outline"
+                            class="example-full-width mb-3">
+                            <mat-label></mat-label>
+                            <input matInput type="number"
+                              [(ngModel)]="book.quantity">
+                          </mat-form-field>
+                        </div>
+                      </p-celleditor>
+                    </td> 
+                    <td pEditableColumn style="width: 35%; font-size: 18px;">
+                      <p-celleditor>
+                        <div
+                          class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field appearance="outline"
+                            class="example-full-width mb-3">
+                            <mat-label></mat-label>
+                            <mat-select [(ngModel)]="book.supplier_id">
+                              <mat-option [value]="supplier.id"
+                                *ngFor="let supplier of suppliers">
+                                {{ supplier.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </p-celleditor>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+            <form [formGroup]="supplyDemandForm">
+              <br />
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button [class.auth-spinner]="loading"
+                    [disabled]="!supplyDemandForm.valid || loading"
+                    class="btn-space" (click)="addSupplyDemands()"
+                    mat-raised-button color="primary">
+                    {{ "app.save" | translate }}
+                  </button>
+                  <button mat-raised-button color="primarys" class="btn-space primarys"
+                  style="background-color: #028b5b; color: white;"
+                  (click)="editCall()">
+                  {{"app.add_article" | translate}} 
+                  </button>
+                  <button type="button" color="warn"
+                    mat-raised-button (click)="cancel()">
+                    {{ "app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

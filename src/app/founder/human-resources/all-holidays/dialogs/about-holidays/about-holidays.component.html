@@ -1,0 +1,122 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card pad">
+    <div class="row clearfix mag-5">
+      <mat-tab-group>
+        <mat-tab>
+          <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+            <div class="project_widget mag2">
+              <div class="body">
+                <div class="row">
+                  <div class="col-md-5 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.for" | translate }}
+                    </strong>
+                    <br />
+                    <p *ngIf="holidays.user != null">
+                      {{ holidays.user.name }}
+                    </p>
+                  </div>
+                  <div class="col-md-5 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.responsable" | translate }}
+                    </strong>
+                    <br />
+                    <p *ngIf="holidays.userApprove != null">
+                      {{ holidays.userApprove.name }}
+                    </p>
+                  </div>
+                  <div class="col-md-2 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.duration" | translate }}
+                    </strong>
+                    <br />
+                    <p>
+                      {{ holidays.days_taken }} ({{"app.day" | translate }}s)
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.type" | translate }}
+                    </strong>
+                    <br />
+                    <p>
+                      {{ holidays.type }}
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.start_date" | translate }}
+                    </strong>
+                    <br />
+                    <p>
+                      {{ holidays.start_date }}
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.end_date" | translate }}
+                    </strong>
+                    <br />
+                    <p>
+                      {{ holidays.end_date }}
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.status" | translate }}
+                    </strong>
+                    <br />
+                    <p *ngIf="holidays.status==='pending_approval'">
+                      <span class="badge badge-solid-purple amounts">
+                        {{'app.a_approve' | translate}}</span>
+                    </p>
+                    <p  *ngIf="holidays.status==='in_progress'">
+                      <span class="badge badge-solid-orange amounts">
+                        {{'app.in_progress' | translate}}</span>
+                    </p>
+                    <p  *ngIf="holidays.status==='approved'">
+                      <span class="badge badge-solid-green amounts">
+                        {{'app.approved' | translate}}</span>
+                    </p>
+                    <p  *ngIf="holidays.status==='rejected'">
+                      <span class="badge badge-solid-red amounts">
+                        {{'app.rejected' | translate}}</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-6 b-r">
+                    <strong class="text-muted">
+                      {{"app.description" | translate }}
+                    </strong>
+                    <br />
+                    <div *ngIf="holidays.reason != null">
+                      <p *ngFor="let item of holidays.reason.split('\n')">
+                        {{ item }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

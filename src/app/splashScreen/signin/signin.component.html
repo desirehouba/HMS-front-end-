@@ -1,0 +1,32 @@
+<div class="auth-container  centeredBox "
+  style="background: url(assets/images/2.png);">
+  <div *ngIf="!hide" align="center"
+    style="margin-top: 50px;">
+    <mat-spinner [value]="10000" color="#028b5b">
+    </mat-spinner>
+  </div>
+  <div class="signin" *ngIf="hide">
+    <div class="titre">
+      <h2 style="text-align: center;">
+        {{ 'app.Welcome_to_MS_Hotel'| translate}}
+      </h2>
+      <p style="text-align: center;">
+        {{ 'app.Inf_about_your_estab'| translate}}
+      </p>
+    </div>
+    <div class="contenu">
+      <div class="connexion">
+        <h2 class="img">
+          <img [src]="image+hotels.logo" class="user-img" alt></h2>
+        <h2 class="login-title">{{ hotels.name }}</h2>
+        <div class="container-auth-form-btn">
+          <div style="text-align:center">
+            <button mat-raised-button color="primary" type="submit"
+              (click)="onSubmit()" class="auth-form-btn changeColor">
+              {{ 'app.next'| translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

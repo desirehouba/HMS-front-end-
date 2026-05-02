@@ -1,0 +1,431 @@
+<div class="addContainer with">
+  <div mat-dialog-content>
+    <div>
+      <div id="content" #content>
+        <div *ngIf="over"
+          style="width: 450px; padding-left: 20px; padding-right: 20px; margin-top: 1rem;">
+          <div style="height: 15rem;">
+            <div class="class3">
+              <div class="class4" *ngIf="feeUsers[0].school.name.length<22">
+                <span>{{feeUsers[0].school.name}}</span>
+              </div>
+              <div class="class41" *ngIf="feeUsers[0].school.name.length>22">
+                <span>{{feeUsers[0].school.name}}</span>
+              </div>
+              <div class="class5">
+                <span> {{"app.receipt" | translate }}</span>
+              </div>
+            </div>
+            <div style="display: flex; width: 100%;">
+              <div class="class6">
+                <span>
+                  <strong>
+                    {{"app.date" | translate }}:
+                  </strong>
+                  {{feeUsers[0].created_at}}
+                </span><br>
+                <span>
+                  <strong
+                    *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                    {{"app.student" | translate }} :
+                  </strong>
+                  <strong
+                    *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                    {{"app.students-u" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.name }}
+                </span><br>
+                <span>
+                  <strong>
+                    {{"app.matricule" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.matricule }}
+                </span><br>
+                <span>
+                  <strong
+                    *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                    {{"app.classroom" | translate }} :
+                  </strong>
+                  <strong
+                    *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                    {{"app.specialtie" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.classe.name}}
+                </span>
+              </div>
+              <div class="class20" align="right">
+                <img [src]="logo" align="right"
+                  style="max-height: 55px; max-width: 80px; border-radius: 1px; margin-right: 0px;" />
+              </div>
+            </div>
+            <table class="class7">
+              <thead>
+                <tr style="background-color:#028b5b ; color: white;">
+                  <th style="width: 25%;" class="text">
+                    {{"app.fee" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text">
+                    {{"app.deadline" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text">
+                    {{"app.mode" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text">
+                    {{"app.price" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text">
+                    {{"app.amount" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text">
+                    {{"app.rest" | translate }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody style="background-color:#f6f8f805;">
+                <tr *ngFor="let feeUser of feeUsers">
+                  <td align="left" style=" padding-left: 1px;" class="text">
+                    {{feeUser.fee.name}}
+                  </td>
+                  <td align="center" class="text">
+                    {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                  </td>
+                  <td align="center" class="text">
+                    {{feeUser.payment_mode}}
+                  </td>
+                  <td align="right" class="text">
+                    {{feeUser.fee.price | number}}
+                  </td>
+                  <td align="right" class="text">
+                    {{feeUser.advancePayment | number}}
+                  </td>
+                  <td align="right" class="text">
+                    {{feeUser.balancePayment | number}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div *ngIf="ecole === 'acf'">
+              <div style="display: flex; width: 100%; margin-top: 5px;">
+                <div class="class6">
+                  <div class="class80" align="left">
+                    <strong>
+                      {{"app.fee_rembrousable" | translate}}
+                    </strong>
+                  </div>
+                </div>
+                <div class="class20" *ngIf="qrObject!=''" id="content" #content>
+                  <div align="center" style="height: 10px; width: 10px;">
+                    <qrcode [qrdata]="qrObject" [width]="40" [margin]="0"
+                      colorDark="#008000"></qrcode>
+                  </div>
+                </div>
+                <div class="class20" align="right">
+                  <img src="assets/logo/cachet.jpeg" align="right"
+                    style="max-height: 40px; max-width: 50px; border-radius: 1px;" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tirets" *ngIf="type === 'a4'">
+            ----------------------------------------------------------------------------------------------------------------------------------------------------</div>
+          <div class="class3" *ngIf="type === 'a4'">
+            <div class="class4" *ngIf="feeUsers[0].school.name.length<22">
+              <span>{{feeUsers[0].school.name}}</span>
+            </div>
+            <div class="class41" *ngIf="feeUsers[0].school.name.length>22">
+              <span>{{feeUsers[0].school.name}}</span>
+            </div>
+            <div class="class5">
+              <span> {{"app.receipt" | translate }}</span>
+            </div>
+          </div>
+          <div style="display: flex; width: 100%;" *ngIf="type === 'a4'">
+            <div class="class6">
+              <span>
+                <strong>
+                  {{"app.date" | translate }}:
+                </strong>
+                {{feeUsers[0].created_at}}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.student" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.students-u" | translate }} :
+                </strong>
+                {{feeUsers[0].student.name }}
+              </span><br>
+              <span>
+                <strong>
+                  {{"app.matricule" | translate }} :
+                </strong>
+                {{feeUsers[0].student.matricule }}
+              </span><br>
+              <span>
+                <strong
+                  *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                  {{"app.classroom" | translate }} :
+                </strong>
+                <strong
+                  *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                  {{"app.specialtie" | translate }} :
+                </strong>
+                {{feeUsers[0].student.classe.name}}
+              </span>
+            </div>
+            <div class="class20" align="right">
+              <img [src]="logo" align="right"
+                style="max-height: 55px; max-width: 80px; border-radius: 1px; margin-right: 0px;" />
+            </div>
+          </div>
+          <table class="class7" *ngIf="type === 'a4'">
+            <thead>
+              <tr style="background-color:#028b5b ; color: white;">
+                <th style="width: 25%;" class="text">
+                  {{"app.fee" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.deadline" | translate }}
+                </th>
+                <th style="width: 15%; text-align: center;" class="text">
+                  {{"app.mode" | translate }}
+                </th>
+                <th style="width: 15%;text-align: right;" class="text">
+                  {{"app.price" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.amount" | translate }}
+                </th>
+                <th style="width: 15%; text-align: right;" class="text">
+                  {{"app.rest" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody style="background-color:#f6f8f805;">
+              <tr *ngFor="let feeUser of feeUsers">
+                <td align="left" style=" padding-left: 1px;" class="text">
+                  {{feeUser.fee.name}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                </td>
+                <td align="center" class="text">
+                  {{feeUser.payment_mode}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.fee.price | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.advancePayment | number}}
+                </td>
+                <td align="right" class="text">
+                  {{feeUser.balancePayment | number}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="ecole === 'acf'">
+            <div style="display: flex; width: 100%; margin-top: 5px;"
+              *ngIf="type === 'a4'">
+              <div class="class6">
+                <div class="class80" align="left" style="font-size: 12;">
+                  <strong>
+                    {{"app.fee_rembrousable" | translate}}
+                  </strong>
+                </div>
+              </div>
+              <div class="class20" *ngIf="qrObject!=''" id="content" #content>
+                <div align="center" style="height: 10px; width: 10px;">
+                  <qrcode [qrdata]="qrObject" [width]="40" [margin]="0"
+                    colorDark="#008000"></qrcode>
+                </div>
+              </div>
+              <div class="class20" align="right">
+                <img src="assets/logo/cachet.jpeg" align="right"
+                  style="max-height: 40px; max-width: 50px; border-radius: 1px;" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- apercu du recu -->
+        <div id="content" #content *ngIf="!over">
+          <div style="width: 50rem; padding-left: 12px; padding-right: 12px;">
+            <div class="class33">
+              <div class="class44">
+                <span>{{feeUsers[0].school.name}}</span>
+              </div>
+              <div class="class55">
+                <span> {{"app.receipt" | translate }}</span>
+              </div>
+            </div>
+            <div style="display: flex; width: 100%;">
+              <div class="class66">
+                <span>
+                  <strong>
+                    {{"app.date" | translate }}:
+                  </strong>
+                  {{feeUsers[0].created_at}}
+                </span><br>
+                <span>
+                  <strong
+                    *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                    {{"app.student" | translate }} :
+                  </strong>
+                  <strong
+                    *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                    {{"app.students-u" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.name }}
+                </span><br>
+                <span>
+                  <strong>
+                    {{"app.matricule" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.matricule }}
+                </span><br>
+                <span>
+                  <strong
+                    *ngIf="scholar_level != 'University' && scholar_level != 'CF' ">
+                    {{"app.classroom" | translate }} :
+                  </strong>
+                  <strong
+                    *ngIf="scholar_level === 'University' || scholar_level === 'CF' ">
+                    {{"app.specialtie" | translate }} :
+                  </strong>
+                  {{feeUsers[0].student.classe.name}}
+                </span>
+              </div>
+              <div class="class220" align="right">
+                <img [src]="logo" align="right"
+                  style="max-height: 110px; max-width: 170px; border-radius: 1px; margin-right: 0px;" />
+              </div>
+            </div>
+            <table class="class77">
+              <thead>
+                <tr style="background-color:#028b5b ; color: white;"
+                  class="text1">
+                  <th style="width: 25%;" class="text1 pad-l">
+                    {{"app.fee" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text1">
+                    {{"app.deadline" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: center;" class="text1">
+                    {{"app.mode" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text1">
+                    {{"app.price" | translate }}
+                  </th>
+                  <th style="width: 15%; text-align: right;" class="text1">
+                    {{"app.amount" | translate }}
+                  </th>
+                  <th style="width: 15%;text-align: right;" class="text1 pad-r">
+                    {{"app.rest" | translate }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody style="background-color:#f6f8f8f6;">
+                <tr class="text" *ngFor="let feeUser of feeUsers">
+                  <td align="left" class="text1 pad-l">
+                    {{feeUser.fee.name}}
+                  </td>
+                  <td align="center" class="text1">
+                    {{feeUser.fee.deadline | date:'dd/MM/yyyy'}}
+                  </td>
+                  <td align="center" class="text1">
+                    {{feeUser.payment_mode}}
+                  </td>
+                  <td align="right" class="text1">
+                    {{feeUser.fee.price | number}}
+                  </td>
+                  <td align="right" class="text1">
+                    {{feeUser.advancePayment | number}}
+                  </td>
+                  <td align="right" class="text1 pad-r">
+                    {{feeUser.balancePayment | number}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div *ngIf="ecole === 'acf'">
+              <div style="display: flex; width: 100%; margin-top: 20px;">
+                <div class="class66">
+                  <div class="class80" align="left">
+                    <strong>
+                      {{"app.fee_rembrousable" | translate}}
+                    </strong>
+                  </div>
+                </div>
+                <div class="class20" align="right">
+                  <img src="assets/logo/cachet.jpeg" align="right"
+                    style="max-height: 50px; max-width: 50px; border-radius: 1px;" />
+                </div>
+              </div>
+            </div>
+            <!-- <div class="class11">
+              <div class="class880">
+                <span>
+                  <strong>{{"app.total_boarding_school" | translate }}
+                    :</strong>
+                </span>
+              </div>
+              <div class="class220">
+                <strong>{{ feeUser.fee.price | number }} Fcfa</strong>
+              </div>
+            </div>
+            <div class="class11">
+              <div class="class880">
+                <strong>
+                  <span>
+                    {{"app.total_amount_paid" | translate }}:
+                  </span>
+                </strong>
+              </div>
+              <div class="class220">
+                <strong>
+                  {{ feeUser.fee.price - feeUser.balancePayment| number }} Fcfa
+                </strong>
+              </div>
+            </div>
+            <div class="class11">
+              <div class="class880">
+                <strong>
+                  <span>
+                    {{"app.rest" | translate }} :
+                  </span>
+                </strong>
+              </div>
+              <div class="class220">
+                <strong>
+                  {{ feeUser.balancePayment | number }} Fcfa
+                </strong>
+              </div>
+            </div> -->
+          </div>
+          <div class="row mag-t">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+              <button class="btn-space butun"
+                [disabled]="loading" [class.auth-spinner]="loading"
+                mat-raised-button (click)="download('a5')">
+                {{"app.download_card" | translate }}
+              </button>
+              <button class="btn-space butun"
+                [disabled]="loading" [class.auth-spinner]="loading"
+                mat-raised-button (click)="download('a4')">
+                {{"app.download_card_double" | translate }}
+              </button>
+              <button type="button" color="warn"
+                mat-raised-button (click)="onNoClick()">
+                {{"app.cancel" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

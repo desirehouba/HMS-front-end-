@@ -1,0 +1,26 @@
+<div class="container">
+  <h3 mat-dialog-title>{{"app.are_you_sure" | translate }}</h3>
+  <div mat-dialog-content>
+    <ul class="clearfix">
+      <li>
+        <p><span class="font-weight-bold"> {{"app.name" | translate }}: </span>{{data.name}}</p>
+    </li>
+    <li>
+        <p><span class="font-weight-bold"> {{"app.ressource" | translate }} : </span>{{ data.ressource }}</p>
+    </li>
+    <li>
+        <p>
+            <span class="font-weight-bold">{{"app.description" | translate }}: </span>{{data.description }}
+        </p>
+    </li>
+    
+    </ul>
+  </div>
+  <div mat-dialog-actions class="mb-1">
+    <button mat-flat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">
+      {{"app.delete" | translate }}
+    </button>
+    <button mat-flat-button (click)="onNoClick()" tabindex="-1">
+      {{"app.cancel" | translate }}</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.custom-scroll-bar {
+    height: 30vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+.margi {
+    max-height: 50px !important;
+    max-width: 50px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.with {
+  min-width: 75rem !important;
+}

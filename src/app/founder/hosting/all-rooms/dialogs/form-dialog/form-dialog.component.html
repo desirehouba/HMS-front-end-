@@ -1,0 +1,154 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="roomForm">
+      <div class="row">
+        <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.name" | translate }}</mat-label>
+            <input matInput formControlName="name"
+              required>
+            <mat-error
+              *ngIf="roomForm.get('name')?.hasError('required')">
+              name is required
+            </mat-error>
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-2 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.etage_numbert" | translate }}</mat-label>
+            <input matInput formControlName="number" type="number"
+              required>
+            <mat-error
+              *ngIf="roomForm.get('number')?.hasError('required')">
+              price is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-5">
+          <app-file-upload formControlName="photo">
+          </app-file-upload>
+        </div>
+        <div *ngIf="rooms.image != '' && rooms.image != null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img [src]="image+rooms.image" class="user-img margi" alt>
+        </div>
+        <div *ngIf="rooms.image === '' || rooms.image === null"
+          class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-5">
+          <img src="../assets/images/user/admin.jpg" class="user-img margi" alt>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3" *ngIf="!istyperoom">
+            <mat-label> {{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="room_type_id" required>
+              <mat-option [value]="type.id"
+                *ngFor="let type of typeRooms">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="istyperoom" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="40"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3" *ngIf="!istyperoom">
+            <mat-label> {{"app.categorie" | translate }}</mat-label>
+            <mat-select formControlName="room_category_id" required>
+              <mat-option [value]="type.id"
+                *ngFor="let type of categoriesRooms">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="istyperoom" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="40"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.capacity" | translate }}</mat-label>
+            <input matInput formControlName="capacity" type="number"
+              required>
+            <mat-error
+              *ngIf="roomForm.get('capacity')?.hasError('required')">
+              capacity is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.price" | translate }}</mat-label>
+            <input matInput formControlName="price" type="number"
+              required>
+            <mat-error
+              *ngIf="roomForm.get('price')?.hasError('required')">
+              price is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.description" | translate }}</mat-label>
+            <textarea matInput formControlName="description" required rows="6">
+            </textarea>
+            <mat-error
+              *ngIf="roomForm.get('description')?.hasError('required')">
+              reason is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!roomForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="roomsActions()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button
+              color="warn" (click)="onNoClick()"
+              tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

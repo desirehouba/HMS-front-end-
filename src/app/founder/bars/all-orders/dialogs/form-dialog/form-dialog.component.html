@@ -1,0 +1,150 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="orderForm">
+      <div class="row">
+        <div class="col-xl-8 col-lg-9 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.customer" | translate }}</mat-label>
+            <mat-select formControlName="customer_id">
+              <mat-option [value]="customer.id"
+                *ngFor="let customer of customers">
+                {{ customer.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- <div class="col-xl-3 col-lg-9 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.room" | translate }}</mat-label>
+            <mat-select formControlName="room_id">
+              <mat-option [value]="room.id"
+                *ngFor="let room of rooms">
+                {{ room.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+        <!-- <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.payment_mode" | translate }}</mat-label>
+            <mat-select formControlName="payment_mode">
+              <mat-option [value]="'Cash'">
+                {{"app.cash" | translate }}
+              </mat-option>
+              <mat-option [value]="'Bank'">
+                {{"app.credit_card" | translate }}
+              </mat-option>
+              <mat-option [value]="'OM'">
+                Orange Money
+              </mat-option>
+              <mat-option [value]="'MOMO'">
+                Mobile Money
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.number" | translate }}</mat-label>
+            <mat-select formControlName="nbrOrder"
+              required (selectionChange)="getOrders()">
+              <mat-option [value]="nbr"
+                *ngFor="let nbr of numbersOrders">
+                {{ nbr }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>  
+      </div>
+    </form>
+      <div class="row bordure" *ngIf="!product">
+        <p-table [value]="orderArrys"
+          (onEditInit)="onEditInit($event)"
+          (onEditCancel)="onEditCancel($event)">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 60%; font-size: 18px;">
+                {{"app.product"| translate }}
+              </th>
+              <th style="width: 40%;font-size: 18px;">
+                {{"app.quantity" | translate }}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-book>
+            <tr>
+              <td pEditableColumn style="width: 35%; font-size: 18px;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <mat-select [(ngModel)]="book.id">
+                        <mat-option [value]="product.id"
+                          *ngFor="let product of products">
+                          {{ product.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+              <td pEditableColumn style="width: 15%; font-size: 18px;">
+                <p-celleditor>
+                  <div
+                    class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field appearance="outline"
+                      class="example-full-width mb-3">
+                      <mat-label></mat-label>
+                      <input matInput type="number"
+                        [(ngModel)]="book.quantity">
+                    </mat-form-field>
+                  </div>
+                </p-celleditor>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    <form class="register-form m-4" [formGroup]="orderForm"> 
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!orderForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="updateOrders()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

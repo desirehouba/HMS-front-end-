@@ -1,0 +1,245 @@
+<nav #navbar class="navbar active">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" onClick="return false;" class="navbar-toggle collapsed"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed"
+        aria-expanded="false"></a>
+      <a href="#" onClick="return false;" class="bars"
+        (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
+      <a class="navbar-brand" routerLink={{homePage}}>
+        <img src="assets/images/logo.png" alt style="height: 35px;" />
+        <span class="logo-name">MS-Hotels</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse"
+      [ngClass]="isNavbarCollapsed ? '' : 'show'">
+      <ul class="float-start collapse-menu-icon">
+        <li>
+          <button mat-button
+            (click)="callSidemenuCollapse()"
+            class="sidemenu-collapse nav-notification-icons">
+            <i class="material-icons-outlined icon-color">
+              menu
+            </i>
+          </button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Full Screen Button -->
+        <li>
+
+        </li>
+        <li class="nav-item user_profile"
+          *ngIf="permissions.indexOf('std-0') != -1">
+
+          <button mat-button class="bord">
+            <div class="chip dropdown-toggle"
+              class="pt-0" (click)="sendSms()">
+              <span> {{"app.sms_dispo" | translate }} </span>
+              <span> : +{{sms}}</span>
+            </div>
+          </button>
+        </li>
+        <li class="nav-item user_profile" *ngIf="sections.length > 1">
+
+          <button mat-button [matMenuTriggerFor]="profilemenu" class="bord">
+            <div class="chip dropdown-toggle" ngbDropdownToggle
+              class="pt-0">
+              <span
+                *ngIf="scholar_level != 'University' && scholar_level != 'CF'">
+                {{"app.change_section" | translate }}
+              </span>
+              <span
+                *ngIf="scholar_level === 'University' ||  scholar_level === 'CF'">
+                {{"app.change_department" | translate }}
+              </span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu bord">
+            <div class="noti-list">
+              <div class="menu bord">
+                <div class="user_dw_menu bord">
+                  <button mat-menu-item *ngFor="let section of sections"
+                    (click)="setSection(section)">
+                    {{section.name}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+          <span *ngFor="let section of sections">
+            <span *ngIf="section.id === sectionTrue">
+              {{ section.name }}
+            </span>
+          </span>
+        </li>
+        <li class="nav-item user_profile" *ngIf="students.length > 1">
+          <button mat-button [matMenuTriggerFor]="profilemenu" class="bord">
+            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+              <span>{{"app.select_child" | translate }}</span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu">
+            <div class="noti-list">
+              <div class="menu ">
+                <div class="user_dw_menu">
+                  <button mat-menu-item *ngFor="let student of students"
+                    (click)="setStudent(student)">
+                    {{student.name}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+          <span>
+            Actuel: {{ nameStudent }}
+          </span>
+        </li>
+
+        <li class="nav-item user_profile" *ngIf="classesTeacher.length > 1">
+          <button mat-button [matMenuTriggerFor]="profilemenu" class="bord">
+            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+              <span>{{"app.select_classe" | translate }}</span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu bord">
+            <div class="noti-list bord">
+              <div class="menu bord">
+                <div class="user_dw_menu bord">
+                  <button mat-menu-item *ngFor="let class of classesTeacher"
+                    (click)="setClassroom(class)">
+                    {{class.name}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </li>
+        <li class="nav-item user_profile" *ngIf="classesTeacher.length > 0">
+          <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+            <span>{{classroom}}</span>
+          </div>
+        </li>
+
+        <li class="fullscreen">
+          <button mat-button class="nav-notification-icons"
+            (click)="callFullscreen()">
+            <i class="material-icons-outlined icon-color">
+              fullscreen
+            </i>
+          </button>
+        </li>
+        <!-- #END# Full Screen Button -->
+        <!-- #START# Notifications-->
+
+        <li>
+          <button mat-button [matMenuTriggerFor]="notificationMenu"
+            class="nav-notification-icons">
+            <i class="material-icons-outlined icon-color">
+              notifications_active
+            </i>
+          </button>
+          <mat-menu #notificationMenu="matMenu" class="nfc-menu">
+            <div class="nfc-header">
+              <h5 class="mb-0">Notitications</h5>
+              <a class="nfc-mark-as-read">Mark all as read</a>
+            </div>
+            <div class="nfc-dropdown">
+              <ng-scrollbar style="height: 350px" visibility="hover">
+                <div class="noti-list header-menu">
+                  <div class="menu">
+                    <div>
+                      <button mat-menu-item
+                        *ngFor="let notification of notifications"
+                        onClick="return false;" [ngClass]="[status]">
+                        <span class="table-img msg-user ">
+                          <i class="material-icons-two-tone nfc-type-icon">
+                            {{icons}}
+                          </i>
+                        </span>
+                        <span class="menu-info">
+                          <span class="menu-title">
+                            {{ notification.description | slice : 0 : 25}} ...
+                          </span>
+                          <span class="menu-desc mt-2">
+                            <i class="material-icons">access_time</i>
+                            {{notification.created_at}}
+                          </span>
+                        </span>
+                        <span class="nfc-close">
+                          <app-feather-icons [icon]="'x'"
+                            [class]="'user-menu-icons'"></app-feather-icons>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ng-scrollbar>
+            </div>
+            <div class="nfc-footer">
+              <a class="nfc-read-all" routerLink={{notification}}>
+                {{'app.read_all_notifications' | translate}}
+              </a>
+            </div>
+          </mat-menu>
+        </li>
+        <!-- #END# Notifications-->
+        <li class="nav-item">
+          <button mat-button [matMenuTriggerFor]="languagemenu"
+            class="lang-dropdown nav-notification-icons"> <img
+              *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
+            <img *ngIf="flagvalue === undefined" src="{{defaultFlag}}"
+              height="16"></button>
+          <mat-menu #languagemenu="matMenu">
+            <div *ngFor="let item of listLang" class="lang-item">
+              <button mat-menu-item class="dropdown-item lang-item-list"
+                (click)="setLanguage(item.text, item.lang, item.flag)"
+                [ngClass]="{'active': langStoreValue === item.lang}">
+                <img src="{{item.flag}}" class="flag-img" height="12"> <span
+                  class="align-middle">{{item.text}}</span>
+              </button>
+            </div>
+          </mat-menu>
+        </li>
+        <li class="nav-item user_profile">
+          <button mat-button [matMenuTriggerFor]="profilemenu">
+            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+              <img src="{{userImg}}" class="user_img" width="32" height="32"
+                alt="User">
+              <span>{{userName}}</span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu">
+            <div class="noti-list">
+              <div class="menu ">
+                <div class="user_dw_menu">
+                  <button mat-menu-item routerLink={{account}}>
+                    <app-feather-icons [icon]="'user'"
+                      [class]="'user-menu-icons'">
+                    </app-feather-icons>
+                    {{'app.account' | translate}}
+                  </button>
+                  <button mat-menu-item routerLink={{notification}}>
+                    <app-feather-icons [icon]="'mail'"
+                      [class]="'user-menu-icons'">
+                    </app-feather-icons>Notifications
+                  </button>
+                  <!-- <button mat-menu-item>
+                    <app-feather-icons [icon]="'settings'"
+                      [class]="'user-menu-icons'"></app-feather-icons>Settings
+                  </button> -->
+                  <button mat-menu-item (click)="logout()">
+                    <app-feather-icons [icon]="'log-out'"
+                      [class]="'user-menu-icons'"></app-feather-icons>
+                    {{"app.logout" | translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </li>
+        <!-- #END# Tasks -->
+      </ul>
+    </div>
+  </div>
+</nav>

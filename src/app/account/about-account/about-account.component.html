@@ -1,0 +1,149 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.personal_information" | translate }}</h2>
+          </div>
+          <div class="body">
+            <div>
+              <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+                <div class="project_widget mag2">
+                  <div class="body" *ngIf="hide">
+                    <div class="modalHeader clearfix">
+                      <img [src]="image+user.photo" class="user-img margi"
+                        alt>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.name" | translate }}
+                        </strong>
+                        <br />
+                        <p>{{ user.name }}</p>
+                      </div>
+                      <div class="col-md-4 col-4 b-r">
+                        <strong class="text-muted">
+                          {{"app.email" | translate }}
+                        </strong>
+                        <br />
+                        <p>{{ user.email }}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.username" | translate }}
+                        </strong>
+                        <br />
+                        <p>{{ user.username }}</p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.nationality" | translate }}
+                        </strong>
+                        <br />
+                        <p>
+                          {{ user.nationality }}
+                        </p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.gender" | translate }}
+                        </strong>
+                        <br />
+                        <p>{{ user.gender }}</p>
+                      </div>
+                      <div class="col-md-3 col-6">
+                        <strong class="text-muted">
+                          {{"app.phone" | translate }}
+                        </strong>
+                        <br />
+                        <p>
+                          {{ user.phone }}
+                        </p>
+                      </div>
+                    </div>
+                    <!--  <div class="row" *ngIf="user.role_id === 7">
+                      <div class="col-md-3 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.level" | translate }}
+                        </strong>
+                        <br />
+                        <p>
+                          {{ user.level.name }}
+                        </p>
+                      </div>
+                      <div class="col-md-3 col-6 b-r">
+                        <strong class="text-muted">
+                          {{"app.classroom" | translate }}
+                        </strong>
+                        <br />
+                        <p>{{ user.classe.name }}</p>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.update_password" | translate }}</h2>
+          </div>
+          <form class="m-4" [formGroup]="UserForm">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <mat-form-field appearance="outline"
+                  class="example-full-width mb-3">
+                  <mat-label>
+                    {{"app.current_password" | translate }}
+                  </mat-label>
+                  <input matInput formControlName="current_password"
+                    [type]="hide ? 'current_password' : 'text'" required>
+                  <mat-icon matSuffix (click)="hide = !hide">
+                    {{hide ? 'visibility_off' : 'visibility'}}
+                  </mat-icon>
+                  <mat-error
+                    *ngIf="UserForm.get('current_password')?.hasError('required')">
+                    current password is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <mat-form-field appearance="outline"
+                  class="example-full-width mb-3">
+                  <mat-label>
+                    {{"app.new_password" | translate }}
+                  </mat-label>
+                  <input matInput formControlName="new_password"
+                    [type]="hide ? 'new_password' : 'text'" required>
+                  <mat-icon matSuffix (click)="hide = !hide">
+                    {{hide ? 'visibility_off' : 'visibility'}}
+                  </mat-icon>
+                  <mat-error
+                    *ngIf="UserForm.get('new_password')?.hasError('required')">
+                    new password is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <button class="btn-space"
+                  [disabled]="!UserForm.valid || loading"
+                  [class.auth-spinner]="loading"
+                  (click)="UserActions()" mat-raised-button
+                  color="primary">
+                  {{"app.save" | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

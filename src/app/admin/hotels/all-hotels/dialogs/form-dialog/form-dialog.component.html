@@ -1,0 +1,170 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!--  <img [src]='hotels.image' alt="avatar"> -->
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()"
+      class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="hotelForm">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.name" | translate }} </mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error
+              *ngIf="hotelForm.get('name')?.hasError('required')">
+              Name of hotel is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-5">
+          <app-file-upload formControlName="photo"></app-file-upload>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.founder" | translate }}</mat-label>
+            <mat-select formControlName="founder">
+              <mat-option
+                *ngFor="let founder of fonders"
+                [value]="founder.id">
+                {{ founder.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="hotelForm.get('founder')?.hasError('required')">
+              founder is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>Code couleur
+            </mat-label>
+            <input matInput formControlName="code_couleur" required>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.package" | translate }}
+            </mat-label>
+            <mat-select formControlName="package">
+              <mat-option [value]="package.id"
+                *ngFor="let package of packages">
+                {{ package.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="hotelForm.get('package')?.hasError('required')">
+              package is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> Frais OM inclu ou pas </mat-label>
+            <mat-select formControlName="pay_om_fees" required>
+              <mat-option [value]="true">
+                {{"app.yes" | translate }}
+              </mat-option>
+              <mat-option [value]="false">
+                {{"app.no" | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.country" | translate }}
+            </mat-label>
+            <input matInput formControlName="country" required>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.email" | translate }}
+            </mat-label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{"app.phone" | translate }}</mat-label>
+            <input matInput formControlName="phone"
+              placeholder="EX: (237) 690 340 540" mask="000 000 000 000"
+              required />
+            <span matSuffix>
+              <mat-icon class="msr-2">phone</mat-icon>
+            </span>
+            <mat-error
+              *ngIf="hotelForm.get('phone')?.hasError('required')">
+              phone is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.website" | translate }}</mat-label>
+            <input matInput formControlName="website" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.religious_status" | translate }}</mat-label>
+            <mat-select formControlName="religious_status">
+              <mat-option
+                *ngFor="let relig of religious_status"
+                [value]="relig">
+                {{ relig }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{"app.administrative_status" | translate }}</mat-label>
+            <mat-select formControlName="administrative_status">
+              <mat-option
+                *ngFor="let admin of administrative_status"
+                [value]="admin">
+                {{ admin }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary"
+              [disabled]="!hotelForm.valid" [mat-dialog-close]="1"
+              (click)="updateHotels()">Save</button>
+            <button mat-raised-button color="warn"
+              (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+.centeredBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 0;
+}
+
+.with {
+    width: 80rem;
+}
+
+.text-muted {
+    color: #028b5b !important;
+  }
+
+.signin {
+    background: white;
+    width: 70%;
+    height: 60%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, 0.14);
+}
+.connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:30%;
+    height:auto;
+}
+.boxrigth {
+    width: 70%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.contenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-signin{
+    width: 50%;
+}
+.login-title{
+    color: #028b5b;
+    font-size: 16px;
+}
+
+.spacer {
+    height: 2rem;
+}
+
+.changeColor {
+    background-color: #028b5b !important;
+    color: white;
+    height: 1.5rem;
+    border-radius: 10;
+    width: 12rem;
+}
+
+.forget {
+    font-size: 12px;
+    color: #028b5b;
+}
+
+
+.col-lg-8 {
+    flex: 0 0 auto;
+    width: 100%; 
+}
+
+.card {
+    background: white;
+    box-shadow: 0 0rem 0rem ;
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+}
+
+
+@keyframes annivs{
+    0%,
+    20% {
+        transform: translateX(0);
+    }
+    25%,
+    45% {
+        transform: translateX(-100%);
+    }
+    50%,
+    70% {
+        transform: translateX(-200%);
+    }
+    75%,
+    95% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(-400%);
+    }
+}
+
+.petit1{
+    text-align: center;
+    border: 1px solid block;
+    
+}
+
+.titre{
+    margin-top: 2rem;
+    text-align: center;
+ }
+
+.description{
+    text-align: center;
+    color: #91918f;
+    font-size: 14px;
+ }
+.btn{
+    margin-right: 20%;
+ }
+.img{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+ .img img{
+    /* width: 100%;
+    height: 250px; */
+    /* border-radius: 50%; */
+    object-fit: cover;
+    object-position: center;
+ }
+
+@media screen and  (max-width: 1440px){
+    .form-signin{
+        width: 60%;
+    }
+    .suite{
+        width: 60%;
+        height: 80%;
+    }
+    .img img{
+        width: 130px;
+        height: 130px;
+    }
+ }
+ @media screen and  (max-width: 1358px){
+    .signin {
+        width: 80%;
+        height: 80%;
+        padding: 2rem;
+    }
+ }
+
+ @media screen and  (max-width: 1200px){
+    .form-signin{
+        width: 60%;
+    }
+    .suite{
+        width: 70%;
+        height: 70%;
+        padding: 2rem;
+    }
+    .img img{
+        width: 130px;
+        height: 130px;
+    }
+ }
+
+ @media screen and  (max-width: 1060px){
+    .form-signin{
+        width: 70%;
+    }
+    .suite{
+        width: 70%;
+        height: 70%;
+        padding: 2rem;
+    }
+    .img img{
+        width: 120px;
+        height: 120px;
+    }
+ }
+
+ @media screen and  (max-width: 970px){
+    .form-signin{
+        width: 70%;
+    }
+    .suite{
+        width: 80%;
+    }
+    .img img{
+        width: 100px;
+        height: 100px;
+    }
+ }
+
+ @media screen and  (max-width: 830px){
+    .signin {
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+    .form-signin{
+        width: 100%;
+        /* margin-bottom: 25rem; */
+    }
+    .suite{
+        width: 0px;
+        height: 0px;
+        box-shadow: 0px 0px 0px rgba(93, 90, 90, 0.37);
+    }
+ }
+
+ @media screen and  (max-width: 830px){
+    .signin {
+        flex-direction: column;
+        height: max-content;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 98%;
+    }
+    .contenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        height: max-content;
+        margin: 0px !important;
+    }
+    .connexion {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width:100%;
+        height: max-content;
+    }
+    .boxrigth {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: max-content;
+    }
+    .form-signin{
+        width: 100%;
+    }
+    .suite{
+        width: 0px;
+        height: 0px;
+        box-shadow: 0px 0px 0px rgba(93, 90, 90, 0.37);
+    }
+ }

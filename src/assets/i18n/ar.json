@@ -1,0 +1,797 @@
+{
+ "MENUITEMS": {
+   "MAIN": {
+     "TEXT": "اليد"   },
+   "DASHBOARD": {
+     "TEXT": "لوحة التحكم",
+     "LIST": {
+       "DASHBOARD2": "لوحة التحكم"
+     }
+   },
+   "ACCESS": {
+     "TEXT": "إدارة الوصول",
+     "LIST": {
+       "PRIVILEGES": "الامتيازات",
+       "ROLES": "الأدوار"
+     }
+   },
+   "PEDAGOGY": {
+     "TEXT": "التدريس",
+     "LIST": {
+       "CYCLES": "الدورات",
+       "STREAMS": "الفروع",
+       "LEVELS": "المستويات",
+       "OPTIONLEVELS": "السلسلة",
+       "SPECIALTIES": "التخصصات",
+       "CLASSROOMS": "الفصول الدراسية"
+     }
+   },
+
+
+   "ORGANISATION": {
+     "TEXT": "المنظمة",
+     "LIST": {
+       "STAFFS": "الموظفون الإداريون",
+       "TEACHERS": "المعلمون",
+       "PREINSCRIPTIONS": "التسجيل المسبق",
+       "STUDENTS": "الطلاب",
+       "STUDENTS-U": "الطلاب",
+       "PARENTS": "الآباء والأمهات",
+       "EVENTS": "الفعاليات"
+     }
+   },
+   "ANSWERS-HOMEWORKS": {
+      "TEXT": "الإجابات على الواجبات المنزلية"
+    },
+   "DISCIPLINE": {
+     "TEXT": "الانضباط"
+   },
+   "SALARY-ADVANCES": {
+      "TEXT": "سلف الراتب"
+    },
+   "EXPENSES": {
+     "TEXT": "المصروفات"
+   },
+   "STUDENT-FOLLOW-UP": {
+     "TEXT": "المتابعة بين الوالدين والطالب"
+   },
+   "STAFFS": {
+     "TEXT": "الموظفون الإداريون "
+   },
+   "COEFFICIENTS": {
+     "TEXT": "المعاملات"
+   },
+   "ASSESSMENTS-TYPES": {
+     "TEXT": "نوع التقييم"
+   },
+   "PREINSCRIPTIONS": {
+     "TEXT": "التسجيل المسبق"
+   },
+   "PRESENCETEACHERS": {
+     "TEXT": "حضور المعلمين"
+   },
+   "PRESENCES": {
+     "TEXT": "الحضور"
+   },
+   "PRESENCESTAFFS": {
+     "TEXT": "حضور الموظفين"
+   },
+   "STUDENTS": {
+     "TEXT": "الطلاب"
+   },
+  "SANCTIONS-BLAME": {
+    "TEXT": "العقوبات / اللوم"
+  },
+   "WARNINGS": {
+    "TEXT": "التحذيرات"
+  },
+  "PAYROLL_DEDUCTIONS": {
+    "TEXT": "استقطاعات الرواتب"
+  },
+  "SUMMARIES": {
+     "TEXT": "ملخصات المقررات الدراسية"
+   },
+   "STUDENTS-U": {
+     "TEXT": "الطلاب"
+   },
+   "PARENTS": {
+     "TEXT": "الآباء والأمهات"
+   },
+   "EVENTS": {
+     "TEXT": "الفعاليات"
+   },
+   "RESPONSES": {
+     "TEXT": "الإجابات"
+    },
+   "SCOLARITE": {
+     "TEXT": "المدرسة"
+   },
+   "STAT": {
+     "TEXT": "الخزانة"
+   },
+   "PAYMENTTYPES": {
+     "TEXT": "أنواع الدفع"
+   },
+   "CUSTOMERS": {
+     "TEXT": "الزبائن"
+   },
+   "BOURSES": {
+     "TEXT": "المنح الدراسية"
+   },
+   "SUPPLIERS": {
+     "TEXT": "الموردون"
+   },
+   "STRUCTURE": {
+     "TEXT": "الهيكل"
+   },
+   "PACKAGES": {
+     "TEXT": "الحزم"
+   },
+
+
+   "FONDATEURS": {
+     "TEXT": "المؤسسون"
+   },
+   "ESTABLISHMENTS": {
+     "TEXT": "التأسيس"
+   },
+   "SCHOOLS": {
+     "TEXT": "المدارس"
+   },
+   "SECTIONS": {
+     "TEXT": "الأقسام"
+   },
+   "REQUESTS": {
+     "TEXT": "الطلبات"
+   },
+   "REQUESTS-STAFFS": {
+     "TEXT": "طلبات الموظفين"
+   },
+   "CYCLES": {
+     "TEXT": "الدورات"
+   },
+   "LEVELS": {
+     "TEXT": "المستويات"
+   },
+   "OPTIONLEVELS": {
+     "TEXT": "خيارات المستوى"
+   },
+   "CLASSROOMS": {
+     "TEXT": "الفصول الدراسية"
+   },
+   "TRANSACTIONS": {
+     "TEXT": "المعاملات"
+   },
+   "TRANSACTIONS-FEES": {
+     "TEXT": "دفع الرسوم"
+   },
+   "OMS": {
+     "TEXT": "نقود برتقالية"
+   },
+
+   "QUESTIONNAIRES": {
+     "TEXT": "الاستبيانات"
+   },
+   "MOMO": {
+     "TEXT": "الأموال عبر الهاتف المحمول"
+   },
+   "ASSESSMENTS-TYPE": {
+     "TEXT": "نوع التقييم"
+   },
+
+
+   "INVOICES": {
+     "TEXT": "الفواتير"
+   },
+
+
+   "INSOLVENTS": {
+     "TEXT": "إنسولفابلز"
+   },
+   "REPORT-CARD": {
+     "TEXT": "النشرات"
+   },
+
+
+   "ACCOUNTING": {
+     "TEXT": "المحاسبة",
+     "LIST": {
+       "INSOLVENTS": "إنسولفابلز",
+       "INVOICES": "الفواتير",
+       "TRANSACTIONS": "المعاملات"
+     }
+   },
+
+
+   "MATTERS": {
+     "TEXT": "المواد"
+   },
+   "COURSES": {
+     "TEXT": "الدورات التدريبية"
+   },
+
+
+   "ASSESSMENTS": {
+     "TEXT": "التقييمات"
+   },
+
+
+   "SCHEDULE": {
+     "TEXT": "استخدام الوقت"
+   },
+
+
+   "PENSIONS": {
+     "TEXT": "المعاشات التقاعدية"
+   },
+   "TRANCHES": {
+     "TEXT": "الأقواس"
+   },
+
+
+   "SCHOOL-SUPPLY": {
+     "TEXT": "اللوازم المدرسية"
+   },
+   "MATTER-GROUPS": {
+     "TEXT": "مجموعات المواد"
+   },
+   "PROGRESSIONS": {
+     "TEXT": "برنامج الدورة"
+   },
+   "RATINGS": {
+     "TEXT": "الملاحظات"
+   },
+   "FEES": {
+     "TEXT": "التكاليف الإضافية"
+   },
+   "TRIMESTRES": {
+     "TEXT": "الأرباع"
+   },
+   "RETRAITS": {
+     "TEXT": "عمليات السحب"
+   },
+   "ABSENCES": {
+     "TEXT": "الغياب"
+   },
+
+   
+    "SMS": {
+      "TEXT": "الرسائل القصيرة"
+    },
+
+
+   "SANCTIONS": {
+     "TEXT": "العقوبات"
+   },
+
+
+   "HOMEWORKS": {
+     "TEXT": "الواجبات المنزلية"
+   },
+   "OBSERVATIONS": {
+     "TEXT": "التعليقات"
+   },
+
+
+   "TASKS": {
+     "TEXT": "المهام"
+   },
+
+
+   "SEQUENCES": {
+     "TEXT": "التسلسلات"
+   },
+
+
+   "SEMESTRE": {
+     "TEXT": "الفصول الدراسية"
+   },
+   "CC": {
+     "TEXT": "سى سى"
+   },
+
+   "Hour": "الوقت"
+ },
+ "app": {
+   "es" : "الإسبانية",
+   "name": "الاسم",
+   "libele": "ليبيل",
+   "Welcome_to_MS_School": "مرحباً بك في مدرسة MS-Hotel",
+   "add_staff": "إضافة عضو فريق العمل",
+   "gender": "الجنس",
+  "message" : "الرسالة",
+    "failed" : "فشل",
+    "success" : "النجاح",
+   "username": "اسم المستخدم",
+   "password": "كلمة المرور",
+   "sms_dispo" : "الرسائل النصية القصيرة المتاحة",
+   "phone": "الهاتف",
+   "nationality": "الجنسية",
+   "level": "المستويات",
+   "country": "البلد",
+  "send_sms": "إرسال رسالة",
+  "sms": "الرسائل القصيرة",
+   "city": "المدينة",
+   "entreprise": "الشركة",
+   "personnel": "شخص",
+   "nui": "رقم دافع الضرائب",
+   "rc": "السجل التجاري",
+   "created_at" : "تم إنشاؤها على",
+   "already_paid":"سكب بالفعل",
+   "outstanding_balance":"المبلغ المتبقي سيتم دفعه",
+   "submit": "إرسال",
+   "cancel": "إلغاء",
+   "validate": "تأكيد",
+   "choose_file": "اختر ملفاً",
+   "birthday": "تاريخ الميلاد",
+   "add_slice": "أضف شريحة",
+   "add_fees": "إضافة تكاليف إضافية",
+   "pension": "المعاش التقاعدي",
+   "slice": "الشريحة",
+   "fee": "التكاليف الإضافية",
+   "order": "الطلب",
+   "apercu_receipt": "نظرة عامة على الإيصال",
+   "price": "الأسعار",
+   "mobile": "الهاتف المحمول",
+   "amount": "المبلغ",
+   "deadline": "الموعد النهائي",
+   "number": "العدد",
+   "plus" : "اقرأ المزيد",
+   "numbers": "العدد",
+   "course": "الدورات التدريبية",
+  "starter": "ابدأ",
+   "home" : "المنزل",
+   "reglement": "التسوية",
+   "students-u": "طالب",
+   "presentation": "العرض التقديمي",
+   "fee_rembrousable": "ملاحظة: الرسوم غير قابلة للاسترداد أو التعويض.",
+   "alls_students":"جميع الطلاب",
+   "alls_assessments":"جميع التقييمات",
+   "personal_information": "المعلومات الشخصية",
+   "generate_card": "توليد",
+   "current_password": "كلمة المرور الحالية",
+   "new_password": "كلمة مرور جديدة",
+   "update_password": "تغيير كلمة المرور الخاصة بك",
+   "matter": "المواد",
+   "classroom": "الفئة",
+   "stream": "القناة",
+   "specialties": "التخصصات",
+   "specialtie": "التخصص",
+   "hour": "Heure",
+   "all_transactions_om" : "جميع المعاشات التقاعدية المدفوعة بأموال أورانج",
+   "day": "Jour",
+   "assessment_true": "سيتم تقييمها",
+   "code": "الكود",
+   "qr": "رمز الاستجابة السريعة",
+   "manual" : "مانويل",
+   "hour_scan": "وقت المسح الضوئي",
+   "scan": "المسح الضوئي",
+   "transaction_number" : "رقم المعاملة",
+   "message_transaction_error" : "فشلت المعاملة",
+   "amount_total" : "المبلغ الإجمالي بما في ذلك التكاليف",
+   "generer_code_QR_teacher":"إنشاء رمز الاستجابة السريعة للمعلمين  ",
+   "generer_code_QR_staff":"توليد_رمز_QR_رمز_الموظفين      ",
+  
+   "apen_door" : "مدرسة/مفتوحة",
+   "administratif": "إداري",
+   "libelle": "ليبيل",
+   "add_presenceStaff":"تسجيل حضور الموظفين",
+   "teacher": "مدرس",
+   "student": "طالب",
+   "cni": "سني",
+   "reason" : "السبب",
+   "date_start": "تاريخ البدء",
+   "date_end": "تاريخ الانتهاء",
+   "duration": "المدة",
+   "schedule": "استخدام الوقت",
+   "start": "ابدأ",
+   "monday": "الإثنين",
+   "tuesday": "الثلاثاء",
+   "wednesday": "الأربعاء",
+   "thursday": "الخميس",
+   "friday": "الجمعة",
+   "saturday": "يوم السبت",
+   "homeworks": "الواجبات المنزلية",
+   "assessments": "التقييمات",
+   "type": "النوع",
+   "date": "التاريخ",
+   "customers": "الزبائن",
+   "add_stream": "إضافة قناة",
+   "expense": "النفقات",
+   "absence": "الغياب",
+   "event": "الفعاليات",
+   "login": "دونكسيون",
+   "logout": "قطع الاتصال",
+   "download_card": "الشاحن عن بُعد",
+   "reasons": "السبب",
+   "account": "حسابي",
+   "actions": "الإجراءات",
+   "signin": "التسجيل",
+   "add_bourse" : "إضافة منحة دراسية",
+   "bourse" : "المنح الدراسية",
+   "grade" : "الصف",
+   "anciennete" : "الأقدمية",
+   "connection": "الاتصال",
+   "coefficient": "المعامل",
+   "send":"إرسال",
+   "change_department":"تغيير الأقسام",
+   "username_is_required":"اسم المستخدم مطلوب",
+   "Inf_about_your_estab": "معلومات عن مؤسستك",
+   "email": "البريد الإلكتروني",
+   "father": "الأب",
+   "mother": "الأم",
+   "alls": "الكل",
+   "bank" : "البنك",
+   "website": "الموقع الإلكتروني ",
+   "package": "الحزمة",
+   "archiver_transaction" : "أرشفة المعاملة",
+   "download_card_double" : "تنزيل مزدوج",
+   "founder": "مؤسس",
+   "religious_status": "الحالة الدينية",
+   "administrative_status": "الوضع الإداري",
+   "next": "التالي",
+   "list_Of_your_school": "قائمة بمدارسكم",
+   "Select_managment": "اختيار المدرسة التي ترغب في العمل بها",
+   "select": "اختر",
+   "french_section": "القسم الفرنسي",
+   "english_section": "قسم اللغة الإنجليزية",
+   "all": "الكل",
+   "request": "الطلب",
+   "money": "الفضة",
+   "cycle": "الدورة",
+   "first_cycle": "الدورة الأولى",
+   "second_cycle": "الدورة الثانية",
+   "Items_per_page": "العناصر في كل صفحة",
+   "description": "الوصف",
+   "search": "بحث",
+   "serie": "السلسلة",
+   "main": "المدير",
+   "job": "المنصب",
+   "typeInvoice": "أنواع الإنفاق",
+   "recipient": "المستلم",
+   "read_all_notifications":"عرض جميع الإشعارات",
+   "not_lesson" : "لا توجد دروس في هذا الفصل",
+   "role": "الدور",
+   "generate_qrCode" : "إنشاء رمز الاستجابة السريعة",
+   "left": "المغادرة",
+   "arrived" : "وصلنا",
+   "semestre": "الفصل الدراسي",
+   "precedent": "السابق",
+   "finished": "الإنهاء",
+   "female" : "المرأة",
+   "male" : "الرجال",
+   "CC" : "سى سى",
+   "interne" : "داخلي",
+   "externe" : "خارجي",
+   "price_hour": "السعر بالساعة",
+   "salary": "الراتب",
+   "First-registration": "التسجيل المسبق",
+   "parent": "الوالدين",
+   "birth_Certificate": "شهادة الميلاد",
+   "last_Diploma": "آخر دبلوم",
+   "last_Bulletin": "أحدث النشرات الإخبارية",
+   "medical_Certificate": "شهادة طبية",
+   "select_file": "اختر",
+   "back": "العودة إلى",
+   "reset": "ابدأ من جديد",
+   "finish": "تم الانتهاء",
+   "sequences": "التسلسلات",
+   "trimestre": "الأرباع",
+   "school_folder": "ملف المدرسة",
+   "registered_student": "الطلاب المسجلون",
+   "check_if_the_parent_already_exists": "تحقق مما إذا كان الأصل موجود بالفعل",
+   "start_date": "تاريخ البدء",
+   "end_date": "تاريخ الانتهاء",
+   "budget": "Budget",
+   "parental_Contribution": "المساهمة",
+   "save": "التسجيل",
+   "Task": "المهمة",
+   "for": "بالنسبة لـ",
+   "paid": "مدفوعة الأجر",
+   "unpaid": "غير مدفوعة",
+   "add_supplier": "إضافة مورد",
+   "supplier": "المورد",
+   "competences": "المنافسات",
+   "first": "الأول",
+   "not_student" : "ليس لديك أطفال في هذه المدرسة",
+   "not_student_answer" : "يرجى التواصل مع إدارة مدرستك",
+   "second": "ثانيًا",
+   "sa" : "SA",
+   "spa" : "سبا",
+   "sna" : "الحمض النووي SNA",
+   "add_customer": "إضافة عميل",
+   "add_expense": "إضافة مصروفات",
+   "third": "ثالثاً",
+   "month": "وحدة التعلم",
+   "months": "الشهر",
+   "term": "تايمز",
+   "evaluation-type": "التقييم",
+   "priority": "الأولوية",
+   "time_limit": "حد التاريخ",
+   "select_classroom_schedule": "حدد فصلاً لعرض جدوله الزمني",
+   "display": "عرض",
+   "number_of_slice": "عدد النطاقات",
+   "list_Insolvent": "قائمة المعزولين",
+   "invoice": "الفاتورة",
+   "for_Who": "لمن",
+   "small": "القاعدة",
+   "qr_staff_presence": "لحضور الموظفين",
+   "cash" : "سائل",
+   "school_certificate" : "شهادة حضور المدرسة",
+   "The_Roll_of_Honour" : "قائمة الشرف",
+   "utiliser_bourse": "استخدام البورصة",
+   "credit_card" : "البنك",
+   "high": "عالية",
+   "school_card" : "رسم الخرائط المدرسية",
+   "type_user" : "نوع الموظفين",
+   "answer": "الاستجابة",
+   "rejected" : "مرفوض",
+   "valide" : "تم التحقق من صحتها",
+   "en_cours" : "قيد التنفيذ",
+   "details_expenses": "تفاصيل النفقات",
+   "typeRequest" : "أنواع الاستعلامات",
+   "discipline": "المزيد من التفاصيل",
+   "transactions": "المعاملات",
+   "payment_mode ": "طريقة الدفع ",
+   "mode": "الوضع",
+   "rating": "ملاحظة",
+   "category": "الفئة",
+   "receipt": "تم الاستلام",
+   "add_request":"إضافة طلب",
+   "parent_monitoring": "إرشاد الوالدين",
+   "teacherObservations": "التعليقات",
+   "address": "العنوان",
+   "picture": "صورة فوتوغرافية",
+   "more_informations": "المزيد من المعلومات",
+   "see_more": "المزيد",
+   "job_name": "المنصب",
+   "are_you_sure": "هل أنت متأكد",
+   "staffs": "الموظفون الإداريون",
+   "add_First_registration": "إضافة تسجيل مسبق",
+   "first_registrations": "التسجيل المسبق",
+   "all_students": "الطلاب",
+   "all_money": "الحسابات",
+   "student_survay": "استطلاع رأي الطلاب",
+   "all_teachers": "المعلمون",
+   "student_performance_chart": "مخطط أداء الطالب",
+   "all_courses": "الدورات التدريبية",
+   "add_cycle": "إضافة دورة",
+   "add_level": "إضافة مستوى",
+   "add_teacher": "إضافة معلم",
+   "delete": "حذف",
+   "main_teacher": "المدرس الرئيسي",
+   "confirm_registration": "تأكيد التسجيل",
+   "parent_details": "تفاصيل الوالدين",
+   "first_inscription_details": "تفاصيل التسجيل المسبق",
+   "Modify_information_of": "قم بتعديل",
+   "student_registration_details": "تفاصيل عن الطالب",
+   "add_student": "إضافة قائمة",
+   "add_event": "إضافة حدث",
+   "add_task": "إضافة مهمة",
+   "report-card": "تنزيل النشرة الإخبارية",
+   "task": "المهام",
+   "download" : "تنزيل",
+   "add_transfert": "إجراء عملية نقل",
+   "status": "الحالة",
+   "number_of_student" : "عدد المتعلمين,",
+   "details": "التفاصيل",
+   "course_duration": "مدة الدورة (دقيقة)",
+   "choose_start_time": "اختر الوقت",
+   "start_hour": "وقت البدء",
+   "display_schedule": "عرض",
+   "add_course": "إضافة مقرر دراسي",
+   "add_assessment": "إضافة تقييم",
+   "select_classroom": "اختر فئة",
+   "select_level": "اختر مستوى",
+   "select_slice": "اختر شريحة",
+   "list_insolvent": "قوائم المعسرين",
+   "list_solvent": "قوائم الدائنين",
+   "add_transaction": "تنفيذ المعاملة",
+   "select_student": "اختر طالباً",
+   "payment_mode": "طريقة الدفع",
+   "number_slice": "عدد النطاقات",
+   "add_classroom": "إضافة فصل",
+   "add_serie": "إضافة سلسلة",
+   "add_fee": "إضافة تكاليف إضافية",
+   "add_pension": "إضافة معاش تقاعدي",
+   "schoolSupplys": "اللوازم المدرسية",
+   "supply": "المستلزمات",
+   "value": "القيمة",
+   "coefficients": "المعاملات",
+   "matterGroups": "مجموعات المواد",
+   "absences": "الغياب",
+   "add_absence": "الاستئناف",
+   "add_sanction": "إضافة عقوبة",
+   "sanctions": "العقوبات",
+   "add_schoolSupply": "إضافة اللوازم المدرسية",
+   "schedule_of_Classrom": "الجدول الزمني للفصل الدراسي",
+   "schedule_of_Teacher": "الجدول الزمني للمعلم",
+   "assessments_type": "التسلسلات",
+   "add_TextBook_Parts_hapters_Lessons": "إضافة برنامج - الأجزاء - الفصول - الدروس - الأجزاء - الفصول الدروس ",
+   "textBook": "البرنامج السنوي",
+   "part": "الجزء",
+   "estimation": "التقدير",
+  "add_questionnaire":"إضافة سؤال",
+   "questionnaires":"الأسئلة",
+   "chapter": "الفصل",
+   "lesson": "الدرس",
+   "open": "مفتوح",
+   "parent_2": "أقارب آخرون",
+   "tutor": "مدرس خصوصي",
+   "in_progress" : "قيد التنفيذ",
+   "no_start" : "لا بداية",
+   "number_of_part": "عدد المباريات",
+   "number_of_chapter": "عدد الفصول",
+   "number_of_lesson": "عدد الدروس",
+   "number_of_section": "عدد الأقسام",
+   "list_part": "قائمة الأطراف",
+   "list_chapter": "قائمة الفصول ",
+   "list_lesson": "قائمة الدروس",
+   "list_section": "قائمة الأقسام",
+   "edit": "تعديل",
+   "medium":"المتوسط",
+   "sequence": "التسلسل",
+   "all_parents": "الآباء والأمهات",
+   "all_absences": "الغياب",
+   "all_staffs": "الموظفون",
+   "all_events": "الغياب",
+   "all_classrooms": "الفصول الدراسية",
+   "all_matters": "المواد",
+   "observation": "الملاحظة",
+   "auteur" : "مراقب",
+   "add_rating": "أدخل الملاحظات",
+   "make_the_call": "إجراء المكالمة",
+   "no_assessments" :"لا يوجد تقييم لمعلم هذا الفصل، يرجى التأكد من حصول المعلم على تقييم قبل إدخال العلامات.",
+   "add_homework": "إضافة مهمة",
+   "add_TeacherObservation": "إضافة ملاحظة حول أحد الطلاب",
+   "my_schedule": "جدولي الزمني",
+   "details_pension": "تفاصيل المعاش التقاعدي",
+   "details_slices": "تفاصيل الشرائح",
+   "details_fees": "تفاصيل التكاليف الإضافية",
+   "left_time": "وقت المغادرة",
+   "arrived_time": "وقت الوصول",
+   "add_presenceteacher": "تسجيل حضور المعلم",
+   "staff": "الموظفون",
+   "presencestaffs" : "وجود الموظفين",
+   "en": "اللغة الإنجليزية",
+   "fr": "الفرنسية",
+   "all_parentss" : "جميع الآباء والأمهات",
+   "disbursement" : "المصروفات",
+   "incoming_payment" : "المجموعات",
+   "add_specialties" : "إضافة تخصص",
+   "bourse_apprenant" : "هذا المتعلم لديه ",
+   "bourse_amount" : " بمبلغ : ",
+   "bourse_recipt" : " من هذا المتعلم تم تطبيقه على هذه الدفعة",
+   "bourse_recipt2" : " من هذا المتعلِّم",
+   "the" : "لا",
+   "of" : "من",
+   "forgot_password": "نسيت كلمة المرور?",
+   "remember_me": "تذكّرني",
+   "select_lang": "اختر لانج",
+   "not_assessement" : "إذا لم يكن لديك تقييم في هذا الفصل، تواصل مع الإدارة لطلب تخصيص تقييمات لك.",
+   "cle": "مفتاح الاتصال",
+   "sections": "الأقسام",
+   "classe_titulaire" : "حامل",
+   "francophone": "الفرانكوفونية",
+   "anglophone": "اللغة الإنجليزية",
+   "add_permission": "إضافة امتياز",
+   "ressource": "الموارد",
+   "permissions": "الامتيازات",
+   "add_hotel": "إضافة منشأة",
+   "hotels": "المؤسسات",
+   "add_role": "إضافة دور",
+   "school": "المدرسة",
+   "presenceteachers": "حضور المعلمين",
+   "departureTime": "وقت المغادرة",
+   "arrivalTime": "وقت الوصول",
+   "section": "القسم",
+   "fee_paid" : "يجب دفع رسوم التسجيل للوصول إلى جميع ميزات التطبيق ومتابعةالدورات التدريبية.",
+   "registrationPaid" : "يجب أن تكون قد دفعت رسوم التسجيل قبل أن تتمكن من دفع المعاش. لا يمكنك الوصول إلى وظائف البرنامج حتى يتم دفع التسجيل. ",
+   "add_founder": "إضافة مؤسس",
+   "add_school": "إضافة مدرسة",
+   "hotel": "التأسيس",
+   "principal": "المدير",
+   "change_section": "قسم التغيير",
+   "select_classe": "تغيير الفئة",
+   "add_section": "إضافة قسم",
+   "add_evel": "إضافة مستوى",
+   "summaries": "ملخصات المقررات الدراسية",
+   "add_summaries" : "إضافة ملخص",
+   "add_parent": "إضافة أحد الوالدين",
+   "total_boarding_school": "المبلغ الإجمالي",
+   "total_amount_paid": "إجمالي المبلغ المدفوع",
+   "total_amount_paid2": "مجموع جميع المدفوعات المسددة",
+   "rest": "الباقي",
+   "paid_registration": "ادفع رسوم تسجيلك",
+   "title_1" : "تقدم Ms-school الآن نسخة محمولة من تطبيقها، مما يوفر نفس المستوى من الراحة للتحكم في مدرستك عن بُعد.",
+   "title_2" : "تمنحك مدرسة MS-school الفرصة لتحسين التواصل مع أولياء الأمور وإشراكهم بشكل أكبر في تعليم أطفالهم.",
+   "title_3" : "مع Ms-school، يمكنك إدارة أموالك بسرعة وأمان أينما كنت.",
+   "reference": "المرجع",
+   "school_fees": "التكاليف الإضافية",
+   "imprimer": "إنشاء إيصال",
+   "add_matter": "إضافة موضوع",
+   "Username_and_Password_not_valid": "اسم المستخدم أو كلمة المرور غير صالحين!",
+   "restaurants": "نوع التقييم",
+   "number_of_module": "عدد الأطراف",
+   "done": "الحقائق",
+   "you_are_now_done": "لقد انتهيت",
+   "new_coefficients": "المعاملات الجديدة",
+   "coeficient": "المعامل",
+   "Add_matterGroup": "إضافة مجموعة مواضيع",
+   "all_assessments": "التقييمات",
+   "all_homeworks": "الواجبات المنزلية",
+   "List_Of_your_student": "قائمة بأطفالك",
+   "Select_the_student_you_wish_to_managment": "حدد الطفل الذي تريد إدارته",
+   "all_sanctions": "العقوبات",
+   "select_child": "اختيار الطفل",
+   "matricule": "عدد الموظفين",
+   "old": "سابقًا",
+   "select_date" : "اختر التاريخ ",
+   "new": "جديد",
+   "true": "نعم",
+   "false": "لا يوجد",
+   "alle" : "الإجمالي",
+   "is_required": "مطلوب",
+   "redoublant": "معيد الإرسال",
+   "statut": "الحالة",
+   "place_of_birth": "مكان الميلاد",
+   "fees": "دفع الرسوم",
+   "style": "الطراز",
+   "simple": "بسيطة",
+   "detail": "مفصلة",
+   "all_fees": "التكاليف الإضافية",
+   "yes": "نعم",
+   "is_justified": "مبرر",
+   "end": "النهاية",
+   "1": "غير متوفر",
+   "2": "اللجنة الاقتصادية لأفريقيا",
+   "3": "A",
+   "4": "E",
+   "style_maternelle" : "نمط الحضانة",
+   "merit" : "حسب الاستحقاق",
+   "alpha" : "الترتيب الأبجدي",
+   "switch_assessment" : "التقييمات المكررة",
+   "all_transactions": "جميع المعاملات",
+   "no": "لا يوجد",
+   "desease": "الأمراض",
+   "raison" : "السبب",
+   "message_echec_transaction": "فشلت المعاملة",
+   "notemax": "الدرجة القصوى",
+   "totalApercevoirPension": "أن تكون مدركاً",
+   "totalPercu": "تم الاستلام",
+   "totalRestant": "الباقي",
+   "totalApercevoirFee": "يتم جمعها",
+   "effectifs": "القوى العاملة",
+   "typeEvaluations": "نوع التقييم",
+   "message_transaction_encour" : "المعاملة قيد التنفيذ .......",
+   "methode": "الطريقة",
+   "validation_payment" : "اكتب #150*50# على هاتفك لتأكيد الدفع",
+   "customer" : "إلى Mh Tech SARL",
+   "RIB" : "التحويل المصرفي",
+   "OM" : "نقود برتقالية",
+   "mode_retrait" : "طريقة السحب",
+   "info" : "معلومات المدرسة : ",
+   "company_name" : "اسم المدرسة : ",
+   "montant_retrait_brut" : "بما في ذلك العمولة : ",
+   "all_amount" : "إجمالي المبلغ المستلم",
+   "all_retrait" : "إجمالي المبلغ المسحوب",
+   "all_en_caisse" : "المبلغ نقداً",
+   "all_dispo" : "المبلغ المتاح",
+   "bank_name" : "اسم البنك",
+   "error_amount" : "المبلغ المطلوب أكبر من المبلغ المتاح في حساب المدرسة.",
+   "error_amounts" : "الرجاء إدخال المبلغ الصحيح",
+   "add_retrait" : "إجراء سحب من حساب Orange Money الخاص بك",
+   "all_retraits_om": "جميع طلبات السحب",
+   "all_ok": "يرجى وضع علامة في هذا المربع إذا كان كل شيء على ما يرام",
+   "numero_retrait" : "رقم استرداد الأموال OM",
+   "validation_code" : "أدخل رمز التحقق الذي تم استلامه عبر البريد الإلكتروني",
+   "nb_rib_1" : "تُطبق الرسوم المصرفية إذا اخترت استرداد الأموال عن طريق التحويل المصرفي إلى بنك آخر غير UBA.",
+   "nb_rib_2" : "يُرجى التحقق من التفاصيل الخاصة بك بعناية قبل تأكيد أي طلب استرداد أموال.",
+   "nb_om_1" : "بالنسبة لجميع المبالغ المستردة من Orange Money، يُرجى ملاحظة أن الحد الأقصى لمبلغ الاسترداد في اليوم الواحد هو 1 مليون فرنك أفريقي.",
+   "nb_om_2" : "الحد الأقصى لمبلغ استرداد الأموال المستردة من Orange Money هو 500,000 فرنك أفريقي لكل طلب."
+ }
+}
+
+
+
+

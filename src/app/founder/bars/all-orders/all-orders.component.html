@@ -1,0 +1,455 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <div class="mt-5">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="entete">
+                  <div class="card date date1">
+                    <div class="w100">
+                      <form [formGroup]="orderForm">
+                        <div class="row">
+                          <div class="col-xl-3">
+                            <mat-form-field appearance="outline"
+                              style="margin-bottom: -2rem"
+                              class="example-full-width">
+                              <mat-label>
+                                {{"app.start" | translate}}
+                              </mat-label>
+                              <input matInput [matDatepicker]="rpicker"
+                                formControlName="date_start">
+                              <mat-datepicker-toggle matSuffix
+                                [for]="rpicker"></mat-datepicker-toggle>
+                              <mat-datepicker #rpicker></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-xl-3">
+                            <mat-form-field appearance="outline"
+                              class="example-full-width"
+                              style="margin-bottom: -2.25rem">
+                              <mat-label> {{"app.end" | translate}}</mat-label>
+                              <input matInput [matDatepicker]="rpickers"
+                                formControlName="date_end">
+                              <mat-datepicker-toggle matSuffix
+                                [for]="rpickers"></mat-datepicker-toggle>
+                              <mat-datepicker #rpickers></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-xl-6 mag">
+                            <button class="btn-space"
+                              [disabled]="!orderForm.valid"
+                              mat-raised-button (click)="setDate(true)"
+                              [class.auth-spinner]="loading" color="primary">
+                              {{"app.save" | translate }}
+                            </button>
+                            <button class="btn-space butun"
+                              mat-raised-button (click)="setDate(false)">
+                              {{"app.alls" | translate }}
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="card date soms">
+                    <div class="w100">
+                      <div *ngIf="exampleDatabase?.isTblLoading"
+                        class="tbl-spinner">
+                        <mat-progress-spinner
+                          color="primary" [diameter]="40"
+                          mode="indeterminate">
+                        </mat-progress-spinner>
+                      </div> 
+                      <div class="som">
+                        <div class="row"
+                          *ngIf="!exampleDatabase?.isTblLoading">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th class="title"> {{"app.total_price" | translate }} </th>
+                                <th class="title"> {{"app.total_manufacturing_cost" | translate }} </th> 
+                                <th class="vert title"> {{"app.total_profit" | translate }} </th>
+                                <th class="orang title"> {{"app.accounts_receivable" | translate }} </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td align="center" class="title">
+                                  <strong> {{ exampleDatabase?.total_price  | number}}</strong>
+                                </td>
+                                <td align="center" class="title">
+                                  <strong> {{ exampleDatabase?.total_manufacturing_cost | number}}</strong>
+                                </td> 
+                                <td align="center" class=" vert title">
+                                  <strong> {{ exampleDatabase?.total_profit | number}}</strong>
+                                </td>
+                                <td align="center" class="orang  title">
+                                  <strong> {{ exampleDatabase?.total_rest_paid | number}}</strong>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="materialTableHeader">
+                    <div class="left">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="tbl-title">
+                          <h2>{{"app.orders" | translate }}</h2>
+                        </li>
+                        <li class="tbl-search-box">
+                          <label for="search-input">
+                            <i class="material-icons search-icon">
+                              search
+                            </i>
+                          </label>
+                          <input placeholder="Search"
+                            type="text" #filter
+                            class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="SEARCH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              #filter (click)="filterButton()">
+                              <mat-icon class="col-white">search</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="body">
+                            <form [formGroup]="orderForm">
+                              <div class="row"> 
+                                <div
+                                  class="col-xl-12 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline"
+                                    style="margin-bottom: -2rem"
+                                    class="example-full-width">
+                                    <mat-label>
+                                      {{"app.status" | translate }}
+                                    </mat-label>
+                                    <mat-select formControlName="status"
+                                      (selectionChange)="[setStatus()]">
+                                      <mat-option [value]="''">
+                                        {{"app.all" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'pending'">
+                                        {{"app.pending" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'confirmed'">
+                                        {{"app.confirmed" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'cancelled'">
+                                        {{"app.cancelled" | translate }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                        <li >
+                          <div class="body">
+                            <form [formGroup]="orderForm">
+                              <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline" 
+                                  style="margin-bottom: -2rem" class="example-full-width">
+                                    <mat-label>
+                                      {{"app.payment_status" | translate }}
+                                    </mat-label>
+                                    <mat-select formControlName="payment_status" 
+                                    (selectionChange)="[setStatusPayment()]">
+                                      <mat-option [value]="null" >
+                                        {{"app.alls" | translate }} 
+                                      </mat-option> 
+                                      <mat-option [value]="'none'" >
+                                        {{"app.none" | translate }} 
+                                      </mat-option> 
+                                      <mat-option [value]="'advance'" >
+                                        {{"app.advance" | translate }} 
+                                      </mat-option> 
+                                      <mat-option [value]="'completed'" >
+                                        {{"app.completed" | translate }} 
+                                      </mat-option> 
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div> 
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="right">
+                      <ul class="tbl-export-btn">
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="addNew()">
+                              <mat-icon class="col-white">
+                                add
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="refresh()">
+                              <mat-icon class="col-white">
+                                refresh
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" [hidden]=!selection.hasValue()
+                            matTooltip="DELETE">
+                            <button mat-mini-fab color="warn"
+                              (click)="removeSelectedRows()">
+                              <mat-icon class="col-white">delete
+                              </mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt
+                              (click)="exportExcel()" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="body overflow-auto">
+                    <div class="responsive_table">
+                      <table mat-table #table [dataSource]="dataSource" matSort
+                        class="mat-cell">
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                          <mat-header-cell *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="customer.name">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header >
+                            {{"app.name" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" 
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.type" | translate }}:
+                            </span>
+                            <span *ngIf="row.customer!=null">
+                              {{row.customer.name}}
+                            </span>
+                            <span *ngIf="row.customer===null">
+                              {{row.customer}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="room.name">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header >
+                            {{"app.room" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" 
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.type" | translate }}:
+                            </span>
+                            <span *ngIf="row.room!=null">
+                              {{row.room.name}}
+                            </span>
+                            <span *ngIf="row.room===null">
+                              {{row.room}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.statut" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="taille">
+                            <span class="mobile-label">
+                              {{"app.statut" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='paid'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.paid' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='confirmed'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.confirmed' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='cancelled'">
+                              <span class="badge badge-solid-red amounts">
+                                {{'app.cancelled' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='pending'">
+                              <span class="badge badge-solid-blue amounts">
+                                {{'app.pending' | translate}}</span>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="payment_status">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.payment_status" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="taille">
+                            <span class="mobile-label">
+                              {{"app.payment_status" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.payment_status==='completed'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.completed' | translate}}</span>
+                            </span> 
+                            <span class="amounts" *ngIf="row.payment_status==='advance'">
+                              <span class="badge badge-solid-orange amounts">
+                                {{'app.advance' | translate}}</span>
+                            </span> 
+                            <span class="amounts" *ngIf="row.payment_status==='none'">
+                              <span class="badge badge-solid-purple amounts">
+                                {{'app.none' | translate}}</span>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="delivery_date">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amounts">
+                              {{"app.created_at" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.created_at" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.delivery_date != null">
+                              {{row.delivery_date  | date:'dd/MM/yyyy'}}
+                            </span>
+                             <span class="amounts" *ngIf="row.delivery_date === null || row.delivery_date === undefined">
+                              {{row.created_at | date:'dd/MM/yyyy'}}
+                              <!-- {{row.created_at | date : 'short' }} -->
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="price">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amount">
+                              {{"app.amount" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.amount" | translate }}:
+                            </span>
+                            <span class="amount">
+                              {{row.price | number }}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- actions -->
+                        <ng-container matColumnDef="actions">
+                          <mat-header-cell class="pr-0 taille"
+                            *matHeaderCellDef>Actions
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row; let i=index;"
+                            class="pr-0 taille">
+                            <button mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="editCall(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'edit'"
+                                [class]="'tbl-fav-edit'">
+                              </app-feather-icons>
+                            </button>
+                            <button mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="About(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'eye'"
+                                [class]="'tbl-fav-edit'">
+                              </app-feather-icons>
+                            </button>
+                          </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row
+                          *matRowDef="let row; columns: displayedColumns;"
+                          [style.cursor]="'pointer'" matRipple>
+                        </mat-row>
+                      </table>
+                      <!-- Loading spinner -->
+                      <div *ngIf="exampleDatabase?.isTblLoading"
+                        class="tbl-spinner">
+                        <mat-progress-spinner color="primary" [diameter]="40"
+                          mode="indeterminate">
+                        </mat-progress-spinner>
+                      </div>
+                      <!-- context menu start -->
+                      <div style="visibility: hidden; position: fixed"
+                        [style.left]="contextMenuPosition.x"
+                        [style.top]="contextMenuPosition.y">
+                      </div>
+                      <!-- context menu end -->
+                      <div *ngIf="!exampleDatabase?.isTblLoading"
+                        class="no-results"
+                        [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
+                        No results
+                      </div>
+                      <mat-paginator #paginator
+                        (page)="dataSource.connect(valueFilter)"
+                        [length]="dataSource.meta"
+                        [pageIndex]="0" [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100, 200]">
+                      </mat-paginator>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</section>

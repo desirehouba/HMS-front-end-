@@ -1,0 +1,28 @@
+.colorText{
+    color: white;
+    font-size: 14px;
+}
+.recherche {
+    margin-left: 20px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.54);
+    border-radius: 5px;
+    border: 0;
+    height: 45px;
+    padding: 2px 2px 2px 8px;
+    width: 230px;
+    display: inline-block;
+    background: #ffffff;
+    transition: background 0.2s, width 0.2s;
+}
+
+.recher {
+    position: relative;
+    margin-left: 10px;
+    display: inline-block
+}
+
+.lab{
+    border: none;
+}
+

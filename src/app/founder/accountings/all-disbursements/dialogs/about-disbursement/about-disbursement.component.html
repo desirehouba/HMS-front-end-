@@ -1,0 +1,176 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card test">
+    <mat-tab-group>
+      <mat-tab>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+          <div class="project_widget mag2">
+            <div class="body">
+              <div class="row">
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.by" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ disbursements.creator.name }}
+                  </p>
+                </div>
+                <div class="col-md-4 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.responsable" | translate }}
+                  </strong>
+                  <br />
+                  <p >
+                    {{ disbursements.responsible.name }}
+                  </p>
+                </div>
+                <div class="col-md-2 col-6 b-r" >
+                  <strong class="text-muted ">
+                    {{"app.created_at" | translate }}
+                  </strong>
+                  <br/> 
+                  {{ disbursements.disbursement_date | slice:0:10}} 
+                </div> 
+                <div class="col-md-2 col-6 b-r" >
+                  <strong class="text-muted ">
+                    {{"app.status" | translate }}
+                  </strong>
+                  <br/> 
+                  <p class="amounts" *ngIf="disbursements.status==='approved'">
+                    <span class="badge badge-solid-green amounts">
+                      {{'app.approve' | translate}}
+                    </span>
+                  </p>
+                  <p class="amounts" *ngIf="disbursements.status==='rejected'">
+                    <span class="badge badge-solid-red amounts">
+                      {{'app.rejected' | translate}}
+                    </span>
+                  </p>
+                  <p class="amounts" *ngIf="disbursements.status==='pending'">
+                    <span class="badge badge-solid-blue amounts">
+                      {{'app.pending' | translate}}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-6">
+                  <strong class="text-muted">
+                    {{"app.reference" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ disbursements.reference }}
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.type" | translate }}
+                  </strong>
+                  <br />
+                  <p >
+                    {{ disbursements.expense_type_id.name }}
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.amount" | translate }}
+                  </strong>
+                  <br />
+                  <p >
+                    {{ disbursements.total_amount | number }} 
+                  </p>
+                </div>
+                <div class="col-md-3 col-6 b-r" >
+                  <strong class="text-muted ">
+                    {{"app.payment_mode" | translate }}
+                  </strong>
+                  <br/> 
+                  <p class="amounts" *ngIf="disbursements.payment_method==='MOMO'">
+                    <span class="badge badge-solid-green amounts">
+                      Mobile Money</span>
+                  </p>
+                  <p class="amounts" *ngIf="disbursements.payment_method==='OM'">
+                    <span class="badge badge-solid-orange amounts">
+                      Orange Money</span>
+                    </p>
+                  <p class="amounts" *ngIf="disbursements.payment_method==='Cash'">
+                    <span class="badge badge-solid-blue amounts">
+                      {{"app.cash" | translate }}</span>
+                  </p>
+                  <p class="amounts" *ngIf="disbursements.payment_method==='Bank'">
+                    <span class="badge badge-solid-blue amounts">
+                      {{"app.bank" | translate }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-6">
+                  <strong class="text-muted">
+                    {{"app.reason" | translate }}
+                  </strong>
+                  <br/>
+                  <div *ngIf="disbursements.reasons != null">
+                    <p *ngFor="let item of disbursements.reasons.split('\n')">
+                      {{ item }}
+                    </p>
+                  </div>
+                </div>
+              </div> 
+              <div class="row"  > 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" >
+                    <button mat-raised-button color="primarys" 
+                      [disabled]="loading" 
+                      [class.auth-spinner]="loading"
+                      class="btn-space primarys"
+                      *ngIf="disbursements.status==='pending'"
+                      style="background-color: #028b5b; color: white;"
+                      (click)="updateOrders('approved')">
+                      {{"app.approve" | translate}} 
+                    </button> 
+                    <button mat-raised-button color="primarys"  
+                      class="btn-space primarys"
+                      *ngIf="disbursements.invoice_image!=null"
+                      style="background-color: #028b5b; color: white;"
+                      (click)="open()">
+                      {{"app.download_invoice" | translate}} 
+                    </button>
+                    <!-- <button mat-raised-button color="primarys"  
+                      class="btn-space primarys"
+                      *ngIf="disbursements.invoice_image!=null"
+                      style="background-color: #028b5b; color: white;"
+                      (click)="open()">
+                      {{"app.download_invoice" | translate}} 
+                    </button>  -->
+                    <button  
+                      [disabled]="loading" 
+                      [class.auth-spinner]="loading" 
+                      *ngIf="disbursements.status==='pending'"
+                      type="button" (click)="dialogRef.close()"
+                      mat-raised-button color="warn">
+                        {{"app.cancel" | translate }}
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

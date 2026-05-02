@@ -1,0 +1,137 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="noteFraisForm">
+      <div *ngIf="this.authService.currentUserValue.id === this.notesFrais.user.id 
+      && this.notesFrais.status ===  'a_approve'" >
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field appearance="outline"
+              class="example-full-width mb-3">
+              <mat-label> {{"app.libelle" | translate }}</mat-label>
+              <mat-icon matSuffix>face</mat-icon>
+              <input matInput formControlName="libelle" required>
+              <mat-error
+                *ngIf="noteFraisForm.get('libelle')?.hasError('required')">
+                libelle is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 mb-2">
+            <div *ngIf="staff" class="tbl-spinner">
+              <mat-progress-spinner color="primary"
+                [diameter]="20" mode="indeterminate">
+              </mat-progress-spinner>
+            </div>
+            <mat-form-field appearance="outline" *ngIf="!staff"
+              class="example-full-width mb-3">
+              <mat-label> {{"app.responsable" | translate }}</mat-label>
+              <mat-select formControlName="idUserApprove" required>
+                <mat-option [value]="user.id"
+                  *ngFor="let user of staffs">
+                  {{ user.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+            <mat-form-field appearance="outline"
+              class="example-full-width mb-3">
+              <mat-label> {{"app.amount" | translate }}</mat-label>
+              <input matInput formControlName="amount" type="number"
+                required>
+              <mat-error
+                *ngIf="noteFraisForm.get('amount')?.hasError('required')">
+                amount is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+            <mat-form-field appearance="outline"
+              class="example-full-width mb-3">
+              <mat-label>{{"app.date" | translate }}</mat-label>
+              <input matInput [matDatepicker]="rpicker"
+                formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="rpicker">
+              </mat-datepicker-toggle>
+              <mat-datepicker #rpicker>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3"
+              appearance="outline">
+              <mat-label>{{"app.description" | translate }}</mat-label>
+              <textarea matInput formControlName="description"
+                rows="4"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="this.authService.currentUserValue.id === this.notesFrais.userApprove.id">
+        <div class="row">
+          <div class="col-xl-12 col-lg-4 col-md-12 col-sm-12 mb-2">
+            <mat-form-field appearance="outline"
+              class="example-full-width mb-3">
+              <mat-label>
+                {{"app.status" | translate }}
+              </mat-label>
+              <mat-select formControlName="status" required>
+                <mat-option [value]="'pending_approval'">
+                  {{"app.a_approve" | translate }}
+                </mat-option>
+                <mat-option [value]="'in_progress'">
+                  {{"app.in_progress" | translate }}
+                </mat-option>
+                <mat-option [value]="'approved'">
+                  {{"app.approve" | translate }}
+                </mat-option>
+                <mat-option [value]="'rejected'">
+                  {{"app.rejected" | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button class="btn-space"
+              [disabled]="!noteFraisForm.valid || loading"
+              [class.auth-spinner]="loading"
+              [disabled]="loading" color="primary"
+              (click)="NoteFraisActions()"
+              mat-raised-button>
+              {{"app.save" | translate }}
+            </button>
+            <button mat-raised-button
+              color="warn" (click)="onNoClick()"
+              tabindex="-1">
+              {{"app.cancel" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

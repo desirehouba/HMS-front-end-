@@ -1,0 +1,240 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.modi" | translate}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4"
+      [formGroup]="bookingForm">
+      <div class="row">
+        <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3" *ngIf="!user">
+            <mat-label> {{"app.name" | translate }}</mat-label>
+            <mat-select formControlName="user_id" required>
+              <mat-option [value]="user.id"
+                *ngFor="let user of users">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="user" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="40"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.start_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpicker"
+              formControlName="start_date" required>
+            <mat-datepicker-toggle matSuffix
+              [for]="rpicker"></mat-datepicker-toggle>
+            <mat-datepicker #rpicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.end_date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="rpickers"
+              formControlName="end_date" required>
+            <mat-datepicker-toggle matSuffix
+              [for]="rpickers"></mat-datepicker-toggle>
+            <mat-datepicker #rpickers></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label>{{"app.is_free" | translate }}</mat-label>
+            <mat-select formControlName="is_free">
+              <mat-option [value]="true">
+                {{"app.yes" | translate }}
+              </mat-option>
+              <mat-option [value]="false">
+                {{"app.no" | translate }}
+              </mat-option> 
+            </mat-select>
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.reduction_amount" | translate }}</mat-label>
+            <input matInput formControlName="reduction_amount" type="number"> 
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3"
+            appearance="outline">
+            <mat-label>
+              {{"app.arrival_time" | translate }}
+            </mat-label>
+            <input matInput [owlDateTimeTrigger]="time1"
+              [owlDateTime]="time1" formControlName="arrival_time">
+            <mat-icon matSuffix [owlDateTimeTrigger]="time1"
+              class="date-icon">schedule
+            </mat-icon>
+            <owl-date-time [pickerType]="'timer'"
+              #time1></owl-date-time>
+          </mat-form-field>
+        </div> 
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.transport_mode" | translate }}</mat-label>
+            <input matInput formControlName="transport_mode"> 
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.vehicle_number" | translate }}</mat-label>
+            <input matInput formControlName="vehicle_number"  > 
+          </mat-form-field>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <button class="btn-space" color="primary"
+            [disabled]="!bookingForm.valid || loading"
+            [class.auth-spinner]="loading"
+            (click)="bookingsActions()" mat-raised-button>
+            {{"app.save" | translate }}
+          </button> 
+          <button type="button" (click)="onNoClick()"
+            mat-raised-button color="warn">
+            {{"app.cancel" | translate }}
+          </button>
+        </div>
+      </div>
+      <!-- <div class="row" style="margin-top: 4rem;">
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3" *ngIf="!istyperoom">
+            <mat-label> {{"app.type" | translate }}</mat-label>
+            <mat-select formControlName="room_type_id" (selectionChange)="getRoomss()" >
+              <mat-option [value]="''" >
+                {{ "app.all" | translate }}
+              </mat-option>
+              <mat-option [value]="type.id"
+                *ngFor="let type of typeRooms">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="istyperoom" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="40"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3" *ngIf="!istyperoom">
+            <mat-label> {{"app.categorie" | translate }}</mat-label>
+            <mat-select formControlName="room_category_id" (selectionChange)="getRoomss()" >
+              <mat-option [value]="''" >
+                {{ "app.alls" | translate }}
+              </mat-option>
+              <mat-option [value]="type.id"
+                *ngFor="let type of categoriesRooms">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="istyperoom" class="tbl-spinner">
+            <mat-progress-spinner color="primary" [diameter]="40"
+              mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.etage_numbert" | translate }}</mat-label>
+            <mat-select formControlName="number"  (selectionChange)="getRoomss()">
+              <mat-option [value]="''" >
+                {{ "app.all" | translate }}
+              </mat-option>
+              <mat-option [value]="type"
+                *ngFor="let type of numbers">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field appearance="outline"
+            class="example-full-width mb-3">
+            <mat-label> {{"app.capacity" | translate }}</mat-label>
+            <mat-select formControlName="capacity" (selectionChange)="getRoomss()">
+              <mat-option [value]="''" >
+                {{ "app.alls" | translate }}
+              </mat-option>
+              <mat-option [value]="type"
+                *ngFor="let type of numbers">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div> -->
+      
+      <!-- <div class="row"  >
+        <div *ngIf="room" class="tbl-spinner">
+          <mat-progress-spinner color="primary" [diameter]="40"
+            mode="indeterminate">
+          </mat-progress-spinner>
+        </div>
+        <div class="row" *ngIf="!room">
+          <div class="col-md-3" *ngFor="let item of rooms">
+            <div class="course-card course-card-blog">
+              <div class="course-card-image">
+                <img class="img" [src]="image+item.image">
+              </div>
+              <div class="blog-table">
+                <div class="post-user mt-3">
+                  <h6 class="mb-xs mt-xs"> {{item.name}} | {{"app.floor" | translate }} : {{item.floor}}</h6>
+                </div>
+                <div class="post-user mt-3">
+                  <h6 class="mb-xs mt-xs">  {{item.room_type.name }} |   {{item.room_category.name}}</h6>
+                </div> 
+                <div >
+                  <p>
+                    {{ item.description | slice : 0 : 100 }} ...
+                  </p>
+                </div>
+                <div class="text-center mb-3">
+                  <button mat-raised-button (click)="addRoom(item.id)" 
+                    *ngIf="SelectRooms.indexOf(item.id) === -1"
+                    style="background-color: #028b5b; color: white;">
+                    {{"app.select" | translate }}</button>
+                  <button mat-raised-button (click)="removeRoom(item.id)"
+                    *ngIf="SelectRooms.indexOf(item.id) != -1" color="warn" >
+                    {{"app.un_select" | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  -->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{"app.add_task" | translate }}</h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="taskForm">
+              <div class="row">
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.libele" | translate }} </mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-error
+                      *ngIf="taskForm.get('name')?.hasError('required')">
+                      name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.estimation" | translate }} </mat-label>
+                    <input matInput formControlName="estimation" type="number">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.responsable" | translate }}</mat-label>
+                    <mat-select formControlName="responsible_id" required>
+                      <mat-option [value]="user.id"
+                        *ngFor="let user of users">
+                        {{ user.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.time_limit" | translate }}</mat-label>
+                    <input matInput [matDatepicker]="rpicker"
+                      formControlName="due_date" required>
+                    <mat-datepicker-toggle matSuffix [for]="rpicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #rpicker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.priority" | translate }}</mat-label>
+                    <mat-select formControlName="priority" required>
+                      <mat-option [value]="'low'">
+                        {{"app.small" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'medium'">
+                        {{"app.medium" | translate }}
+                      </mat-option>
+                      <mat-option [value]="'high'">
+                        {{"app.high" | translate }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width mb-3"
+                    appearance="outline">
+                    <mat-label>{{"app.description" | translate }}</mat-label>
+                    <textarea matInput formControlName="description"
+                      [rows]="16">
+                    </textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <div *ngIf="user" class="tbl-spinner">
+                    <mat-progress-spinner color="primary" [diameter]="20"
+                      mode="indeterminate">
+                    </mat-progress-spinner>
+                  </div>
+                  <mat-form-field appearance="outline"
+                    class="example-full-width mb-3">
+                    <mat-label> {{"app.for" | translate }} </mat-label>
+                    <input #multiUserSearch type="text" matInput
+                      placeholder="Recherche etudiant"
+                      (input)="onInputChangeUsers($event)" />
+                    <mat-selection-list formControlName="users"
+                      (selectionChange)="
+                        selectionChangeUsers($event.options)"
+                      class="custom-scroll-bar">
+                      <ng-container *ngFor="let p of filteredUsers">
+                        <mat-list-option [value]="p.id"
+                          [selected]=" usersControl.value &&
+                          usersControl.value?.indexOf(p.id) >= 0">
+                          {{ p.firstname }}
+                        </mat-list-option>
+                      </ng-container>
+                    </mat-selection-list>
+                    <br> <p> nombre:
+                      {{ usersControl.value?.length }}
+                    </p>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="btn-space"
+                    [disabled]="!taskForm.valid || loading"
+                    [class.auth-spinner]="loading"
+                    (click)="addTask()" mat-raised-button
+                    color="primary">{{"app.save" | translate }}</button>
+                  <button type="button" mat-raised-button
+                    color="warn" (click)="cancel()">
+                    {{"app.cancel" | translate }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

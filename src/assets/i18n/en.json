@@ -1,0 +1,841 @@
+{
+  "MENUITEMS": {
+    "MAIN": {
+      "TEXT": "Main"
+    },
+    "DASHBOARD": {
+      "TEXT": "Dashboard",
+      "LIST": {
+        "DASHBOARD2": "Dashboard"
+      }
+    },
+    "ACCESS": {
+      "TEXT": "Acces Managment",
+      "LIST": {
+        "PRIVILEGES": "Privileges",
+        "ROLES": "Roles"
+      }
+    },
+    "PEDAGOGY": {
+      "TEXT": "Pedagogy",
+      "LIST": {
+        "CYCLES": "Cycles",
+        "STREAMS": "Sectors",
+        "LEVELS": "any",
+        "OPTIONLEVELS": "Series",
+        "SPECIALTIES": "Spécialities",
+        "CLASSROOMS": "any"
+      }
+    },
+
+    "ORGANISATION": {
+      "TEXT": "Organisation",
+      "LIST": {
+        "STAFFS": "Administrative staff",
+        "TEACHERS": "Teachers",
+        "PREINSCRIPTIONS": "First-registrations",
+        "STUDENTS": "Students",
+        "PARENTS": "Parents",
+        "EVENTS": "Events"
+      }
+    },
+    "DISCIPLINE": {
+      "TEXT": "Discipline"
+    },
+    "STUDENT-FOLLOW-UP": {
+      "TEXT": "Parent-Student follow-up"
+    },
+    
+   "RH": {
+      "TEXT": "Human Resources"
+    },
+    "STAFFS": {
+      "TEXT": "Staffs"
+    },
+    "PREINSCRIPTIONS": {
+      "TEXT": "First-inscriptions"
+    },
+    "SALARY-ADVANCES": {
+      "TEXT": "Salary advances"
+    },
+    "STUDENTS": {
+      "TEXT": "Students"
+    },
+    "STUDENTS-U": {
+      "TEXT": "Students"
+    },
+    "PARENTS": {
+      "TEXT": "Parents"
+    },
+    "ANSWERS-HOMEWORKS": {
+      "TEXT": "Homework answers"
+    },
+    
+   "WARNINGS": {
+      "TEXT": "Warnings"
+    },
+    "PAYROLL_DEDUCTIONS": {
+      "TEXT": "Payroll deductions"
+    },
+    "STAT": {
+      "TEXT": "Treasury"
+    },
+    "SUMMARIES": {
+     "TEXT": "Course summaries"
+   },
+    "EVENTS": {
+      "TEXT": "Events"
+    },
+    "TRIMESTRES": {
+      "TEXT": "Terms"
+    },
+    "SUPPLIERS": {
+      "TEXT": "Suppliers"
+    },
+    "SCOLARITE": {
+      "TEXT": "Schooling"
+    },
+    "RESPONSES": {
+     "TEXT": "Answers"
+    },
+    "PAYMENTTYPES": {
+      "TEXT": "Payment Types"
+    },
+    "CUSTOMERS": {
+      "TEXT": "Customers"
+    },
+    "STRUCTURE": {
+      "TEXT": "Structure"
+    },
+    "REQUESTS": {
+      "TEXT": "Requests"
+    },
+    "REQUESTS-STAFFS": {
+      "TEXT": "Staff requests"
+    },
+    "PRESENCETEACHERS": {
+      "TEXT": "Teacher attendance"
+    },
+    
+    "PRESENCES": {
+      "TEXT": "Attendances"
+    },
+    "PRESENCESTAFFS": {
+      "TEXT": "Staff presence"
+    },
+    "MATTERS": {
+      "TEXT": "Subjects"
+    },
+    "COURSES": {
+      "TEXT": "Courses"
+    },
+
+    "ASSESSMENTS": {
+      "TEXT": "Evaluations"
+    },
+    "ASSESSMENTS-TYPES": {
+      "TEXT": "Evaluations Types"
+    },
+
+    "QUESTIONNAIRES": {
+     "TEXT": "Questionnaires"
+   },
+    "SCHEDULE": {
+      "TEXT": "Timetable"
+    },
+    "SMS": {
+      "TEXT": "SMS"
+    },
+
+    "PENSIONS": {
+      "TEXT": "School fees"
+    },
+    "TRANCHES": {
+      "TEXT": "Instalments"
+    },
+
+    "SCHOOL-SUPPLY": {
+      "TEXT": "School Supply "
+    },
+    "MATTER-GROUPS": {
+      "TEXT": "Subject Groups"
+    },
+    "PROGRESSIONS": {
+      "TEXT": "Textbooks"
+    },
+    "RATINGS": {
+      "TEXT": "Marks"
+    },
+    "FEES": {
+      "TEXT": "Additional fees"
+    },
+
+    "ABSENCES": {
+      "TEXT": "Student Absences"
+    },
+
+    "SANCTIONS": {
+      "TEXT": "Punishments"
+    },
+
+    "PACKAGES": {
+      "TEXT": "Packages"
+    },
+    "FONDATEURS": {
+      "TEXT": "Founders"
+    },
+    "ESTABLISHMENTS": {
+      "TEXT": "Hotels"
+    },
+    "SCHOOLS": {
+      "TEXT": "Schools"
+    },
+    "SECTIONS": {
+      "TEXT": "Services"
+    },
+    "CYCLES": {
+      "TEXT": "Cycles"
+    },
+    "BOURSES": {
+      "TEXT": "Bursaries"
+    },
+    "LEVELS": {
+      "TEXT": "any"
+    },
+    "OPTIONLEVELS": {
+      "TEXT": "Option levels"
+    },
+    "CLASSROOMS": {
+      "TEXT": "any"
+    },
+    "TRANSACTIONS": {
+      "TEXT": "Transactions"
+    },
+    "TRANSACTIONS-FEES": {
+      "TEXT": "Fees Transactions"
+    },
+    
+    "OMS": {
+      "TEXT": "Orange Money"
+    },
+    "EXPENSES": {
+      "TEXT": "Dépenses"
+    },
+    "DOCUMENTS": {
+     "TEXT": "Documents"
+   },
+
+    "INVOICES": {
+      "TEXT": "Invoices"
+    },
+    "COEFFICIENTS": {
+      "TEXT": "Coefficients"
+    },
+    "INSOLVENTS": {
+      "TEXT": "Insolvents"
+    },
+    "EXTERNALINVOICES": {
+      "TEXT": "External Invoices"
+    },
+    "HOMEWORKS": {
+      "TEXT": "Homeworks"
+    },
+    "SANCTIONS-BLAME": {
+     "TEXT": "Sanctions / Blames"
+    },
+    "OBSERVATIONS": {
+      "TEXT": "Teacher's observations"
+    },
+    "BONUSES": {
+      "TEXT": "Bonus"
+    },
+    "REPORT-CARD": {
+      "TEXT": "Reports Cards"
+    },
+
+    "SEQUENCES": {
+      "TEXT": "Sequences"
+    },
+
+    "ACCOUNTING": {
+      "TEXT": "Accounting",
+      "LIST": {
+        "INSOLVENTS": "Insolvents",
+        "INVOICES": "Invoices",
+        "EXTERNALINVOICES": "External Invoices",
+        "TRANSACTIONS": "Transactions",
+        "EXPENSES": "Expenses"
+      }
+    },
+    "ATTENDANCE": {
+      "TEXT": "Attendance",
+      "LIST": {
+        "STAFF": "Staff Attendance",
+        "DETAILS": "Attendance Details",
+        "SHEET": "Attendance Sheet"
+      }
+    },
+    "ASSESSMENTS-TYPE": {
+      "TEXT": "Assessment Types"
+    },
+
+    "RETRAITS": {
+      "TEXT": "Withdrawals"
+    },
+
+    "TASKS": {
+      "TEXT": "Tasks"
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts"
+    },
+    "SEMESTRE": {
+      "TEXT": "Semestres"
+    },
+    "CC": {
+      "TEXT": "CC"
+    }
+  },
+
+  "app": {  
+    "created_by": "Created by",
+    "less_hen_last_month" : "Less than last month", 
+    "higher_then_last_month" : "More than last month",
+    "reduction_amount_per_overnight_stay" : "Discount per night",
+    "reduction_amount" : "Discount",
+    "bookings_amount": "Amount of bookings",
+    "cash_in_amount": "Amount of cash ins",
+    "accounts_receivable": "Accounts receivable",
+    "total_price" : "Selling price",
+    "total_profit" : "Profit",
+    "total_manufacturing_cost" : "Purchase price",
+    "selling_price" : "Selling price",
+    "manufacturing_cost" : "Purchase price",
+    "total_amount" : "Total amount of invoice",
+    "cash_by" : "Cash by",
+    "is_free" : "Is Free",
+    "none" : "No payment",
+    "amount_paid" : "Amount Paid",
+    "advance": "Advance",
+    "completed": "Completed",
+    "payment_status": "Payment Status",
+    "overnight_stay": "Overnight Stay",
+    "ar": "Arabic",
+    "es" : "Spanish",
+    "name": "Name",
+    "libele": "Libele",
+    "Welcome_to_MS_School": "Welcome to MS-Hotel",
+    "add_staff": "Add Staff",
+    "gender": "Gender",
+    "username": "Username",
+    "password": "Password",
+    "phone": "Phone",
+    "nationality": "Nationality",
+    "level": "Level",
+    "sms": "SMS",
+    "country": "Country",
+    "city": "City",
+    "message" : "Message",
+    "failed" : "failed",
+    "success" : "successful",
+    "hour_scan": "Scan time",
+    "scan": "Scan",
+    "send_sms": "Send a message",
+    "already_paid":"Already Paid",
+    "outstanding_balance":"Outstanding Balance",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "choose_file": "Choose File",
+    "birthday": "Birthday",
+    "add_slice": "Add Instalments",
+    "add_fees": "Add Fees",
+   "sms_dispo" : "Available SMS",
+    "current_password": "Current password",
+    "new_password": "New password",
+    "update_password": "Update password",
+    "pension": "Boarding",
+    "school_card" : "School card",
+    "The_Roll_of_Honour" : "The Roll of Honour",
+    "school_certificate" : "School certificate",
+    "slice": "instalment",
+    "fee": "Fee",
+    "order": "Order",
+    "price": "Price",
+    "amount": "Amount",
+    "deadline": "Deadline",
+    "qr": "QR Code",
+    "reason" : "Reason",
+    "manual" : "Manual",
+    "generer_code_QR_teacher":"Generate QR code for teachers",
+    "generer_code_QR_staff":"Generate QR code for staff",
+    "number": "Number",
+    "numbers": "Number",
+    "course": "Courses",
+    "matter": "Subject",
+    "classroom": "Classroom",
+    "hour": "Hour",
+    "bank" : "Bank",
+    "father": "Father",
+    "mother": "Mother",
+    "alls": "All",
+    "grade" : "Grade",
+    "anciennete" : "Seniority",
+    "specialties": "Specialties",
+    "day": "Day",
+    "female" : "Girl",
+    "apercu_receipt": "Receipt overview",
+    "male" : "Boy",
+    "finished": "Finish",
+    "teacher": "Teacher",
+    "student": "Student",
+    "nui": "Taxpayer number",
+    "rc": "Trade register",
+    "cni": "Cni",
+    "recipient": "Recipient",
+    "expense": "Expense",
+    "mode": "Mode",
+    "entreprise": "Entreprise",
+    "personnel": "Person",
+    "customers": "Customers",
+    "precedent": "Back",
+    "stream": "Sector",
+    "download" : "Download",
+    "report-card": "Download Le bulletin",
+    "number_of_student" : "Number of learners",
+    "add_transfert": "Execute a transfer",
+    "duration": "duration",
+    "schedule": "Timetable",
+    "start": "Start",
+    "estimation": "Estimate",
+    "add_questionnaire":"Add question",
+    "questionnaires":"Questions",
+    "personal_information": "Personal information",
+    "monday": "Monday",
+    "apen_door" : "School/Open",
+    "administratif": "Administrative",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "supplier": "Supplier",
+    "mobile": "Mobile",
+    "date_start": "Start Date",
+    "date_end": "End Date",
+    "friday": "Friday",
+    "is_justified": "justified",
+    "saturday": "Saturday",
+    "add_stream": "Add une Stream",
+    "homeworks": "Homeworks",
+    "assessments": "Evaluations",
+    "type": "Type",
+    "typeInvoice": "Expense Types",
+    "assessment_true": "Will be evaluated",
+    "code": "Code",
+    "not_lesson" : "No lesson in this chapter",
+    "libelle": "Libelle",
+    "date": "Date",
+    "absence": "Absence",
+    "event": "Event",
+    "open": "Open",
+    "qr_staff_presence": "For Staff Presence",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "rejected" : "Rejected",
+    "valide" : "valided",
+    "en_cours" : "In progress",
+    "login": "Login",
+    "logout": "Logout",
+    "add_request":"Add request",
+    "reasons": "Reasons",
+    "typeRequest" : "Types of resquests",
+    "actions": "Actions",
+    "signin": "Sign in",
+    "anwser": "Anwser",
+    "message_transaction_error" : "the transaction failed",
+    "connection": "duration",
+    "amount_total" : "Total amount including fees",
+    "Inf_about_your_estab": "Information about your hotel",
+    "email": "Email",
+    "website": "Website",
+    "details_expenses": "Details of expenditure",
+    "package": "Package",
+    "transaction_number" : "Transaction Number",
+    "alls_students":"All Students",
+    "fee_rembrousable": "NB : Fees are neither refundable nor compensable.",
+    "students-u": "Student",
+    "alls_assessments":"Alls Evaluations",
+    "founder": "Founder",
+    "competences": "COMPETENCES",
+    "first": "FIRST",
+    "second": "SECOND",
+    "third": "THIRD",
+    "month": "MONTH",
+    "term": "TERMS",
+    "created_at" : "Created on",
+    "archiver_transaction" : "archive transaction",
+    "evaluation-type": "Eval Types",
+    "religious_status": "religious status",
+    "administrative_status": "administrative status",
+    "next": "Next",
+    "list_Of_your_school": "List Of your school",
+    "Select_managment": "Select the school you wish to managment",
+    "select": "Select",
+    "french_service": "French service",
+    "english_service": "English service",
+    "all": "All",
+    "specialtie": "Speciality",
+    "parent_2": "Other Parent",
+    "tutor": "Tutor",
+    "account": "My Account",
+    "sequences": "Sequences",
+    "trimestres": "Terms",
+    "trimestre": "Term",
+    "money": "Money",
+    "add_bourse" : "Add bursary",
+    "bourse" : "Bursaries",
+    "change_department":"Change department",
+    "cycle": "Cycle",
+    "first_cycle": "First Cycle",
+    "second_cycle": "Second Cycle",
+    "Items_per_page": "Items per page",
+    "description": "Description",
+    "search": "Search",
+    "serie": "Serie",
+    "main": "Main",
+    "job": "Job",
+    "download_card": "Download",
+    "role": "Role",
+    "price_hour": "Price Hour",
+    "salary": "Salary",
+    "username_is_required":"Username is required",
+    "send":"Send",
+    "First-registration": "First-registration",
+    "parent": "Parent",
+    "birth_Certificate": "Birth Certificate",
+    "last_Diploma": "Last Diploma",
+    "last_Bulletin": "Last Bulletin",
+    "medical_Certificate": "Medical Certificate",
+    "select_file": "select file",
+    "back": "Back",
+    "reset": "Reset",
+    "finish": "Finish",
+    "all_parentss" : "All Parents",
+    "school_folder": "School folder",
+    "registered_student": "Registered student",
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "budget": "Budget",
+    "parental_Contribution": "Contribution",
+    "save": "Save",
+    "Task": "Task",
+    "paid_registration": "pay your registration",
+    "fee_paid" : "Registration fees must be paid in order to access all the application's features and take courses.",
+    "registrationPaid" : "you need to have paid registration before you can pay for board. As long as registration has not been paid, you cannot access the software's functions. ",
+    "classe_titulaire" : "Holder of ",
+    "auteur" : "Comment author",
+    "presencestaffs" : "Staff presences",
+    "presenceteachers": "Teachers' presence",
+    "departureTime": "Departure time",
+    "arrivalTime": "Arrival time",
+    "for": "For",
+   "starter": "Get started",
+    "disbursement" : "Disbursement",
+    "incoming_payment" : "incoming payment",
+    "add_specialties" : "Add Specialities",
+    "left": "Left",
+    "no_assessments" : "No evaluation for teacher in this class please ensure that assigned an evaluation before grades can be entered",
+    "arrived" : "Arrived",
+    "priority": "Priority",
+    "time_limit": "Time Limit",
+    "select_classroom_schedule": "Select the classroom to display her timetable",
+    "display": "Display",
+    "number_of_slice": "Number of instalments",
+    "list_Insolvent": "List Insolvent",
+    "invoice": "Invoice",
+    "for_Who": "For Who",
+    "small": "Small",
+    "high": "High",
+    "sa" : "SA",
+    "spa" : "SPA",
+   "home" : "Home",
+    "sna" : "SNA",
+   "presentation": "Presentation",
+   "reglement": "Rules and regulations",
+    "type_user" : "Type of staff",
+    "in_progress" : "In progress",
+    "no_start" : "Non Start",
+    "discipline": "Discipline",
+    "transactions": "Transactions",
+    "payment_mode ": "Payment Mode",
+    "download_card_double" : "Duplicate download",
+    "rating": "Note",
+    "parent_monitoring": "Parent monitoring",
+    "teacher_observation": "Observation",
+    "address": "address",
+    "picture": "Picture",
+    "read_all_notifications":"Read all notifications",
+    "more_informations": "More informations",
+    "see_more": "See more",
+    "check_if_the_parent_already_exists": "Check if the parent already exists",
+    "job_name": "Job name",
+    "are_you_sure": "Are you sure?",
+    "staffs": "Administrative staff",
+    "add_First_registration": "Add First-registration",
+    "first_registrations": "First-registrations",
+    "all_students": "Students",
+    "all_money": "Money",
+    "student_survay": "Student Survay",
+    "all_teachers": "Teachers",
+    "student_performance_chart": "Student Performance Chart",
+    "all_courses": "Courses",
+    "all_parents": "Parents",
+    "all_absences": "Absences",
+    "all_staffs": "Staffs",
+    "generate_card": "Generate Report card",
+    "all_events": "Absences",
+    "all_classrooms": "Classroms",
+    "all_matters": "Subjects",
+    "add_cycle": "Add Cycle",
+    "add_level": "Add Level",
+    "contract" : "Contract",
+    "bonuse" : "Bonus",
+    "add_bonuse": "Add Bonus",
+    "add_contract" : "Add Contrat",
+    "cdd" : "Fixed-Term Contract",
+    "cdi" : "Permanent Contract",
+    "consulting" : "Consulting",
+    "partnership" : "Partnership",
+    "working_hours" : "Working hours",
+    "service_Benefits": "Service benefits",
+    "add_teacher": "Add Teacher",
+    "delete": "Delete",
+    "main_teacher": "Main teacher",
+    "confirm_registration": "Confirm registration",
+    "parent_details": "Parent details",
+    "first_inscription_details": "First-inscription details",
+    "Modify_information_of": "Modify the information of",
+    "student_registration_details": "Student Registration details",
+    "add_student": "Add Registration",
+    "add_event": "Add Event",
+    "add_task": "Add Task",
+    "validate": "Validate",
+    "warning" : "Warning",
+    "payroll_deductions" : "Payroll deductions",
+    "add_payroll_deduction" : "Add Payroll deductions",
+    "by" : "By",
+    "approved_by" : "Approved by",
+    "responsable": "Manager",
+    "a_approve" : "Pending approval",
+    "add_warning" : "Add Warning",
+    "task": "Tasks",
+    "holiday": "Holidays",
+    "add_holiday" : "Add Holiday",
+    "status": "Status",
+    "details": "Details",
+    "course_duration": "Course duration (min)",
+    "choose_start_time": "Choose a start time",
+    "left_time": "Departure time",
+    "arrived_time": "Arrival time",
+    "add_presenceteacher": "Record a teacher's presence",
+    "start_hour": "Start hour",
+    "display_schedule": "Display",
+    "add_course": "Add Course",
+    "add_assessment": "Add Assessment",
+    "select_classroom": "Select Classroom",
+    "select_level": "Select Level",
+    "select_slice": "Select instalment",
+    "list_insolvent": "List Insolvent",
+    "list_solvent": "the solvent list",
+    "add_transaction": "Add transaction",
+    "select_student": "Select Student",
+    "payment_mode": "Payment mode",
+    "number_slice": "Number instalment",
+    "number1" : "Reference number",
+    "add_classroom": "Add Classroom",
+    "add_serie": "Add Serie",
+    "add_fee": "Add Fee",
+    "salary_advances" : "Salary advances",
+    "add_salary_advances" : "Add a salary advance",
+    "date_approve" : "Validation date",
+    "add_pension": "Add Boarding",
+    "schoolSupplys": "School Supplys",
+    "supply": "Supplys",
+    "value": "Value",
+    "not_student" : "you have no children in this school",
+    "not_student_answer" : "Please contact your school's administration.",
+    "coefficients": "Coefficients",
+    "matterGroups": "Subject Groups",
+    "absences": "Absences",
+    "add_absence": "Add Absence",
+    "add_sanction": "Add Sanction",
+    "teacherObservations": "Observations",
+    "add_schoolSupply": "Add SchoolSupply",
+    "schedule_of_Classrom": "timetable of Classrom ",
+    "schedule_of_Teacher": "timetable of Teacher",
+    "assessments_type": "Sequences",
+    "add_TextBook_Parts_hapters_Lessons": "Add Text Book - Parts - Chapters - Lessons ",
+    "textBook": "Text Book",
+    "part": "Parts",
+    "chapter": "Chapter",
+    "lesson": "Lesson",
+    "category": "Category",
+    "number_of_part": "Number of part",
+    "number_of_chapter": "Number of chapter",
+    "number_of_lesson": "Number of lesson",
+    "number_of_service": "Number of service",
+    "list_part": "List part",
+    "list_chapter": "List chapter",
+    "list_lesson": "List lesson",
+    "list_service": "List service",
+    "edit": "Edit",
+    "sequence": "Sequence",
+    "observation": "Observation",
+    "add_rating": "Add Grade",
+    "make_the_call": "Make the Call",
+    "add_homework": "Add Homework",
+    "add_TeacherObservation": "Add Observation",
+    "my_schedule": "My Timetable",
+    "details_pension": "Details School fees",
+    "details_slice": "Details Instalments",
+    "details_fee": "Details Fees",
+    "en": "English",
+    "fr": "French",
+    "forgot_password": "Forgot Password?",
+    "remember_me": "Remember me",
+    "select_lang": "Select Lang",
+    "cle": "Key connexion",
+    "services": "Services",
+    "francophone": "French",
+    "anglophone": "English",
+    "add_permission": "Add Permission",
+    "ressource": "Ressource",
+    "permission": "Permission",
+   "add_privielge": "Ajouter un Privilège",
+   "privileges": "Privileges",
+    "not_assessement" : "If you do not have an assessment in this class, contact your administration to request that assessments be assigned to you.",
+    "add_founder": "Add Founder",
+    "add_hotel": "Add Hotel",
+    "hotels": "Hotels",
+    "add_role": "Add Role",
+    "school": "School",
+    "service": "Service",
+    "cash" : "Cash",
+    "summaries": "Course summaries ",
+    "add_summaries" : "Add Summarie",
+    "credit_card" : "Bank",
+    "utiliser_bourse": "Using your scholarship ",
+    "desease": "Diseases",
+    "add_school": "Add School",
+    "hotel": "Hotel",
+    "principal": "Principal",
+    "raison" : "Reason",
+    "homeworksdones": "Homework answers",
+    "add_homeworksdones" : "Add an Answer",
+    "change_service": "Change Service",
+    "select_classe": "Select classroom",
+    "add_service": "Add Service",
+    "add_evel": "Add Level",
+    "add_parent": "Add Parent",
+    "receipt": "Receipt",
+    "correction" : "Correction",
+    "total_boarding_school": "Total Boarding School",
+    "total_amount_paid": "Total Amount Paid",
+    "total_amount_paid2": "Sum of all payments made",
+    "rest": "Rest",
+    "title_1" : "Ms-school now offers a mobile version of its application, providing the same level of comfort for controlling your school remotely.",
+    "title_2" : "Ms-school gives you the opportunity to optimize communication with parents and get them more involved in their children's education.",
+    "title_3" : "With Ms-school, you can manage your finances quickly and securely, wherever you are.",
+    "reference": "Reference",
+    "add_presenceStaff":"Register the presence of personnel",
+    "school_fees": "School Fees",
+    "imprimer": "Generate receipt",
+    "add_matter": "Add Subject",
+    "payement_pension" : "Pension payment at",
+    "Username_and_Password_not_valid": "Username and Password not valid !",
+    "restaurants": "Assessment Type",
+    "details_slices": "Details Instalments",
+    "details_fees": "Details fees",
+    "number_of_module": "Number of part",
+    "done": "Done",
+    "no_homework" : "No homework available: you can't answer homework whose deadline has already passed.",
+    "you_are_now_done": "You are now done",
+    "new_coefficients": "New Coefficients",
+    "coeficient": "Coeficient",
+    "Add_matterGroup": "Add Subject Group",
+    "all_assessments": "Assessments",
+    "all_homeworks": "Homeworks",
+    "List_Of_your_student": "List Of your Child",
+    "Select_the_student_you_wish_to_managment": "Select the student you wish to managment",
+    "all_sanctions": "Sanctions",
+    "sanctions": "Sanctions",
+    "select_child": " Select Child",
+    "matricule": "Matricule",
+    "old": "Old",
+    "new": "New",
+    "style_maternelle" : "Kindergarten style",
+    "true": "True",
+    "interne" : "internal",
+    "externe" : "external",
+    "plus" : "See more",
+    "false": "False",
+    "alpha" : "Alphabetical",
+    "is_required": "is required",
+    "redoublant": "Repeater",
+    "statut": "Status",
+    "place_of_birth": "Place of birth",
+    "fees": "Fees Transaction ",
+    "style": "Style",
+    "simple": "Simple",
+    "bourse_apprenant" : "This learner has a ",
+    "bourse_amount" : " in the amount of : ",
+    "bourse_recipt" : "  for this learner has been applied to this payment.",
+    "the" : "The",
+    "switch_assessment" : "Duplicating evaluations",
+    "of" : "of",
+    "detail": "Detail",
+    "all_fees": "Additional fees",
+    "yes": "Yes",
+    "all_transactions": "All Transactions",
+    "end": "End",
+    "alle": "All",
+    "no": "No",
+    "1": "SPA",
+    "2": "SNA",
+    "3": "SA",
+    "4": "E",
+    "merit" : "By Merit",
+    "notemax": "Max note",
+    "totalApercevoirPension": "To Perceive",
+    "totalPercu": "Received",
+    "totalRestant": "Remainder",
+    "totalApercevoirFee": "Total fees to be collected",
+    "effectifs": "Number",
+    "typeEvaluations": "Eval Types",
+    "message_transaction_encour" : "Transaction in progress .......",
+    "methode": "Method",
+    "validation_payment" : "Enter #150*50# on your phone to confirm payment",
+    "customer" : "To Mh Tech SARL",
+    "all_transactions_om" : "All pensions paid Orange money",
+    "RIB" : "Bank transfer",
+    "montant_retrait_brut" : "Nom société : ",
+    "all_amount" : "Total amount received",
+    "all_retrait" : "Total amount withdrawn",
+    "all_en_caisse" : "Total amount withdrawn",
+    "all_dispo" : "Amount available",
+    "OM" : "Orange Money",
+    "info" : "Company information:",
+    "company_name" : "Company name : ",
+    "error_amount" : "The amount requested exceeds the amount available in the school's account",
+    "error_amounts" : "Please enter the correct amount",
+    "mode_retrait" : "Withdrawal mode",
+    "add_retrait" : "Make a withdrawal from your Orange Money account",
+    "all_ok": "Please check this box if everything is ok ",
+    "numero_retrait" : "OM refund number",
+    "bank_name" : "Bank name",
+    "validation_code" : "Enter validation code received by e-mail",
+    "all_retraits_om": "All withdrawal requests",
+    "nb_rib_1" : "Bank charges are applicable if you have chosen a refund by bank transfer to a bank other than UBA.",
+    "nb_rib_2" : "Please check your details before confirming any refund request.",
+    "nb_1" : "For all Orange Money refunds, please note that the maximum refund amount per day is 1 Million FCFA.",
+    "nb_2" : "The maximum refund amount for an Orange Money refund is 500,000 Fcfa / request."
+  }
+}

@@ -1,0 +1,48 @@
+.btns {
+    font-size: 14px !important;
+    font-family: inherit;
+    color: white;
+}
+
+.card {
+    margin-top: 30px;
+}
+
+.taille{
+    max-width: 10%;
+}
+.ct {
+    text-align: center !important;
+}
+
+.mat-mdc-button .mat-mdc-button-touch-target, 
+.mat-mdc-unelevated-button .mat-mdc-button-touch-target, 
+.mat-mdc-raised-button .mat-mdc-button-touch-target, 
+.mat-mdc-outlined-button .mat-mdc-button-touch-target {
+    position: absolute;
+    top: 50%;
+    height: 48px;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 7px;
+    /* padding-right: 15px; */
+}
+
+
+.butun {
+    background-color: #028b5b;
+    border-radius: 7px;
+    color: white;
+}
+
+.color-bad{
+    font-weight: bold;
+    color: red;
+}
+
+.color-good{
+    font-weight: bold;
+    color: #028b5b;
+}

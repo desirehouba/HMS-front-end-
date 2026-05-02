@@ -1,0 +1,265 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card test">
+    <mat-tab-group>
+      <mat-tab>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+          <div class="project_widget mag2">
+            <div class="body">
+              <div class="row">
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.cash_by" | translate }}
+                  </strong>
+                  <br/>
+                  <p *ngIf="cashIns.created_by != null">
+                    {{ cashIns.created_by.name }} 
+                  </p> 
+                </div>
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.customer" | translate }}
+                  </strong>
+                  <br/>
+                  <p *ngIf="cashIns.booking != null">
+                    {{ cashIns.booking.user.name }} 
+                  </p>
+                  <p *ngIf="cashIns.order != null"> 
+                    {{ cashIns.order.customer.name }}
+                  </p>
+                </div>
+                <div class="col-md-2 col-6 b-r">
+                  <strong class="text-muted">
+                    {{"app.date" | translate }}
+                  </strong>
+                  <br/>
+                  <p >
+                    {{ cashIns.date }}
+                  </p>
+                </div>
+                <div class="col-md-2 col-6 b-r" style=" text-align: right;">
+                  <strong class="text-muted ">
+                    {{"app.payment_mode" | translate }}
+                  </strong>
+                  <br/>
+                  <p class="amounts" *ngIf="cashIns.payment_method==='MOMO'">
+                    <span class="badge badge-solid-green amounts">
+                      Mobile Money</span>
+                    </p>
+                  <p class="amounts" *ngIf="cashIns.payment_method==='OM'">
+                    <span class="badge badge-solid-orange amounts">
+                      Orange Money</span>
+                    </p>
+                  <p class="amounts" *ngIf="cashIns.payment_method==='Cash'">
+                    <span class="badge badge-solid-blue amounts">
+                      {{cashIns.payment_method}}</span>
+                    </p>
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="cashIns.order != null">
+                  <table class="class7 bord" *ngIf="cashIns.order != null">
+                    <thead>
+                      <tr style="background-color:#028b5b; ; color: white">
+                        <th style="width: 5%; text-align: right;"
+                          class="rig"> N°
+                        </th>
+                        <th style="width: 40%;" class="lef" >
+                          {{"app.product" | translate }} 
+                        </th> 
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.quantity" | translate }} 
+                        </th>
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.unit_price" | translate }}
+                        </th>
+                        <th style="width: 20%; text-align: right;"
+                          class="rig">
+                          {{"app.amount" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      *ngFor="let item of cashIns.order.products; let  index = index">
+                      <tr style="background-color:white;">
+                        <td align="right" class="text rig">
+                          {{ index+1 }} 
+                        </td>
+                        <td align="left" class="text lef">
+                          {{ item.name }}
+                        </td>
+                        <td align="right" class="text lef">
+                          {{ item.quantity }}
+                        </td>
+                        <td align="right" class="text ">
+                          {{ item.unit_price | number }} 
+                        </td>
+                        <td align="right" class="text  rig">
+                          {{ (item.unit_price * item.quantity ) | number}} 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      <!-- {{ cashIns.booking.price | number }} Fcfa -->
+                      {{ cashIns.amount + cashIns.amount_remaining | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount_paid" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ cashIns.amount | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.rest" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ cashIns.amount_remaining | number }} Fcfa
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" *ngIf="cashIns.booking != null">
+                  <table class="class7 bord" *ngIf="cashIns.booking != null">
+                    <thead>
+                      <tr style="background-color:#028b5b; ; color: white">
+                        <th style="width: 5%; text-align: right;"
+                          class="rig"> N°
+                        </th>
+                        <th style="width: 40%;" class="lef" >
+                          {{"app.product" | translate }} 
+                        </th> 
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.overnight_stay" | translate }} 
+                        </th>
+                        <th style="width: 20%; text-align: right;">
+                          {{"app.unit_price" | translate }}
+                        </th>
+                        <th style="width: 20%; text-align: right;"
+                          class="rig">
+                          {{"app.amount" | translate }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      *ngFor="let item of cashIns.booking.booking_rooms; let  index = index">
+                      <tr style="background-color:white;">
+                        <td align="right" class="text rig">
+                          {{ index+1 }} 
+                        </td>
+                        <td align="left" class="text lef">
+                          {{ item.name }}
+                        </td> 
+                        <td align="right" class="text lef">
+                          {{ cashIns.booking.duration/1440   | number}}
+                        </td>
+                        <td align="right" class="text ">
+                          {{ item.price | number }} 
+                        </td>
+                        <td align="right" class="text  rig">
+                          {{ cashIns.booking.price | number}} 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.total_amount" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20"> 
+                      {{ cashIns.booking.price  | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20"> 
+                      {{ cashIns.amount + cashIns.amount_remaining | number }} Fcfa
+                    </div>
+                  </div> -->
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      <!-- {{ cashIns.booking.price | number }} Fcfa -->
+                      {{ cashIns.amount + cashIns.amount_remaining | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.amount_paid" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ cashIns.amount | number }} Fcfa
+                    </div>
+                  </div>
+                  <div class="class1 tile">
+                    <div class="class80 ">
+                      <span>
+                        {{"app.rest" | translate }} :
+                      </span>
+                    </div>
+                    <div class="class20">
+                      {{ cashIns.amount_remaining | number }} Fcfa
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row"  > 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" >
+                    <button mat-raised-button color="primarys" 
+                      class="btn-space primarys"
+                      style="background-color: #028b5b; color: white;">
+                      {{"app.download_card" | translate}} 
+                    </button>
+                    <button  type="button" (click)="dialogRef.close()"
+                      mat-raised-button color="warn">
+                        {{"app.cancel" | translate }}
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

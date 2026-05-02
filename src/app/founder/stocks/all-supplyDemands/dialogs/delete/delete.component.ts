@@ -1,0 +1,37 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { SupplyDemands } from 'src/app/core/models/supplyDemands.model';
+import { ServicesService } from 'src/app/core/service/services.service';
+
+@Component({
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.scss'],
+})
+export class SupplyDemandsDeleteDialogComponent {
+  loading = false;
+  constructor(
+    public dialogRef: MatDialogRef<SupplyDemandsDeleteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: SupplyDemands,
+    public servicesService: ServicesService
+  ) {}
+  onNoClick(): void {
+    this.dialogRef.close();
+  } 
+
+  confirmDelete(): void {
+    this.loading = true;
+    const paylaod = {
+      supply_demand_ids: [this.data.id],
+    }
+    this.servicesService.deleteObjetsMulti(
+      this.servicesService.route.supplyDemands[2],
+      paylaod
+    ).subscribe({
+      next: (data) => {
+        this.loading = false;
+        this.dialogRef.close(1);
+      },
+    });
+  }
+}
