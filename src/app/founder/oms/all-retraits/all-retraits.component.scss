@@ -8,8 +8,12 @@
     max-width: 12%;
 }
 
+.acti{
+    max-width: 10%;
+}
+
 .butun {
-    background-color: #028b5b;
+    background-color: #0a92d6;
     border-radius: 3px;
     color: white;
     min-height: 4rem;
@@ -26,10 +30,13 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
 }
 
 .somme{
-    min-width: 15%;
+    min-width: 10%;
 
 }
 
+.taille{
+    max-width: 10%;
+}
 
 .entete {
     display: flex;
@@ -55,4 +62,22 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
 
 .som {
     vertical-align: middle !important;
+}
+
+.amount{
+    text-align: right !important;
+    width: 100%;
+}
+
+.amounts{
+    text-align: center !important;
+    width: 100%;
+}
+
+.vert {
+    color: green;
+}
+
+.orang{
+    color: orange;
 }

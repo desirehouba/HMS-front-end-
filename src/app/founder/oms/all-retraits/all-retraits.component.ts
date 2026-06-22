@@ -1,13 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-//import { OmsService } from './oms.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
+import { MatSnackBar, MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
@@ -23,9 +20,9 @@ import { AuthService } from 'src/app/core/service/auth.service';
 import { Retraits } from 'src/app/core/models/retraits.model';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicesService } from 'src/app/core/service/services.service';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { formatDate } from '@angular/common';
-/* import { formatDate } from '@angular/common'; */
+import { UntypedFormBuilder } from '@angular/forms';
+import { Direction } from '@angular/cdk/bidi';
+import { AboutRetraitComponent } from './dialogs/about-retrait/about-retrait.component';
 
 @Component({
   selector: 'app-all-retraits',
@@ -38,17 +35,15 @@ export class AllRetraitsComponent
 {
   displayedColumns = [
     'select',
-    'school.name',
+    'hotel.name',
     'user.name',
-    'mode_retrait',
-    //'montant_retrait_brut',
+    'mode_retrait', 
     'montant_retrait_net',
-    'status',/* 
-    'payment_mode', */
+    'type', 
+    'status', 
     'date',
-    //'actions',
-  ];
-  transForms: UntypedFormGroup;
+    'actions',
+  ]; 
   exampleDatabase?: RetraitsService;
   dataSource!: ExampleDataSource;
   selection = new SelectionModel<Retraits>(true, []);
@@ -78,12 +73,7 @@ export class AllRetraitsComponent
     translateService.setDefaultLang(
       localStorage.getItem('lang') as string
     );
-    super();
-    this.transForms = this.fb.group({
-      classroom: [""],
-      date_start: [""],
-      date_end: [""],
-    });
+    super(); 
     
     this.sommes = localStorage.getItem('xom')
     
@@ -96,16 +86,10 @@ export class AllRetraitsComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    this.loadData();
-    this.setDate(false);
+    this.loadData(); 
   }
   refresh() {
     this.loadData();
-  }
-
-  ss() {
-    this.sommes = localStorage.getItem('xom')
-    this.s = true
   }
 
   addNew() {
@@ -114,17 +98,24 @@ export class AllRetraitsComponent
     );
   }
 
-  setDate(i: boolean) {
-    if (i === true) {
-      localStorage.setItem('date_start', formatDate(this.transForms.controls['date_start'].value,'dd-MM-YYYY', 'en-US'));
-      localStorage.setItem('date_end', formatDate(this.transForms.controls['date_end'].value,'dd-MM-YYYY', 'en-US'));
+  About(row: Retraits) {
+    this.id = row.id;
+    let tempDirection: Direction;
+    if (localStorage.getItem('isRtl') === 'true') {
+      tempDirection = 'rtl';
     } else {
-      localStorage.setItem('date_start', '');
-      localStorage.setItem('date_end', '');
+      tempDirection = 'ltr';
     }
-    
-    this.loadData();
-  }
+    const dialogRef = this.dialog.open(AboutRetraitComponent, {
+      data: { retraits: row, },
+      direction: tempDirection,
+    });
+    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        this.loadData();
+      }
+    });
+  } 
 
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);

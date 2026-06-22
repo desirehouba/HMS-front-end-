@@ -69,8 +69,8 @@
                             <thead>
                               <tr>
                                 <th class="title"> {{"app.bookings_amount" | translate}} </th> 
-                                <th class="orang title"> {{"app.cash_in_amount" | translate}}  </th>
-                                <th class="vert title"> {{"app.accounts_receivable" | translate}} </th>
+                                <th class="vert title"> {{"app.cash_in_amount" | translate}}  </th>
+                                <th class=" orang title"> {{"app.accounts_receivable" | translate}} </th>
                               </tr>
                             </thead>
                             <tbody>
@@ -78,10 +78,10 @@
                                 <td align="center" class="title">
                                   <strong> {{ exampleDatabase?.total_price | number}}</strong>
                                 </td> 
-                                <td align="center" class="orang title">
+                                <td align="center" class="vert title">
                                   <strong> {{ exampleDatabase?.total_amount_paid | number }}</strong>
                                 </td>
-                                <td align="center" class="vert  title">
+                                <td align="center" class="orang  title">
                                   <strong> {{ exampleDatabase?.total_rest_paid | number}}</strong>
                                 </td>
                               </tr>
@@ -193,18 +193,22 @@
                                     class="example-full-width">
                                     <mat-label>
                                       {{"app.customer" | translate }}
-                                    </mat-label>
-                                    <mat-select formControlName="client"
-                                      (selectionChange)="[setClient()]">
+                                    </mat-label> 
+                                    <mat-select formControlName="client" (selectionChange)="[setClient()]"
+                                      (openedChange)="onOpenChange(multiUserSearch)">
+                                      <input #multiUserSearch matInput class="colors"
+                                      style=" border: 1px solid #028b5b;"
+                                        placeholder="search customer"
+                                        (input)="onInputChange($event)"
+                                        formControlName="filter_value" />
                                       <mat-option [value]="''">
                                         {{"app.all" | translate }}
                                       </mat-option>
-                                      <mat-option [value]="user.id"
-                                        *ngFor="let user of users">
-                                        {{ user.name }}
+                                      <mat-option [value]="user.id"  
+                                        *ngFor="let user of filterUsers">
+                                        {{ user?.name }}
                                       </mat-option>
-                                    </mat-select>
-                                    
+                                    </mat-select> 
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -312,12 +316,7 @@
                             <span class="mobile-label">
                               {{"app.type" | translate }}:
                             </span>
-                            <span *ngIf="row.user!=null">
-                              {{row.user.name}}
-                            </span>
-                            <span *ngIf="row.user===null">
-                              {{row.user}}
-                            </span>
+                            {{row.user?.name}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="room">
@@ -346,7 +345,7 @@
                               {{"app.statut" | translate }}:
                             </span>
                             <span class="amounts" *ngIf="row.status==='confirmed'">
-                              <span class="badge badge-solid-green amounts">
+                              <span class="badge badge-solid-purple amounts">
                                 {{'app.confirmed' | translate}}</span>
                             </span>
                             <span class="amounts" *ngIf="row.status==='cancelled'">
@@ -366,7 +365,7 @@
                                 {{'app.checked_in' | translate}}</span>
                             </span>
                             <span class="amounts" *ngIf="row.status==='pending'">
-                              <span class="badge badge-solid-purple amounts">
+                              <span class="badge badge-solid-orange amounts">
                                 {{'app.pending' | translate}}</span>
                             </span>
                           </mat-cell>

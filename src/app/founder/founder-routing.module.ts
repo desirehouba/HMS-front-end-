@@ -77,7 +77,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./human-resources/human-resources.module').then(
         (m) => m.HumanResourcesModule),
-  }
+  },
+  {
+    path: 'oms',
+    loadChildren: () =>
+      import('./oms/oms.module').then(
+        (m) => m.OmsModule),
+  },
 ];
 
 @NgModule({

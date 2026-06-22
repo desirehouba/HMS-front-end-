@@ -82,16 +82,16 @@
                                   <strong> {{ exampleDatabase?.total |number}} </strong>
                                 </td>
                                 <td align="center" class="title">
-                                  <strong> {{ exampleDatabase?.cash |number}} </strong>
+                                  <strong> {{ exampleDatabase?.statistiques?.Cash |number}} </strong>
                                 </td>
                                 <!-- <td align="center" class="bnaks title">
                                   <strong> {{ exampleDatabase?.bank }}</strong>
                                 </td> -->
                                 <td align="center" class="orang title">
-                                  <strong> {{ exampleDatabase?.om |number}} </strong>
+                                  <strong> {{ exampleDatabase?.statistiques?.Orange_Money |number}} </strong>
                                 </td>
                                 <td align="center" class="vert  title">
-                                  <strong> {{ exampleDatabase?.momo |number}} </strong>
+                                  <strong> {{ exampleDatabase?.statistiques?.Mobile_Money |number}} </strong>
                                 </td>
                               </tr>
                             </tbody>
@@ -172,18 +172,23 @@
                                     class="example-full-width">
                                     <mat-label>
                                       {{"app.customer" | translate }}
-                                    </mat-label>
+                                    </mat-label> 
                                     <mat-select formControlName="client"
-                                      (selectionChange)="[setClient()]">
+                                      (openedChange)="onOpenChange(multiUserSearch)">
+                                      <input #multiUserSearch matInput class="colors"
+                                        style=" border: 1px solid #028b5b;"
+                                        placeholder="search customer"
+                                        (input)="onInputChange($event)"
+                                        formControlName="filter_value" />
                                       <mat-option [value]="''">
                                         {{"app.all" | translate }}
                                       </mat-option>
-                                      <mat-option [value]="user.id"
-                                        *ngFor="let user of customers">
+                                      <mat-option [value]="user.id" 
+                                      (selectionChange)="[setClient()]"
+                                        *ngFor="let user of filterUsers">
                                         {{ user.name }}
                                       </mat-option>
-                                    </mat-select>
-                                    
+                                    </mat-select> 
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -207,16 +212,20 @@
                                       {{"app.created_by" | translate }}
                                     </mat-label>
                                     <mat-select formControlName="created_by"
-                                      (selectionChange)="[setCreatetBy()]">
+                                      (openedChange)="onOpenChange(multiUserSearch)">
+                                      <input #multiUserSearch matInput class="colors"
+                                        placeholder="search customer"
+                                        (input)="onInputChange($event)"
+                                        formControlName="filter_value" />
                                       <mat-option [value]="''">
                                         {{"app.all" | translate }}
                                       </mat-option>
-                                      <mat-option [value]="user.id"
+                                      <mat-option [value]="user.id" 
+                                      (selectionChange)="[setCreatetBy()]"
                                         *ngFor="let user of users">
                                         {{ user.name }}
                                       </mat-option>
-                                    </mat-select>
-                                    
+                                    </mat-select> 
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -407,11 +416,11 @@
                             <span class="mobile-label">
                               {{"app.mode" | translate }}:
                             </span>
-                            <span class="amounts" *ngIf="row.payment_method==='MOMO'">
+                            <span class="amounts" *ngIf="row.payment_method==='Mobile Money' || row.payment_method==='MoMo'">
                               <span class="badge badge-solid-green amounts">
                                 Mobile Money</span>
                             </span>
-                            <span class="amounts" *ngIf="row.payment_method==='OM'">
+                            <span class="amounts" *ngIf="row.payment_method==='Orange Money' || row.payment_method==='OM'">
                               <span class="badge badge-solid-orange amounts">
                                 Orange Money</span>
                             </span>

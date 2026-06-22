@@ -52,7 +52,7 @@ export class AllBookingsComponent
     'actions',
   ];
   exampleDatabase?: BookingsService;
-    bookingForm: UntypedFormGroup; 
+  bookingForm: UntypedFormGroup; 
   dataSource!: ExampleDataSource;
   selection = new SelectionModel<Bookings>(true, []);
   id?: number;
@@ -64,6 +64,20 @@ export class AllBookingsComponent
   users : any [] = [];
   permissions!: any []
   currentUser = this.authService.currentUserValue; 
+
+  filterUsers!: any[]; 
+  onInputChange(event: any) {
+    const searchInput = event.target.value.toLowerCase();
+    this.filterUsers = this.users.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChange(searchInput: any) {
+    searchInput.value = "";
+    this.filterUsers = this.users;
+  } 
   breadscrums = [
     {
       title: 'All Booking',
@@ -142,10 +156,10 @@ export class AllBookingsComponent
       localStorage.setItem('date_start_booking', formatDate(this.bookingForm.controls['date_start'].value,'yyyy-MM-dd', 'en-US'));
       localStorage.setItem('date_end_booking', formatDate(this.bookingForm.controls['date_end'].value,'yyyy-MM-dd', 'en-US'));
     } else {
+      this.f['date_start'].reset()
+      this.f['date_end'].reset()
       localStorage.setItem('date_start_booking', '');
-      localStorage.setItem('date_end_booking', '');
-      localStorage.setItem('date_start', '');
-      localStorage.setItem('date_end', '');
+      localStorage.setItem('date_end_booking', ''); 
     }
     this.loadData();
   }
@@ -173,8 +187,8 @@ export class AllBookingsComponent
         function SortArray(x:any, y:any){
           return x.name.localeCompare(y.name);
         }
-        this.users = this.users.sort(SortArray);
-        this.users = res.data;
+        this.users = this.users.sort(SortArray); 
+        this.filterUsers = this.users.sort(SortArray);
         this.user = false;
       },
       error: (error) => {

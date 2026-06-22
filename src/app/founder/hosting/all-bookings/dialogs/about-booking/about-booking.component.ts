@@ -23,9 +23,10 @@ export class AboutBookingComponent {
   orderForm: UntypedFormGroup; 
   loading = false;
   payment = false
-  
+  payments = false;
   message: string = 'app.message_transaction_encour';
   valider: string = 'app.validation_payment'; 
+  payment_modes = ['Orange Money','Mobile Money'];
   constructor(
     public dialogRef: MatDialogRef<AboutBookingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -33,12 +34,13 @@ export class AboutBookingComponent {
     private fb: UntypedFormBuilder,
     private authService : AuthService,
   ) {
-    this.dialogTitle = 'Reservation de ' + (data.bookings.user ? data.bookings.user.name : '');
+    this.dialogTitle = 'Reservation de ' + data.bookings.user?.name;
     this.bookings = data.bookings;
     this.orderForm = this.fb.group({ 
       payment_mode: ['', [Validators.required]],
       amount: ['', [Validators.required]], 
-      date: ['', [Validators.required]],
+      date: [''],
+      phone: [data.bookings.user?.phone],
     });
   }
 
@@ -96,6 +98,18 @@ export class AboutBookingComponent {
   get f() {
     return this.orderForm.controls;
   } 
+
+  addTransactionsOption() {  
+    if (this.f['payment_mode'].value === 'Orange Money') { 
+      this.effectuerTransactMobile(this.servicesService.route.payments[0], this.servicesService.route.payments[1])
+    } else if (this.f['payment_mode'].value === 'Mobile Money') {
+      this.effectuerTransactMobile(this.servicesService.route.paymentsMomo[0], this.servicesService.route.paymentsMomo[1])
+    } else {
+      this.addCashIn()
+    }  
+  }
+
+  
   // consommation de api de creation d'un privilige
   addCashIn() {
     // stockage des données du formulaire dans un objet
@@ -129,27 +143,16 @@ export class AboutBookingComponent {
     }); 
   }
 
-  addTransactionsOption() {  
-    if (this.f['payment_mode'].value === 'Orange Money') { 
-      this.effectuerTransactMobile(this.servicesService.route.payments[1], this.servicesService.route.getstatus[1])
-    } else if (this.f['payment_mode'].value === 'Mobile Money') {
-      this.effectuerTransactMobile(this.servicesService.route.paymentsMomo[1], this.servicesService.route.paymentsMomo[1])
-    } else {
-      this.addCashIn()
-    }  
-  }
-
   effectuerTransactMobile(data : any, route : string) {  
     const payload = {
       reference: 'Paiement chez '+this.authService.currentUserValue.hotelName,
-      amount: String(this.f['amount1'].value*1.02),
+      amount: this.f['amount'].value*1.02,
       phonePayeur: this.f['phone'].value,
-      payment_mode: this.f['payment_mode'].value, 
-      seller_id: this.bookings.user.id,
+      //order_id: 7,
+      payment_mode: this.f['payment_mode'].value,  
       booking_id: this.bookings.id,
       service_id : 1,
-      date: formatDate(this.f['date'].value,'YYYY-MM-dd', 'en-US'), 
-      payment_method: this.f['payment_mode'].value, 
+      date: formatDate(this.f['date'].value,'YYYY-MM-dd', 'en-US'),  
     }; 
     this.loading = true;  
     this.servicesService.addObjets(
@@ -157,7 +160,7 @@ export class AboutBookingComponent {
     ).subscribe({
       next: (res) => {
         this.loading = false;
-        this.getStatusMobile(res.data.idTransaction, this.f['type'].value, route);
+        this.getStatusMobile(res.data.idTransaction,   route);
       },
       error: (error) => {
         this.loading = false; 
@@ -170,29 +173,33 @@ export class AboutBookingComponent {
     });  
   }
   
-  getStatusMobile(id: number, type : number, route : string) {
-    this.payment = true;
+  getStatusMobile(id: number,  route : string) {
+    this.payments = true;
     this.servicesService.getStatus(
       route, id
     ).subscribe({
       next: (data) => {
-        this.payment = false;
+        this.payments = false;
         if (data.data.status === "SUCCESSFULL" || data.data.status === "SUCCESSFUL" ) {
           this.dialogRef.close(1);
           this.loading = false;
           this.servicesService.showCustomPosition(); 
         } else if (data.data.status === "PENDING"){
           this.servicesService.showCustomPositionEchec(this.message);
+          this.dialogRef.close(1);
         } else {
           this.servicesService.showCustomPositionEchec(this.message);
+          this.dialogRef.close(1);
         }
       },
       error: (error) => {
-        this.payment = false; 
+        this.payments = false; 
         if (error.message) {
           this.servicesService.showCustomPositionEchec(error.message);
+          this.dialogRef.close(1);
         } else {
           this.servicesService.showCustomPositionEchec(error);
+          this.dialogRef.close(1);
         }
       },
     });

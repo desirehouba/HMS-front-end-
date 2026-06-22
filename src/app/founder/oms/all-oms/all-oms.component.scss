@@ -9,13 +9,12 @@
 }
 
 .butun {
-    background-color: #028b5b;
+    background-color: #0a92d6;
     border-radius: 3px;
-    color: white;
-    min-height: 4rem;
+    color: white; 
     min-width: 8rem ;
 }
-
+.mag
 li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     height: 0rem !important;
 }
@@ -36,6 +35,14 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     flex-direction: row;
 }
 
+.taille{
+    max-width: 12%;
+}
+.tails{
+    max-width: 10%;
+}
+
+
 .date1 {
     width: 70%;
     display: flex;
@@ -47,12 +54,33 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     display: flex;
     flex-direction: row;
 }
+.tran{
+    max-width: 5%;
+}
 
 .w100 {
     width: 100%;
 }
 
+.vert {
+    color: green;
+}
+
+.orang{
+    color: orange;
+}
+
 
 .som {
     vertical-align: middle !important;
+}
+
+.amount{
+    text-align: right !important;
+    width: 100%;
+}
+
+.amounts{
+    text-align: center !important;
+    width: 100%;
 }

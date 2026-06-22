@@ -188,8 +188,11 @@
                               <span *ngIf="row.container_stock[0]>0">
                                 {{row.container_stock[0]}} {{row.unit_of_measurement }}
                               </span>
+                              <span *ngIf="row.container_stock[0]>0 && row.container_stock[1]>0">
+                                et 
+                              </span>
                               <span *ngIf="row.container_stock[1]>0">
-                                et {{row.container_stock[1]}} {{row.container_unit }}
+                                {{row.container_stock[1]}} {{row.container_unit }}
                               </span> 
                             </span>
                           </mat-cell>
@@ -218,14 +221,14 @@
                                 [class]="'tbl-fav-edit'">
                               </app-feather-icons>
                             </button>
-                            <!-- <button mat-icon-button
+                            <button mat-icon-button
                               (click)="$event.stopPropagation()"
                               (click)="deleteItem(row)"
                               class="tbl-action-btn">
                               <app-feather-icons [icon]="'trash-2'"
                                 [class]="'tbl-fav-delete'">
                               </app-feather-icons>
-                            </button> -->
+                            </button>
                           </mat-cell>
                         </ng-container>
                         <mat-header-row *matHeaderRowDef="displayedColumns">

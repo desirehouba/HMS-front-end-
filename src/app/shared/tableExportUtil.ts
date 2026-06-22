@@ -132,7 +132,7 @@ export class TableExportUtil {
       }
     });
     autoTable(doc, {
-      head: [['Sommes', 'Cash','OM', 'bank']],
+      head: [['Sommes', 'Cash','Orange Money', 'bank']],
       body: [[stats.sommes,stats.cash ,stats.oms, stats.bank]],/* 
       styles: { halign: 'right' }, */
       theme: 'striped',

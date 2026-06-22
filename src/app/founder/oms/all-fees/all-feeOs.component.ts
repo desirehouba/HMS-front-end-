@@ -23,7 +23,7 @@ import { AuthService } from 'src/app/core/service/auth.service';
 import { Transactions } from 'src/app/core/models/transactions.model';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicesService } from 'src/app/core/service/services.service';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 /* import { formatDate } from '@angular/common'; */
 
@@ -42,7 +42,7 @@ export class AllFee0sComponent
     'fee.name',
     'advancePayment',
     'balancePayment',
-    //'payment_mode',
+    'payment_mode',
     'created_at',
     //'actions',
   ];
@@ -55,6 +55,9 @@ export class AllFee0sComponent
   classrooms: any[] = [];
   sommes: any = 0;
   s: boolean = false;
+  loading = false;
+  OmMomoPayment_mode!: any
+  paiemendsModes = [ 'Orange Money', 'Mobile Money' ];
   breadscrums = [
     {
       title: 'All Fee0s',
@@ -77,13 +80,15 @@ export class AllFee0sComponent
       localStorage.getItem('lang') as string
     );
     super();
+    if (localStorage.getItem('OmMomoPayment_mode') ) {
+      this.OmMomoPayment_mode = JSON.parse(localStorage.getItem('OmMomoPayment_mode') || 'Orange Money')
+    }
     this.transForms = this.fb.group({
       classroom: [""],
-      date_start: [""],
-      date_end: [""],
-    });
-    
-    this.sommes = localStorage.getItem('xfom')
+      date_start: ["", [Validators.required]],
+      date_end: ["", [Validators.required]],
+      payment_mode: [this.OmMomoPayment_mode ? this.OmMomoPayment_mode : 'Orange Money', [Validators.required]],
+    }); 
     
   }
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -94,28 +99,30 @@ export class AllFee0sComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    this.loadData();
-    this.setDate(false);
+    this.loadData(); 
   }
   refresh() {
     this.loadData();
   }
 
-  ss() {
-    this.sommes = localStorage.getItem('xfom')
-    this.s = true
+ 
+  get f() {
+    return this.transForms.controls;
   }
 
-  addNew() {
-    this.router.navigate(
-      ["/founder/feeOs/all-feeOs/add-om"]
-    );
+  setPaiementMode() {
+    if (this.f["payment_mode"].value != null) {
+      localStorage.setItem('OmMomoPayment_mode', JSON.stringify(this.f["payment_mode"].value));
+    } else {
+      localStorage.setItem('OmMomoPayment_mode', JSON.stringify(null));
+    }
+    this.ngOnInit();
   }
 
   setDate(i: boolean) {
     if (i === true) {
-      localStorage.setItem('date_start', formatDate(this.transForms.controls['date_start'].value,'dd-MM-YYYY', 'en-US'));
-      localStorage.setItem('date_end', formatDate(this.transForms.controls['date_end'].value,'dd-MM-YYYY', 'en-US'));
+      localStorage.setItem('date_start', formatDate(this.f['date_start'].value,'dd-MM-yyyy', 'en-US'));
+      localStorage.setItem('date_end', formatDate(this.f['date_end'].value,'dd-MM-yyyy', 'en-US'));
     } else {
       localStorage.setItem('date_start', '');
       localStorage.setItem('date_end', '');

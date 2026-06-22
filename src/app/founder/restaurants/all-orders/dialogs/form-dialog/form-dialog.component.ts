@@ -43,6 +43,7 @@ export class OrdersDialogComponent {
   customer = false;
   image!:any
   article = false; 
+  services: any[] = [];
   constructor(
     public dialogRef: MatDialogRef<OrdersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -84,17 +85,31 @@ export class OrdersDialogComponent {
     this.dialogRef.close();
   } 
   ngOnInit(): void {
-    this.getProductss(); 
-    this.getCustomerss();
-    this.getRoomss();
-    this.getOrders()
+    this.getServicess()
+  }
+ 
+  getServicess() { 
+    const paylaod = {
+      hotel_id: this.authService.currentUserValue.hotel_id,
+      type: 'Restaurant'
+    }
+    this.servicesService.getObjetss(
+      this.servicesService.route.services[1], paylaod
+    ).subscribe({
+      next: (res) => {
+        this.services = res.data; 
+        this.getProductss(); 
+        this.getCustomerss(); 
+        this.getOrders()
+      }, 
+    });
   }
 
   getProductss() {
     this.product = true;
     const paylaod = {
       hotel_id : this.authService.currentUserValue.hotel_id,
-      service_id : 2,
+      service_id: this.services[0].id,
     }
     this.servicesService.getObjetss(
       this.servicesService.route.products[1],
@@ -116,6 +131,7 @@ export class OrdersDialogComponent {
     const paylaod = {
       hotel_id : this.authService.currentUserValue.hotel_id,
       role_id : 5,
+      service_id: this.services[0].id,
     }
     this.servicesService.getObjetss(
       this.servicesService.route.users[1],
@@ -126,24 +142,7 @@ export class OrdersDialogComponent {
         this.customer = false;
       },
     });
-  }
-
-  getRoomss() {
-    this.product = true;
-    const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      status : "busy",
-    }
-    this.servicesService.getObjetss(
-      this.servicesService.route.rooms[1],
-      paylaod
-    ).subscribe({
-      next: (res) => {
-        this.rooms = res.data;
-        this.room = false;
-      },
-    });
-  }
+  } 
 
   getOrders() { 
     this.orderArrys = [];

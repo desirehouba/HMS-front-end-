@@ -44,12 +44,13 @@ export class OrdersService extends UnsubscribeOnDestroyAdapter {
     if (typeof(data) === 'object') {
       data = null
     } 
-    this.paylaod = {  
-      service_id: 2,
-      date_start: localStorage.getItem('date_start_order_restaurant'),
-      date_end: localStorage.getItem('date_end_order_restaurant'),
-      status : localStorage.getItem('status_restaur') ? JSON.parse(localStorage.getItem('status_restaur') || '') : '', 
-      payment_status: localStorage.getItem('payment_status_restaur') ? JSON.parse(localStorage.getItem('payment_status_restaur') || '') : '', 
+    this.paylaod = { 
+      hotel_id: this.authService.currentUserValue.hotel_id,
+      service_id: 3,
+      date_start: localStorage.getItem('date_start_order_Bar'),
+      date_end: localStorage.getItem('date_end_order_Bar'),
+      status : localStorage.getItem('statusOrder') ? JSON.parse(localStorage.getItem('statusOrder') || '') : '', 
+      payment_status: localStorage.getItem('paymentStatusOrder') ? JSON.parse(localStorage.getItem('paymentStatusOrder') || '') : '', 
       filter_value: data,
       page_items: page_items+1,
       nbre_items: nbre_items

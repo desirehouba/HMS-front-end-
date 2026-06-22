@@ -185,7 +185,7 @@
     "TEXT": "Paiement des Frais"
   },
   "OMS": {
-    "TEXT": "Orange Money"
+    "TEXT": "OM/MoMo"
   },
   "MOMO": {
     "TEXT": "Mobile Money"
@@ -206,13 +206,9 @@
   "SANCTIONS": {
     "TEXT": "Sanctions"
   },
-
-
-  "HOMEWORKS": {
-    "TEXT": "Devoirs"
-  },
+ 
   "BARS": {
-    "TEXT": "Bar"
+    "TEXT": "BAR"
   },
 
 
@@ -226,6 +222,9 @@
   "Hour": "Heure"
 },
   "app": {  
+    "canceled_booking": "Annuler la reservation",
+    "search_product" : "Recherche de produit",
+    "initiated" : "Initié",
     "created_by": "Créé par",
     "less_hen_last_month" : "Moins que le mois dernier",
     "higher_then_last_month" : "Plus que le mois dernier",
@@ -253,6 +252,7 @@
   "add_productMovement" : "Réapprovisionner le stock de produits",
   "container_quantity" : "Quantité du contenu",
   "container_unit" : "Unité de mesure du contenu", 
+  "unit_of_measurement" : " Unité de mesure",
   "expenseType": "Types de dépense",
   "stock_indisponible": "Stock Indisponible",
   "vehicle_number": "Numéro du véhicule", 
@@ -267,7 +267,6 @@
   "stock_quantity": "Quantité en stock",
   "productMovements": "Mouvements des Produits",
   "add_disbursement": "Ajouter une depense",
-  "unit_of_measurement" : " Unité de mesure",
   "cni_passport": "CNI / Passeport",
   "generate_purchase_order" : "Generer un bon de commande",
   "requesting_price" : "Demande de prix",
@@ -332,7 +331,7 @@
   "new_stock" : "Nouveau stock",
   "entry" : "Entrée",
   "exit" : "Sortie",
-
+  "successfull" : "SUCCÈS",
 
   "ar": "Arabe",
   "failed" : "échoué",
@@ -851,8 +850,8 @@
   "RIB" : "Virement Bancaire",
   "OM" : "Orange Money",
   "mode_retrait" : "Mode de retrait",
-  "info" : "Information sur l'école : ",
-  "company_name" : "Nom de l'école : ",
+  "info" : "Information sur  la structure : ",
+  "company_name" : "Nom de la structure : ",
   "montant_retrait_brut" : "Montant avec commission inclu : ",
   "all_amount" : "Montant Total reçu",
   "all_retrait" : "Montant Total retiré",

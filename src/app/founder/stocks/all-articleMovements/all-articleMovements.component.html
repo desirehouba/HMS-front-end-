@@ -204,10 +204,26 @@
                               {{"app.quantity" | translate }}:
                             </span>
                             <span class="amount" *ngIf="row.operationType==='entry'">
-                              {{row.quantity }} ({{row.article.unit_of_measurement}})
+                              <span *ngIf="row.container_quantity[0]>0">
+                                {{row.container_quantity[0]}} {{row.unit_of_measurement }}
+                              </span>
+                              <span *ngIf="row.container_quantity[0]>0 && row.container_quantity[1]>0">
+                                et 
+                              </span>
+                              <span *ngIf="row.container_quantity[1]>0">
+                                {{row.container_quantity[1]}} {{row.container_unit }}
+                              </span> 
                             </span>
                             <span class="amount" *ngIf="row.operationType==='exit'"> 
-                              {{row.quantity }} ({{row.article.container_unit}})
+                              <span *ngIf="row.container_quantity[0]>0">
+                                {{row.container_quantity[0]}} {{row.unit_of_measurement }}
+                              </span>
+                              <span *ngIf="row.container_quantity[0]>0 && row.container_quantity[1]>0">
+                                et 
+                              </span>
+                              <span *ngIf="row.container_stock[1]>0">
+                                {{row.container_quantity[1]}} {{row.container_unit }}
+                              </span> 
                             </span>
                           </mat-cell>
                         </ng-container>
@@ -226,8 +242,11 @@
                               <span *ngIf="row.container_stock[0]>0">
                                 {{row.container_stock[0]}} {{row.article.unit_of_measurement }}
                               </span>
+                              <span *ngIf="row.container_stock[0]>0 && row.container_stock[1]>0">
+                                et 
+                              </span>
                               <span *ngIf="row.container_stock[1]>0">
-                                et {{row.container_stock[1]}} {{row.article.container_unit }}
+                                 {{row.container_stock[1]}} {{row.article.container_unit }}
                               </span> 
                             </span>
                           </mat-cell>

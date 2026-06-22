@@ -33,7 +33,10 @@ import { MainComponent } from './main/main.component';
 import { RetraitsService } from './all-retraits/retraits.service';
 import { AllFee0sComponent } from './all-fees/all-feeOs.component';
 import { Fee0sService } from './all-fees/feeOs.service';
-import { ValidFormDialogComponent } from './all-retraits/dialogs/form-dialog/form-dialog.component';
+import { AllTransactionsComponent } from './all-transactions/all-transactions.component';
+import { TransactionsService } from './all-transactions/transactions.service';
+import { AboutRecuComponent } from './all-transactions/dialogs/about-recu/about-recu.component';
+import { AboutRetraitComponent } from './all-retraits/dialogs/about-retrait/about-retrait.component';
 @NgModule({
   declarations: [
     AllOmsComponent,
@@ -41,7 +44,9 @@ import { ValidFormDialogComponent } from './all-retraits/dialogs/form-dialog/for
     AddRetraitComponent,
     MainComponent,
     AllFee0sComponent,
-    ValidFormDialogComponent
+    AllTransactionsComponent,
+    AboutRecuComponent,
+    AboutRetraitComponent
   ],
   imports: [
     NgApexchartsModule,
@@ -77,6 +82,8 @@ import { ValidFormDialogComponent } from './all-retraits/dialogs/form-dialog/for
       },
     }),
   ],
-  providers: [OmsService, RetraitsService, Fee0sService],
+  providers: [
+    OmsService, RetraitsService, 
+    Fee0sService, TransactionsService],
 })
 export class OmsModule {}

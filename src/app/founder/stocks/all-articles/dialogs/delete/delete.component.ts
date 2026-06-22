@@ -20,10 +20,13 @@ export class ArticleDeleteDialogComponent {
   }
   confirmDelete(): void {
     this.loading = true;
+    const payload = {
+      ids: [this.data.id],
+    };
 
     this.servicesService.deleteObjetsMulti(
-      this.servicesService.route.articles[0],
-      this.data.id
+      this.servicesService.route.articles[2],
+      payload
     ).subscribe({
       next: (data) => {
         this.loading = false;

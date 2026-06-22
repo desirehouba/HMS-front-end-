@@ -53,23 +53,27 @@ export class MainComponent implements OnInit {
   public barChartOptions!: Partial<chartOptions>;
   public performanceRateChartOptions!: Partial<chartOptions>;
   public polarChartOptions!: Partial<chartOptions>;
-  statistiques: any = {
-    student: 0,
-    parent: 0,
-    teacher: 0,
+  statisMomo: any = {
+    sommeRetire_1: 0,
+    sommeTotal_1: 0,
+    sommeNet: 0,
+    sommeEnCaisse: 0,
+    sommeTotaleEnCaisse:0,
+    schools : []
   };
 
   sommeOM: any = {
     sommeRetire_1: 0,
     sommeTotal_1: 0,
-    sommeTotalDisponible: 0,
+    sommeNet: 0,
     sommeEnCaisse: 0,
+    sommeTotaleEnCaisse: 0,
     schools : []
   };
   hide = false;
   fin = false;
   finances!: any;
-  
+  momo = false;
   logo : any = "";
   //sommeOM!: any;
   breadscrums = [
@@ -90,42 +94,41 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.chart1();
-    this.chart2();
-    this.getStatistique();
+    this.chart2(); 
     this.getStatOM();
+    this.getStatMOMO();
     this.logo = "assets/logo/"+localStorage.getItem('logo');
   }
-
-  getStatistique() {
-    const paylaod = {
-      idSchool: this.authService.currentUserValue.idSchool,
-      idSection: this.authService.currentUserValue.idSection,
-    };
-    this.servicesService.getStatistique(paylaod)
-    .subscribe({
-      next: (res) => {
-        this.statistiques = res.data;
-        this.hide = true;
-        console.log(this.statistiques);
-        
-      },
-    });
-  }
-
 
   getStatOM() {
     const paylaod = {}
     this.servicesService.getObjetss(
-      this.servicesService.route.statsOM[0],
+      this.servicesService.route.payments[2],
       paylaod
     ).subscribe({
-      next: (res) => {
-        console.log(res.data);
-        this.sommeOM = res.data;
+      next: (res) => { 
+        this.sommeOM = res;
         this.fin = true;
       },
       error: (error) => {
         this.fin = true;
+        this.servicesService.showCustomPositionEchec(error);
+      },
+    });
+  }
+
+  getStatMOMO() { 
+    const paylaod = {}
+    this.servicesService.getObjetss(
+      this.servicesService.route.paymentsMomo[2],
+      paylaod
+    ).subscribe({
+      next: (res) => {
+        this.statisMomo = res;
+        this.momo = true;
+      },
+      error: (error) => {
+        this.momo = true;
         this.servicesService.showCustomPositionEchec(error);
       },
     });

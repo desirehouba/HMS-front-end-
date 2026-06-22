@@ -18,17 +18,18 @@
                   </div>
                    <mat-form-field appearance="outline" *ngIf="!user"
                     class="example-full-width mb-3">
-                    <mat-label> {{"app.responsable" | translate }}</mat-label>
-                    <mat-select formControlName="responsible_id" required>
-                      <mat-option [value]="user.id"
-                        *ngFor="let user of users">
+                    <mat-label> {{"app.responsable" | translate }}</mat-label> 
+                    <mat-select formControlName="responsible_id" required
+                      (openedChange)="onOpenChange(multiUserSearch)">
+                      <input #multiUserSearch matInput class="colors"
+                      style=" border: 1px solid #028b5b;"
+                        placeholder="search responsable"
+                        (input)="onInputChange($event)"
+                        formControlName="filter_value" />
+                      <mat-option [value]="user.id" *ngFor="let user of filterUsers">
                         {{ user.name }}
                       </mat-option>
-                    </mat-select>
-                    <mat-error
-                      *ngIf="voucherForm.get('responsable')?.hasError('required')">
-                      role is required
-                    </mat-error>
+                    </mat-select> 
                   </mat-form-field> 
                 </div>
                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-2">
@@ -40,17 +41,18 @@
                   </div>
                    <mat-form-field appearance="outline" *ngIf="!user"
                     class="example-full-width mb-3">
-                    <mat-label> {{"app.supplier" | translate }}</mat-label>
-                    <mat-select formControlName="supplier_id" required>
-                      <mat-option [value]="user.id"
-                        *ngFor="let user of suppliers">
+                    <mat-label> {{"app.supplier" | translate }}</mat-label> 
+                    <mat-select formControlName="supplier_id" required
+                      (openedChange)="onOpenChangeSupplier(multiUserSearch)">
+                      <input #multiUserSearch matInput class="colors"
+                      style=" border: 1px solid #028b5b;"
+                        placeholder="search fournisseur"
+                        (input)="onInputChangeSupplier($event)"
+                        formControlName="filter_value" />
+                      <mat-option [value]="user.id" *ngFor="let user of filterSuppliers">
                         {{ user.name }}
                       </mat-option>
-                    </mat-select>
-                    <mat-error
-                      *ngIf="voucherForm.get('responsable')?.hasError('required')">
-                      role is required
-                    </mat-error>
+                    </mat-select>  
                   </mat-form-field> 
                 </div>
                 <div
@@ -126,12 +128,24 @@
                           <mat-form-field appearance="outline"
                             class="example-full-width mb-3">
                             <mat-label></mat-label>
-                            <mat-select [(ngModel)]="book.id">
+                            <!-- <mat-select [(ngModel)]="book.id">
                               <mat-option [value]="article.id"
                                 *ngFor="let article of articles">
                                 {{ article.name }}
                               </mat-option>
-                            </mat-select>
+                            </mat-select> -->
+                            <mat-select [(ngModel)]="book.id"  
+                              (openedChange)="onOpenChangeArticle(multiUserSearch)">
+                              <input #multiUserSearch matInput class="colors"
+                              style=" border: 1px solid #028b5b;"
+                                placeholder="search fournisseur"
+                              (input)="onInputChangeArticle($event)"
+                                formControlName="filter_value" />
+                              <mat-option [value]="article.id"
+                                *ngFor="let article of filterArticles">
+                                {{ article.name }}
+                              </mat-option>
+                            </mat-select> 
                           </mat-form-field>
                         </div>
                       </p-celleditor>

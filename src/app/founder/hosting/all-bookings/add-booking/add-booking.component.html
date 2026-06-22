@@ -13,16 +13,11 @@
                 <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12 mb-2">
                   <mat-form-field appearance="outline"
                     class="example-full-width mb-3" *ngIf="!user">
-                    <mat-label> {{"app.name" | translate }}</mat-label>
-                    <!-- <mat-select formControlName="user_id" required>
-                      <mat-option [value]="user.id"
-                        *ngFor="let user of users">
-                        {{ user.name }}
-                      </mat-option>
-                    </mat-select> -->
+                    <mat-label> {{"app.name" | translate }}</mat-label> 
                     <mat-select formControlName="user_id" required
                       (openedChange)="onOpenChange(multiUserSearch)">
                       <input #multiUserSearch matInput class="colors"
+                      style=" border: 1px solid #028b5b;"
                         placeholder="search customer"
                         (input)="onInputChange($event)"
                         formControlName="filter_value" />

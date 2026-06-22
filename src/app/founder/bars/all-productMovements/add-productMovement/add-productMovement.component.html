@@ -57,10 +57,21 @@
                   <mat-form-field appearance="outline" *ngIf="!product"
                     class="example-full-width mb-3">
                     <mat-label> {{"app.product" | translate }}</mat-label>
-                    <mat-select formControlName="product_id">
+                    <!-- <mat-select formControlName="product_id">
                       <mat-option [value]="product.id"
                         *ngFor="let product of products">
                         {{ product.name }}
+                      </mat-option>
+                    </mat-select> -->
+                    <mat-select formControlName="product_id" required
+                      (openedChange)="onOpenChange(multiUserSearch)">
+                      <input #multiUserSearch matInput class="colors"
+                      style=" border: 1px solid #028b5b;"
+                        placeholder="recherche de produit"
+                        (input)="onInputChange($event)"
+                        formControlName="filter_value" />
+                      <mat-option [value]="user.id" *ngFor="let user of filteredProducts">
+                        {{ user.name }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

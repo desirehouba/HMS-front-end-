@@ -362,10 +362,11 @@
                               {{"app.created_at" | translate }}:
                             </span>
                             <span class="amounts" *ngIf="row.delivery_date != null">
-                              {{row.delivery_date | date:'dd/MM/yyyy'}}
+                              {{row.delivery_date  | date:'dd/MM/yyyy'}}
                             </span>
                              <span class="amounts" *ngIf="row.delivery_date === null || row.delivery_date === undefined">
-                              {{row.created_at  | date:'dd/MM/yyyy'}}
+                              {{row.created_at | date:'dd/MM/yyyy'}}
+                              <!-- {{row.created_at | date : 'short' }} -->
                             </span>
                           </mat-cell>
                         </ng-container>

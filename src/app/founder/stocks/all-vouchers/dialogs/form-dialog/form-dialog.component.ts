@@ -54,6 +54,20 @@ export class VouchersDialogComponent {
   scholar_level = "";
   quotation_file: any;
   image: any;
+  filterArticles: any[] = [];
+
+  onInputChangeArticle(event: any) {
+    const searchInput = event.target.value.toLowerCase();
+    this.filterArticles = this.articles.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChangeArticle(searchInput: any) {
+    searchInput.value = "";
+    this.filterArticles = this.articles;
+  }
   constructor(
     public dialogRef: MatDialogRef<VouchersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,

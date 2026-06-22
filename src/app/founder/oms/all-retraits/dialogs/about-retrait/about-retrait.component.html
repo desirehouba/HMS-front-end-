@@ -1,0 +1,134 @@
+<div class="addContainer with">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{"app.more_informations" | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button
+      (click)="dialogRef.close()"
+      class="modal-close-button"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content class="card test">
+    <mat-tab-group>
+      <mat-tab>
+        <div class="col-lg-12 col-md-12 col-sm-12 mag2">
+          <div class="project_widget mag2">
+            <div class="body">
+              <div class="row">
+                <div class="col-md-6 col-6">
+                  <strong class="text-muted">
+                    {{"app.school" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.school.name }}
+                  </p>
+                </div>
+                <div class="col-md-6 col-6">
+                  <strong class="text-muted">
+                    {{"app.by" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.user.name }}
+                  </p>
+                </div> 
+              </div> 
+              <div class="row">
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.mode_retrait" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.mode_retrait }}
+                  </p>
+                </div>
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.amount" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.montant_retrait_net | number}}
+                  </p>
+                </div> 
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.date" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.date }}
+                  </p>
+                </div> 
+                
+              </div>
+              <div class="row">
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    {{"app.numero_retrait" | translate }}
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.numero_retrait }}
+                  </p>
+                </div>
+                <div class="col-md-4 col-6">
+                  <strong class="text-muted">
+                    RIB
+                  </strong>
+                  <br/>
+                  <p>
+                    {{ retraits.rib }}
+                  </p>
+                </div>  
+                <div class="col-md-2 col-6 b-r" >
+                  <strong class="text-muted ">
+                    {{"app.status" | translate }}
+                  </strong>
+                  <br/>
+                  <p *ngIf="retraits.status==='success'">
+                    <span class="badge badge-solid-green">
+                      {{"app.successfull" | translate }}</span>
+                  </p>
+                  <p *ngIf="retraits.status==='failed'">
+                    <span class="badge badge-solid-red">
+                      {{"app.failed" | translate }}</span>
+                    </p>
+                  <p  *ngIf="retraits.status==='initiated'">
+                    <span class="badge badge-solid-orange">
+                      {{"app.initiated" | translate }}</span>
+                  </p>
+                  <p  *ngIf="retraits.status==='pending'">
+                    <span class="badge badge-solid-purple">
+                      {{"app.pending" | translate }}</span>
+                  </p>
+                </div> 
+              </div>
+              <div class="row" style="margin-top: 20px;"> 
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2" >
+                  <button mat-raised-button color="primarys" 
+                    [disabled]="loading" 
+                    [class.auth-spinner]="loading"
+                    class="btn-space primarys"
+                    *ngIf="retraits.status==='pending'"
+                    style="background-color: #0a92d6; color: white;"
+                    (click)="retraitsActions('success')">
+                    {{"app.valider" | translate}} 
+                  </button>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

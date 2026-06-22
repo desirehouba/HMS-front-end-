@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { FormDialogComponent } from './form-dialog.component';
+import { PurchaseSupplyDemandsDialogComponent } from './form-dialog.component';
 
-describe('FormDialogComponent', () => {
-  let component: FormDialogComponent;
-  let fixture: ComponentFixture<FormDialogComponent>;
+describe('PurchaseSupplyDemandsDialogComponent', () => {
+  let component: PurchaseSupplyDemandsDialogComponent;
+  let fixture: ComponentFixture<PurchaseSupplyDemandsDialogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormDialogComponent ]
+      declarations: [ PurchaseSupplyDemandsDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormDialogComponent);
+    fixture = TestBed.createComponent(PurchaseSupplyDemandsDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

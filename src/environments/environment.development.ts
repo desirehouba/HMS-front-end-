@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl: 'http://localhost:4200',
-  apiUrlKey : 'https://pessi.ms-hotel.net/api',
+  apiUrlKey : 'https://gpessi.ms-hotel.net/api',
   apiUrl:  'https://' + localStorage.getItem('rtr')+'.ms-hotel.net/api',
   imageDirectoryPatch: 'https://' + localStorage.getItem('rtr')+'.ms-hotel.net/api',
   imageDirectoryPatchs: 'https://' + localStorage.getItem('rtr')+'.ms-hotel.net/uploads/',

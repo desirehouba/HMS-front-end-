@@ -1,5 +1,9 @@
-.custom-scroll-bar {
-    height: 30vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
+.with {
+    min-width: 80rem !important;
+}
+
+.bordure {
+    margin-top: -40px;
+    margin-left: 13px;
+    margin-right: 13px;
+}

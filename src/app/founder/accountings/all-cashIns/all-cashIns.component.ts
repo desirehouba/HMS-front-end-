@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicesService } from 'src/app/core/service/services.service';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AboutCashInComponent } from './dialogs/about-cashIn/about-cashIn.component';
 import { formatDate } from '@angular/common';
 
@@ -72,6 +72,19 @@ export class AllCashInsComponent
       active: 'All CashIn',
     },
   ];
+  filterUsers!: any[]; 
+  onInputChange(event: any) {
+    const searchInput = event.target.value.toLowerCase();
+    this.filterUsers = this.customers.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChange(searchInput: any) {
+    searchInput.value = "";
+    this.filterUsers = this.customers;
+  } 
   constructor(
     private fb: UntypedFormBuilder,
     public httpClient: HttpClient,
@@ -188,9 +201,10 @@ export class AllCashInsComponent
         }
         this.customers = this.customers.sort(SortArray);
         this.customer = false;
+        this.filterUsers = this.customers.sort(SortArray);
       },
       error: (error) => {
-        this.customer = false;
+        this.user = false;
       }, 
     });
   }

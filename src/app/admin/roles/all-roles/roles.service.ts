@@ -30,7 +30,7 @@ export class RolesService extends UnsubscribeOnDestroyAdapter {
     const paylaod = {
       filter_value: '',
       page_items: 1,
-      nbre_items: 1
+      nbre_items: 800
     }
     return this.httpClient.post<any>(
       `${environment.apiUrl}/permissions/all`, paylaod);
@@ -49,9 +49,9 @@ export class RolesService extends UnsubscribeOnDestroyAdapter {
   // consomation api list roles
   getAllRoless(): void {
     const paylaod = {
-      filter_value: '',
+      filter_value: '',/* 
       page_items: 1,
-      nbre_items: 1
+      nbre_items: 10 */
     }
     this.subs.sink = this.httpClient.post<any>(
       `${environment.apiUrl}/roles/all`, paylaod).subscribe({

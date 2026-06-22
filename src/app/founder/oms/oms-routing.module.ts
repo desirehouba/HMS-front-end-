@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllOmsComponent } from './all-oms/all-oms.component';
-import { AllRetraitsComponent } from './all-retraits/all-retraits.component';
+import { AllRetraitsComponent } from './all-retraits/all-retraits.component'; 
 import { AddRetraitComponent } from './all-retraits/add-retrait/add-retrait.component';
 import { MainComponent } from './main/main.component';
 import { AllFee0sComponent } from './all-fees/all-feeOs.component';
+import { AllTransactionsComponent } from './all-transactions/all-transactions.component';
 
 const routes: Routes = [
   {
@@ -26,10 +27,14 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
-  }
+  },
+  {
+    path: 'all-transactions',
+    component: AllTransactionsComponent,
+  },
 ];
 
-@NgModule({
+@NgModule({/*  */
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

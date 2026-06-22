@@ -23,6 +23,9 @@ export class AddVouchersComponent {
   voucherArrys: any[] = [];
   responsables: any[] = [];
   users: any[] = [];
+  filterUsers: any[] = [];
+  filterSuppliers: any[] = [];
+  filterArticles: any[] = [];
   suppliers: any[] = [];
   numbersVouchers = [1,2,3,4,5,6,7,8,9,10]
   voucherData: any;
@@ -33,6 +36,48 @@ export class AddVouchersComponent {
   user = false;
   article = false;
   scholar_level = "";
+  onInputChange(event: any) {
+
+    const searchInput = event.target.value.toLowerCase();
+    this.filterUsers = this.users.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChange(searchInput: any) {
+    searchInput.value = "";
+    this.filterUsers = this.users;
+  }
+
+  onInputChangeSupplier(event: any) {
+
+    const searchInput = event.target.value.toLowerCase();
+    this.filterSuppliers = this.suppliers.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChangeSupplier(searchInput: any) {
+    searchInput.value = "";
+    this.filterSuppliers = this.suppliers;
+  }
+
+  onInputChangeArticle(event: any) {
+    const searchInput = event.target.value.toLowerCase();
+    this.filterArticles = this.articles.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChangeArticle(searchInput: any) {
+    searchInput.value = "";
+    this.filterArticles = this.articles;
+  }
+
+
   breadscrums = [
     {
       title: "Add Rating",
@@ -78,6 +123,11 @@ export class AddVouchersComponent {
       next: (res) => {
         this.articles = res.data;
         this.article = false;
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.articles = this.articles.sort(SortArray);
+        this.filterArticles = this.articles.sort(SortArray);
       },
     });
   }
@@ -93,6 +143,11 @@ export class AddVouchersComponent {
       next: (res) => {
         this.users = res.data;
         this.user = false
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.users = this.users.sort(SortArray);
+        this.filterUsers = this.users.sort(SortArray);
       },
     });
   }
@@ -100,9 +155,7 @@ export class AddVouchersComponent {
   getSupplierss() {
     this.supplier = true;
     const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      role_id : 2/* 
-      service_id : this.authService.currentUserValue.idSection, */
+      role_types : ["Supplier" ]
     }
     this.servicesService.getObjetss(
       this.servicesService.route.users[1],
@@ -111,27 +164,14 @@ export class AddVouchersComponent {
       next: (res) => {
         this.suppliers = res.data;
         this.supplier = false;
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.suppliers = this.suppliers.sort(SortArray);
+        this.filterSuppliers= this.suppliers.sort(SortArray);
       },
     });
-  }
-
-  getResponsables() {
-    this.responsable = true;
-    const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      role_id : 2/* 
-      service_id : this.authService.currentUserValue.idSection, */
-    }
-    this.servicesService.getObjetss(
-      this.servicesService.route.users[1],
-      paylaod
-    ).subscribe({
-      next: (res) => {
-        this.responsables = res.data;
-        this.responsable = false;
-      },
-    });
-  }
+  } 
 
   getVouchers() {
     this.voucherArrys = [];

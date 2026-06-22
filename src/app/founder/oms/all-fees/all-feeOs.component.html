@@ -13,6 +13,7 @@
                         <div class="row">
                           <div class="col-xl-3">
                             <mat-form-field appearance="outline"
+                              style="margin-bottom: -2rem"
                               class="example-full-width">
                               <mat-label>
                                 {{"app.start" | translate}}
@@ -26,10 +27,9 @@
                           </div>
                           <div class="col-xl-3">
                             <mat-form-field appearance="outline"
-                              class="example-full-width">
-                              <mat-label>
-                                {{"app.end" | translate}}
-                              </mat-label>
+                              class="example-full-width"
+                              style="margin-bottom: -2.25rem">
+                              <mat-label> {{"app.end" | translate}}</mat-label>
                               <input matInput [matDatepicker]="rpickers"
                                 formControlName="date_end">
                               <mat-datepicker-toggle matSuffix
@@ -37,16 +37,16 @@
                               <mat-datepicker #rpickers></mat-datepicker>
                             </mat-form-field>
                           </div>
-                          <div class="col-xl-6">
-                            <button class="btn-space butun"
+                          <div class="col-xl-6 mag">
+                            <button class="btn-space"
                               [disabled]="!transForms.valid"
-                              mat-raised-button (click)="setDate(true)">
+                              mat-raised-button (click)="setDate(true)"
+                              [class.auth-spinner]="loading" color="primary">
                               {{"app.save" | translate }}
                             </button>
                             <button class="btn-space butun"
-                              [disabled]="!transForms.valid"
                               mat-raised-button (click)="setDate(false)">
-                              {{"app.all_transactions" | translate }}
+                              {{"app.alls" | translate }}
                             </button>
                           </div>
                         </div>
@@ -62,13 +62,10 @@
                           [diameter]="40"
                           mode="indeterminate">
                         </mat-progress-spinner>
-                      </div>
-                      <div *ngIf="!exampleDatabase?.isTblLoading && !s">
-                        {{this.ss()}}
-                      </div>
-                      <div class="som">
-                        <span class="som" *ngIf="s">
-                          <h3 class="som">Sommes : {{ sommes | number }}
+                      </div> 
+                      <div class="som" *ngIf="!exampleDatabase?.isTblLoading">
+                        <span class="som">
+                          <h3 class="som">Sommes : {{ exampleDatabase?.om  }}
                             FCFA</h3>
                         </span>
                       </div>
@@ -93,6 +90,29 @@
                             class="browser-default search-field"
                             aria-label="Search box">
                         </li>
+                        <li>
+                          <div class="body">
+                            <form [formGroup]="transForms">
+                              <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline" 
+                                  style="margin-bottom: -2rem" class="example-full-width">
+                                    <mat-label>
+                                      Mode
+                                    </mat-label>
+                                    <mat-select formControlName="payment_mode" 
+                                    (selectionChange)="[setPaiementMode()]"> 
+                                      <mat-option [value]="paiemendsMode" 
+                                      *ngFor="let paiemendsMode of paiemendsModes">
+                                        {{ paiemendsMode }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
                       </ul>
                     </div>
                     <div class="right">
@@ -100,7 +120,7 @@
                         <!-- <li class="tbl-header-btn">
                           <div class="m-l-10" matTooltip="ADD">
                             <button mat-mini-fab
-                              style="background-color: #028b5b;"
+                              style="background-color: #0a92d6;"
                               (click)="addNew()">
                               <mat-icon class="col-white">add</mat-icon>
                             </button>
@@ -109,7 +129,7 @@
                         <li class="tbl-header-btn">
                           <div class="m-l-10" matTooltip="REFRESH">
                             <button mat-mini-fab
-                              style="background-color: #028b5b;"
+                              style="background-color: #0a92d6;"
                               (click)="refresh()">
                               <mat-icon class="col-white">refresh</mat-icon>
                             </button>
@@ -169,30 +189,39 @@
                         </ng-container>
                         <ng-container matColumnDef="advancePayment">
                           <mat-header-cell *matHeaderCellDef class="taille">
-                            {{"app.amount" | translate }}
+                            <span class="amount">
+                              {{"app.amount" | translate }}
+                            </span>
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="taille"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.amount" | translate }}:
                             </span>
-                            {{row.advancePayment | number }}
+                            <span class="amount">
+                              {{row.advancePayment | number}}
+                            </span>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="balancePayment">
                           <mat-header-cell *matHeaderCellDef class="taille">
-                            {{"app.rest" | translate }}
+                            <span class="amount">
+                              {{"app.rest" | translate }}
+                            </span>
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="taille"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.rest" | translate }}:
-                            </span> {{row.balancePayment | number }}
+                            </span>
+                            <span class="amount">
+                              {{row.balancePayment | number}}
+                            </span>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="fee.name">
                           <mat-header-cell *matHeaderCellDef class="tailles">
-                            {{"app.name" | translate }}
+                            {{"app.fee" | translate }}
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="tailles"
                             (contextmenu)="onContextMenu($event, row)">
@@ -203,15 +232,33 @@
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="payment_mode">
-                          <mat-header-cell *matHeaderCellDef class="taille">
-                            {{"app.payment_mode" | translate }}
+                          <mat-header-cell *matHeaderCellDef
+                            class="taille">
+                            <span class="amounts">
+                              {{"app.mode" | translate }}
+                            </span>
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="taille"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
-                              {{"app.payment_mode" | translate }}:
+                              {{"app.mode" | translate }}:
                             </span>
-                            {{row.payment_mode}}
+                            <span *ngIf="row.payment_mode === 'Orange Money'"
+                              class="orang amounts">
+                              {{row.payment_mode}}
+                            </span>
+                            <span *ngIf="row.payment_mode === 'Mobile Money'"
+                              class="vert amounts">
+                              {{row.payment_mode}}
+                            </span>
+                            <span *ngIf="row.payment_mode === 'Cash'"
+                              class="amounts">
+                              {{"app.cash" | translate }}
+                            </span>
+                            <span *ngIf="row.payment_mode === 'Bank'"
+                              class="amounts">
+                              {{"app.bank" | translate }}
+                            </span>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="created_at">
@@ -223,7 +270,7 @@
                             <span class="mobile-label">
                               {{"app.date" | translate }}:
                             </span>
-                            {{row.created_at | date:'dd/MM/yyyy'}}
+                            {{row.created_at}}
                           </mat-cell>
                         </ng-container>
                         <mat-header-row *matHeaderRowDef="displayedColumns">
@@ -257,7 +304,7 @@
                       <div *ngIf="!exampleDatabase?.isTblLoading"
                         class="no-results"
                         [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
-                        No results
+                        {{"app.no_results" | translate }}
                       </div>
                       <mat-paginator #paginator
                         [length]="dataSource.filteredData.length"

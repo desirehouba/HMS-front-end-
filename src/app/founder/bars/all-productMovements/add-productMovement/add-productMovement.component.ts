@@ -20,6 +20,8 @@ export class AddProductMovementComponent {
   productMovementForm: UntypedFormGroup;
 
   products: Products[] = [];
+  filteredProducts: Products[] = [];
+  searchProduct: string = "";
   services: any[] = [];
   users: any[] = []; 
   user = false;
@@ -34,6 +36,20 @@ export class AddProductMovementComponent {
       active: "Add Rating",
     },
   ];
+
+  onInputChange(event: any) {
+
+    const searchInput = event.target.value.toLowerCase();
+    this.filteredProducts = this.products.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChange(searchInput: any) {
+    searchInput.value = "";
+    this.filteredProducts = this.products;
+  }
   constructor(
     private fb: UntypedFormBuilder,
     private authService: AuthService,
@@ -73,7 +89,12 @@ export class AddProductMovementComponent {
     ).subscribe({
       next: (res) => {
         this.products = res.data;
-        this.product = false;
+        this.product = false; 
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.products = this.products.sort(SortArray);
+        this.filteredProducts = this.products;
       },
     });
   }

@@ -14,6 +14,9 @@ export class Fee0sService extends UnsubscribeOnDestroyAdapter {
   dataChange: BehaviorSubject<Transactions[]> = new BehaviorSubject<Transactions[]>([]);
   // Temporarily stores data from dialogs
   dialogData!: any;
+  om !: any;
+  momo!: any;
+  OmMomoPayment_mode!: any;
   constructor(
     private httpClient: HttpClient,
     private router : Router,
@@ -32,23 +35,24 @@ export class Fee0sService extends UnsubscribeOnDestroyAdapter {
 
   // consomation api list roles
   getAllFee0ss(): void {
+    if (localStorage.getItem('OmMomoPayment_mode') ) {
+      this.OmMomoPayment_mode = JSON.parse(localStorage.getItem('OmMomoPayment_mode') || 'Orange Money')
+    }
     const paylaod = {
       idSchool : this.authService.currentUserValue.idSchool,
       idSection: this.authService.currentUserValue.idSection,
       date_start: localStorage.getItem('date_start'),
-      date_end: localStorage.getItem('date_end'),
-      payment_mode: 'Orange Money',
-    }
-    console.log(paylaod);
-    
+      date_end: localStorage.getItem('date_end'), 
+      payment_mode: this.OmMomoPayment_mode,
+    } 
     this.subs.sink = this.httpClient.post<any>(
       `${environment.apiUrl}/feeusersall`, paylaod)
       .subscribe({
         next: (data) => {
           this.isTblLoading = false;
-          this.dataChange.next(data.data);
-          localStorage.setItem('xfom', data.om);
-          console.log(data);
+          this.om = data.sommes
+          this.momo= data.momo
+          this.dataChange.next(data.data); 
         },
       });
   }

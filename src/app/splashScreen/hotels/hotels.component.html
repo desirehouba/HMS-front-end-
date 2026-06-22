@@ -26,9 +26,10 @@
                     {{hotel.name}} : {{hotel.city}}
                   </div>
                   <div class="name-center">
-                    {{hotel.manager.name}}
+                    {{hotel.manager?.name}}
                   </div>
                 </div>
+                <!-- <img [src]="image+hotel.logo" class="user-img" alt>  -->
                 <img src="assets/logo/logo-douala.jpeg" class="user-img" alt>
                 <br />
                 <span>Email : {{hotel.email}},  </span>
@@ -60,10 +61,10 @@
                     {{hotel.name}}
                   </div>
                   <div class="name-center">
-                    {{hotel.manager.name}}
+                    {{hotel.manager?.name}}
                   </div>
                 </div>
-                <img src="assets/logo/logo-douala.jpeg" class="user-img" alt>
+                <!-- <img src="assets/logo/logo-douala.jpeg" class="user-img" alt> -->
                 <br />
                 <span>{{hotel.email}}, Etoile  : {{hotel.stars}}</span>
                 <br />

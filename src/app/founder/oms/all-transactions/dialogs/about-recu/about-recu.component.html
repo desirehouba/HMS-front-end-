@@ -1,0 +1,11 @@
+<div class="addContainer with">
+  <div mat-dialog-content>
+    <div align="center" *ngIf="payment">
+      <mat-spinner
+        [value]="10000" color="#028b5b">
+      </mat-spinner>
+      <h1>{{this.valider | translate}}</h1>
+      <h1>{{"app.customer" | translate}}</h1>
+    </div>
+  </div>
+</div>

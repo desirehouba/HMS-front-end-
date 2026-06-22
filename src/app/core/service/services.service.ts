@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 @Injectable()
 export class ServicesService {
   route = {
+    services: ['services', 'services/all','services/trash'],
     hotels: ['hotels', 'hotels/all','hotels/trash'],
     departements: ['services', 'services/all','services/trash'],
     typeRooms: ['room-types', 'room-types/all','room-types/trash'],
@@ -35,8 +36,8 @@ export class ServicesService {
     cashIns: ['cash-ins', 'cash-ins/all','cash-ins/trash'],
     expenseTypes: ['expense-types', 'expense-types/all','expense-types/trash'],
     statistics: ['statistic-overview', 'statistic-finance', 'statistic-booking'], 
-    paymentsMomo: ['makewebpayment', 'mtn-payments'],
-    payments: ['makewebpayment', 'makemobpayment'],
+    paymentsMomo: ['payments/mtn/initiate', 'payments/mtn/status', 'payments/mtn/statistics'],
+    payments: ['payments/orange/initiate', 'payments/orange/status', 'payments/orange/statistics'],
  
 
 
@@ -91,7 +92,7 @@ export class ServicesService {
     getstatus: ['getstatuspayment', 'getstatuspaymentmob'],
     getrecu: ['pensionuserspdf', 'feeuserspdf'],
     statsOM: ['omstat'],
-    retraitsOM: ['withdrawals'],
+    retraitsOM: ['withdraws'],
     pensionUsersinsolvable: ['pensionUsersinsolvable', 'pensionUsersSolvable'],
     feeUsersinsolvable: ['feeusers-insolvables' , 'feeusers-solvables'],
     withdrawalsconfirm: ['withdrawalsconfirm'],

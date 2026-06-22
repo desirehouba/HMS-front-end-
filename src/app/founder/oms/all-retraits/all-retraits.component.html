@@ -88,40 +88,66 @@
                             {{row.id}}
                           </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="school.name">
+                        <ng-container matColumnDef="hotel.name">
                           <mat-header-cell *matHeaderCellDef mat-sort-header>
-                            {{"app.school" | translate }}
+                            {{"app.hotel" | translate }}
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
-                              {{"app.school" | translate }}:
+                              {{"app.hotel" | translate }}:
                             </span>
-                            {{row.school.name}}
+                            {{row.hotel?.name}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="user.name">
                           <mat-header-cell *matHeaderCellDef mat-sort-header>
-                            {{"app.name" | translate }}
+                            {{"app.by" | translate }}
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
-                              {{"app.name" | translate }}:
+                              {{"app.by" | translate }}:
                             </span>
-                            {{row.user.name}}
+                            {{row.user?.name}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="type">
+                          <mat-header-cell *matHeaderCellDef
+                            class="taille">
+                            <span class="amounts">
+                              {{"app.type" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.type" | translate }}:
+                            </span>
+                            <span *ngIf="row.type === 'Orange Money'"
+                              class="orang amounts">
+                              {{row.type}}
+                            </span>
+                            <span *ngIf="row.type === 'Mobile Money'"
+                              class="vert amounts">
+                              {{row.type}}
+                            </span>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="montant_retrait_net">
                           <mat-header-cell *matHeaderCellDef class="taille">
-                            {{"app.amount" | translate }}
+                            <span class="amount">
+                              {{"app.amount" | translate }}
+                            </span>
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row" class="taille"
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.amount" | translate }}:
                             </span>
-                            {{row.montant_retrait_net | number }} FCFA
+                            <span class="amount">
+                              {{row.montant_retrait_net | number}}
+                            </span>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="status">
@@ -132,9 +158,33 @@
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.status" | translate }}:
-                            </span>
-                            {{row.status}}
-                          </mat-cell>
+                            </span> 
+                            <div *ngIf="row.status==='successfull'">
+                              <span class="badge badge-solid-green">
+                                {{"app.successfull" | translate }}
+                              </span>
+                            </div>
+                            <div *ngIf="row.status==='success'">
+                              <span class="badge badge-solid-green">
+                                {{"app.successfull" | translate }}
+                              </span>
+                            </div>
+                            <div *ngIf="row.status==='pending'">
+                              <span class="badge badge-solid-purple">
+                                {{"app.pending" | translate }}
+                              </span>
+                            </div>
+                            <div *ngIf="row.status==='initiated'">
+                              <span class="badge badge-solid-orange">
+                                {{"app.initiated" | translate }}
+                              </span>
+                            </div>
+                            <div *ngIf="row.status==='failed'">
+                              <span class="badge badge-solid-red">
+                                {{"app.failed" | translate }}
+                              </span>
+                            </div>
+                        </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="mode_retrait">
                           <mat-header-cell *matHeaderCellDef class="taille">
@@ -144,8 +194,22 @@
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.mode_retrait" | translate }}:
-                            </span>
-                            {{row.mode_retrait}}
+                            </span> 
+                            <div *ngIf="row.mode_retrait==='RIB'">
+                              <span class="badge badge-solid-purple">
+                                {{"app.RIB" | translate }}
+                              </span>
+                            </div>
+                            <div *ngIf="row.mode_retrait==='OM'">
+                              <span class="badge badge-solid-orange">
+                                Orange Money
+                              </span>
+                            </div>
+                            <div *ngIf="row.mode_retrait==='MoMo'">
+                              <span class="badge badge-solid-green">
+                                Mobile Money
+                              </span>
+                            </div>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="date">
@@ -156,7 +220,24 @@
                             (contextmenu)="onContextMenu($event, row)">
                             <span class="mobile-label">
                               {{"app.date" | translate }}:
-                            </span> {{row.date}}
+                            </span> {{row.date  | date:'dd/MM/yyyy'}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                          <mat-header-cell class="pr-0 acti"
+                            *matHeaderCellDef>Actions
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row; let i=index;"
+                            class="pr-0 acti">
+                            <button mat-icon-button
+                              *ngIf="row.status === 'pending'"
+                              (click)="$event.stopPropagation()"
+                              (click)="About(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons [icon]="'eye'"
+                                [class]="'tbl-fav-edit'">
+                              </app-feather-icons>
+                            </button>
                           </mat-cell>
                         </ng-container>
                         <mat-header-row *matHeaderRowDef="displayedColumns">
@@ -190,12 +271,11 @@
                       <div *ngIf="!exampleDatabase?.isTblLoading"
                         class="no-results"
                         [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
-                        No results
+                        {{"app.no_results" | translate }}
                       </div>
                       <mat-paginator #paginator
                         [length]="dataSource.filteredData.length"
-                        [pageIndex]="0"
-                        [pageSize]="10"
+                        [pageIndex]="0" [pageSize]="10"
                         [pageSizeOptions]="[5, 10, 25, 100, 200]">
                       </mat-paginator>
                     </div>

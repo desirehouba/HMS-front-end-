@@ -17,10 +17,7 @@ export class CashInsService extends UnsubscribeOnDestroyAdapter {
   paylaod: any = {}; 
   statusCashIn!:any
   total!: any 
-  om!: any
-  momo!: any
-  cash!: any
-  bank!: any
+  statistiques!: any 
   constructor(
     private httpClient: HttpClient,
     private router : Router,
@@ -64,10 +61,7 @@ export class CashInsService extends UnsubscribeOnDestroyAdapter {
           this.dataChange.next(data.data);
           this.metaChange.next(data.meta); 
           this.total= data.total_amount
-          this.om = data.statistiques.OM
-          this.momo= data.statistiques.MOMO
-          this.cash = data.statistiques.Cash
-          this.bank= data.statistiques.bank
+          this.statistiques = data.statistiques 
         },
         error: (error: HttpErrorResponse) => {
           this.isTblLoading = false;

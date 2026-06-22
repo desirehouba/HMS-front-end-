@@ -82,8 +82,8 @@ export class AllOrdersComponent
     super();
 
     this.orderForm = this.fb.group({
-      payment_status: [localStorage.getItem('payment_status_restaur') ? JSON.parse(localStorage.getItem('payment_status_restaur') || '') : ''],
-      status: [localStorage.getItem('status_restaur') ? JSON.parse(localStorage.getItem('status_restaur') || '') : ''],
+      payment_status: [localStorage.getItem('paymentStatusOrder') ? JSON.parse(localStorage.getItem('paymentStatusOrder') || '') : ''],
+      status: [localStorage.getItem('statusOrder') ? JSON.parse(localStorage.getItem('statusOrder') || '') : ''],
       date_start: ['', [Validators.required]],
       date_end: ['', [Validators.required]],
     });
@@ -106,7 +106,7 @@ export class AllOrdersComponent
 
   addNew() { 
     this.router.navigate([
-      "/founder/restaurants/all-orders/add-order"
+      "/founder/bars/all-orders/add-order"
     ]);
   }
 
@@ -116,11 +116,11 @@ export class AllOrdersComponent
 
   setDate(i: boolean) {
       if (i === true) {
-        localStorage.setItem('date_start_order_restaurant', formatDate(this.orderForm.controls['date_start'].value,'YYYY-MM-dd', 'en-US'));
-        localStorage.setItem('date_end_order_restaurant', formatDate(this.orderForm.controls['date_end'].value,'YYYY-MM-dd', 'en-US'));
+        localStorage.setItem('date_start_order_Bar', formatDate(this.orderForm.controls['date_start'].value,'YYYY-MM-dd', 'en-US'));
+        localStorage.setItem('date_end_order_Bar', formatDate(this.orderForm.controls['date_end'].value,'YYYY-MM-dd', 'en-US'));
       } else {
-        localStorage.setItem('date_start_order_restaurant', '');
-        localStorage.setItem('date_end_order_restaurant', '');
+        localStorage.setItem('date_start_order_Bar', '');
+        localStorage.setItem('date_end_order_Bar', '');
       }
       this.loadData();
     }
@@ -128,60 +128,60 @@ export class AllOrdersComponent
 
   setStatus() {
     if (this.f["status"].value != null) {
-      localStorage.setItem('status_restaur', JSON.stringify(this.f["status"].value));
+      localStorage.setItem('statusOrder', JSON.stringify(this.f["status"].value));
     } else {
-      localStorage.setItem('status_restaur', JSON.stringify(null));
+      localStorage.setItem('statusOrder', JSON.stringify(null));
     }
     this.ngOnInit();
   }
 
   setStatusPayment() {
     if (this.f["payment_status"].value != null) {
-      localStorage.setItem('payment_status_restaur', JSON.stringify(this.f["payment_status"].value));
+      localStorage.setItem('paymentStatusOrder', JSON.stringify(this.f["payment_status"].value));
     } else {
-      localStorage.setItem('payment_status_restaur', JSON.stringify(null));
+      localStorage.setItem('paymentStatusOrder', JSON.stringify(null));
     }
     this.ngOnInit();
   } 
 
   editCall(row: Orders) {
-    this.id = row.id;
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
-    const dialogRef = this.dialog.open(OrdersDialogComponent, {
-      data: {
-        orders: row,
-        action: 'edit',
-      },
-      direction: tempDirection,
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-          (x) => x.id === this.id
-        );
-        // Then you update that record using data from dialogData (values you enetered)
-        if (foundIndex != null && this.exampleDatabase) {
-          this.exampleDatabase.dataChange.value[foundIndex] =
-            this.ordersService.getDialogData();
-          // And lastly refresh table
-          //this.refreshTable();
-          this.ngOnInit();
-          this.showNotification(
-            'black',
-            'Edit Record Successfully...!!!',
-            'bottom',
-            'center'
-          );
-        }
+      this.id = row.id;
+      let tempDirection: Direction;
+      if (localStorage.getItem('isRtl') === 'true') {
+        tempDirection = 'rtl';
+      } else {
+        tempDirection = 'ltr';
       }
-    });
-  }
+      const dialogRef = this.dialog.open(OrdersDialogComponent, {
+        data: {
+          orders: row,
+          action: 'edit',
+        },
+        direction: tempDirection,
+      });
+      this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+        if (result === 1) {
+          // When using an edit things are little different, firstly we find record inside DataService by id
+          const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
+            (x) => x.id === this.id
+          );
+          // Then you update that record using data from dialogData (values you enetered)
+          if (foundIndex != null && this.exampleDatabase) {
+            this.exampleDatabase.dataChange.value[foundIndex] =
+              this.ordersService.getDialogData();
+            // And lastly refresh table
+            //this.refreshTable();
+            this.ngOnInit();
+            this.showNotification(
+              'black',
+              'Edit Record Successfully...!!!',
+              'bottom',
+              'center'
+            );
+          }
+        }
+      });
+    }
 
   About(row: Orders) {
     this.id = row.id;

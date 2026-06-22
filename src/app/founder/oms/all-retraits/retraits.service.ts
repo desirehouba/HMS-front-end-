@@ -37,7 +37,7 @@ export class RetraitsService extends UnsubscribeOnDestroyAdapter {
     const paylaod = {
     }
     this.subs.sink = this.httpClient.post<any>(
-      `${environment.apiUrl}/withdrawalsall`, paylaod)
+      `${environment.apiUrl}/withdraws/all`, paylaod)
       .subscribe({
         next: (data) => {
           this.isTblLoading = false;

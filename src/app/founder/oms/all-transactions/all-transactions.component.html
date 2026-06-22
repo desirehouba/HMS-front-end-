@@ -1,0 +1,377 @@
+<section class="content">
+  <div class="content-block">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-tab-group>
+          <mat-tab>
+            <div class="mt-5">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- <div class="entete">
+                  <div class="card date date1">
+                    <div class="w100">
+                      <form [formGroup]="transForms">
+                        <div class="row">
+                          <div class="col-xl-3">
+                            <mat-form-field appearance="outline"
+                              style="margin-bottom: -2rem"
+                              class="example-full-width">
+                              <mat-label>
+                                {{"app.start" | translate}}
+                              </mat-label>
+                              <input matInput [matDatepicker]="rpicker"
+                                formControlName="date_start">
+                              <mat-datepicker-toggle matSuffix
+                                [for]="rpicker"></mat-datepicker-toggle>
+                              <mat-datepicker #rpicker></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-xl-6 mag">
+                            <button class="btn-space"
+                              [disabled]="!transForms.valid"
+                              mat-raised-button (click)="setDate(true)"
+                              [class.auth-spinner]="loading" color="primary">
+                              {{"app.save" | translate }}
+                            </button>
+                            <button class="btn-space butun"
+                              mat-raised-button (click)="setDate(false)">
+                              {{"app.alls" | translate }}
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                </div> -->
+                <div class="card">
+                  <div class="materialTableHeader">
+                    <div class="left">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="tbl-title">
+                          {{"app.transactions" | translate }}
+                        </li>
+                        <li class="tbl-search-box">
+                          <label for="search-input">
+                            <i class="material-icons search-icon">
+                              search
+                            </i>
+                          </label>
+                          <input placeholder="Search"
+                            type="text" #filter
+                            class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="SEARCH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              #filter (click)="filterButton()">
+                              <mat-icon class="col-white">search</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="body">
+                            <form [formGroup]="transForms">
+                              <div class="row">
+                                <div class="col-xl-12 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field appearance="outline"
+                                    style="margin-bottom: -2rem"
+                                    class="example-full-width">
+                                    <mat-label>
+                                      {{"app.status" | translate }}
+                                    </mat-label>
+                                    <mat-select formControlName="status" 
+                                    (selectionChange)="[setStatus()]">
+                                      <mat-option [value]="'PENDING'">
+                                        {{"app.pending" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'SUCCESSFULL'">
+                                        {{"app.successfull" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="'FAILED'">
+                                        {{"app.failed" | translate }}
+                                      </mat-option>
+                                      <mat-option [value]="''">
+                                        {{"app.all" | translate }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="right">
+                      <ul class="tbl-export-btn">
+                        <li class="tbl-header-btn"
+                          *ngIf="permissions.indexOf('trs-0') != -1">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="addNew()">
+                              <mat-icon class="col-white">add</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab
+                              style="background-color: #028b5b;"
+                              (click)="refresh()">
+                              <mat-icon class="col-white">refresh</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li>
+                          <div *ngIf="loading"
+                            class="tbl-spinner">
+                            <mat-progress-spinner color="primary"
+                              [diameter]="20"
+                              mode="indeterminate">
+                            </mat-progress-spinner>
+                          </div>
+                          <div class="export-button m-l-10" matTooltip="PDF"
+                            *ngIf="!loading">
+                            <img src="assets/images/icons/pdfs.png" alt
+                              class="imgs"
+                              (click)="exportPDFBackend()" />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt
+                              (click)="exportExcel()" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="body overflow-auto">
+                    <div class="responsive_table">
+                      <table mat-table #table
+                        [dataSource]="dataSource"
+                        matSort class="mat-cell">
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                          <mat-header-cell *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            [ngClass]="'tbl-col-width-per-6'">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [ngClass]="'tbl-checkbox'">
+                            </mat-checkbox>
+                          </mat-cell>
+                        </ng-container>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="customer">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{"app.customer" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label"> 
+                            </span>
+                            {{row.booking?.user?.name}}
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="amount">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            <span class="amount">
+                              {{"app.amount" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.amount" | translate }}:
+                            </span>
+                            <span class="amount" *ngIf="role === 'Admin'">
+                              {{row.amount | number}}
+                            </span>
+                            <span class="amount" *ngIf="role != 'Admin'">
+                              {{(row.amount)/1.02 | number}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="student">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            {{"app.classroom" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.classroom" | translate }}:
+                            </span>
+                            <span *ngIf="row.student!=null">
+                              <span *ngIf="row.student.classe!=null">
+                                {{row.student.classe.name}}
+                              </span>
+                            </span>
+                            <span *ngIf="row.student===null">
+                              {{row.student}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="tranche">
+                          <mat-header-cell *matHeaderCellDef class="tran">
+                            {{"app.slice" | translate }}
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="tran"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.slice" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.tranche!=null">
+                              {{row.tranche.name}}
+                            </span>
+                            <span class="amounts" *ngIf="row.tranche===null">
+                              {{row.tranche}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                          <mat-header-cell *matHeaderCellDef class="taille">
+                            {{"app.status" | translate }}
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row"
+                            class="taille">
+                            <span class="mobile-label">
+                              {{"app.statut" | translate }}:
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='SUCCESSFULL'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.successfull' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='SUCCESSFUL'">
+                              <span class="badge badge-solid-green amounts">
+                                {{'app.successfull' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='PENDING'">
+                              <span class="badge badge-solid-purple amounts">
+                                {{'app.pending' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status==='FAILED'">
+                              <span class="badge badge-solid-red amounts">
+                                {{'app.failed' | translate}}</span>
+                            </span>
+                            <span class="amounts" *ngIf="row.status===null || row.status==='CANCELLED'">
+                              <span class="badge badge-solid-orange amounts">
+                                {{'app.rejected' | translate}}</span>
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="payment_mode">
+                          <mat-header-cell *matHeaderCellDef
+                            class="taille">
+                            <span class="amounts">
+                              {{"app.mode" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="taille"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.mode" | translate }}:
+                            </span>
+                            <span *ngIf="row.payment_mode === 'Orange Money'"
+                              class="orang amounts">
+                              {{row.payment_mode}}
+                            </span>
+                            <span *ngIf="row.payment_mode === 'Mobile Money'"
+                              class="vert amounts">
+                              {{row.payment_mode}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="created_at">
+                          <mat-header-cell *matHeaderCellDef class="tails">
+                            <span class="amounts"> {{"app.date" | translate }}
+                            </span>
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="tails"
+                            (contextmenu)="onContextMenu($event, row)">
+                            <span class="mobile-label">
+                              {{"app.date" | translate }}:
+                            </span>
+                            <span class="amounts">
+                              {{row.created_at  | date:'dd/MM/yyyy'}}
+                            </span>
+                          </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                          <mat-header-cell class="tran"
+                            *matHeaderCellDef>
+                            Actions
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row; let i=index;"
+                            class="tran">
+                            <button mat-icon-button
+                              *ngIf="row.status === 'PENDING'"
+                              (click)="$event.stopPropagation()"
+                              (click)="About(row)"
+                              class="tbl-action-btn">
+                              <app-feather-icons
+                                [icon]="'printer'"
+                                [class]="'tbl-fav-delete'">
+                              </app-feather-icons>
+                            </button>
+                          </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row
+                          *matRowDef="let row; columns: displayedColumns;"
+                          [style.cursor]="'pointer'" matRipple>
+                        </mat-row>
+                      </table>
+                      <!-- Loading spinner -->
+                      <div *ngIf="exampleDatabase?.isTblLoading"
+                        class="tbl-spinner">
+                        <mat-progress-spinner color="primary"
+                          [diameter]="40" mode="indeterminate">
+                        </mat-progress-spinner>
+                      </div>
+                      <!-- context menu start -->
+                      <div style="visibility: hidden; position: fixed"
+                        [style.left]="contextMenuPosition.x"
+                        [style.top]="contextMenuPosition.y">
+                      </div>
+                      <!-- context menu end -->
+                      <div *ngIf="!exampleDatabase?.isTblLoading"
+                        class="no-results"
+                        [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
+                        {{"app.no_results" | translate }}
+                      </div>
+                      <mat-paginator #paginator
+                        (page)="dataSource.connect(valueFilter)"
+                        [length]="dataSource.meta"
+                        [pageIndex]="0" [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100, 200]">
+                      </mat-paginator>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</section>

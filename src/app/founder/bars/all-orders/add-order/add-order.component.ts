@@ -26,6 +26,8 @@ export class AddOrderComponent {
   orderForm: UntypedFormGroup;
 
   products: Products[] = [];
+  filteredProducts: Products[] = [];
+  searchProduct: string = "";
   rooms: Rooms[] = [];
   customers: any[] = [];
   filterCustomers: any[] = [];
@@ -38,6 +40,8 @@ export class AddOrderComponent {
   product = false;
   image = "";
   SelectProducts: any[] = []
+  
+  services: any[] = [];
 
   onInputChange(event: any) {
 
@@ -51,6 +55,18 @@ export class AddOrderComponent {
   onOpenChange(searchInput: any) {
     searchInput.value = "";
     this.filterCustomers = this.customers;
+  }
+
+  filterProductsByName() {
+    const search = this.searchProduct.toLowerCase().trim();
+    this.filteredProducts = this.products.filter(({ name }) =>
+      name.toLowerCase().includes(search)
+    );
+  }
+
+  clearProductSearch() {
+    this.searchProduct = "";
+    this.filteredProducts = this.products;
   }
 
   breadscrums = [
@@ -80,10 +96,24 @@ export class AddOrderComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.getProductss();
-    this.getCustomerss();
-    this.getRoomss() 
+  ngOnInit(): void { 
+    this.getServicess()
+  }
+ 
+  getServicess() { 
+    const paylaod = {
+      hotel_id: this.authService.currentUserValue.hotel_id,
+      type: 'Bar'
+    }
+    this.servicesService.getObjetss(
+      this.servicesService.route.services[1], paylaod
+    ).subscribe({
+      next: (res) => {
+        this.services = res.data; 
+        this.getCustomerss();
+        this.getProductss();
+      }, 
+    });
   }
 
   addRoom(data : any){
@@ -97,8 +127,8 @@ export class AddOrderComponent {
   getProductss() {
     this.product = true;
     const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      service_id : 3,
+      hotel_id : this.authService.currentUserValue.hotel_id, 
+      service_id: this.services[0].id,
     }
     this.servicesService.getObjetss(
       this.servicesService.route.products[1],
@@ -111,6 +141,7 @@ export class AddOrderComponent {
           return x.name.localeCompare(y.name);
         }
         this.products = this.products.sort(SortArray);
+        this.filteredProducts = this.products;
       },
     });
   } 
@@ -119,7 +150,8 @@ export class AddOrderComponent {
     this.customer = true;
     const paylaod = {
       hotel_id: this.authService.currentUserValue.hotel_id,
-      role_id: 5
+      role_id: 5,
+      service_id: this.services[0]?.id,
     }
     this.servicesService.getObjetss(
       this.servicesService.route.users[1], paylaod

@@ -56,7 +56,7 @@ export class AddSupplyDemandComponent {
       //name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       responsible_id: ['', [Validators.required]],
-      //status: ['', [Validators.required]],
+      demand_date: ['', [Validators.required]],
       priority  : ['', [Validators.required]],
     });
   }
@@ -97,6 +97,10 @@ export class AddSupplyDemandComponent {
     ).subscribe({
       next: (res) => {
         this.suppliers = res.data;
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.suppliers = this.suppliers.sort(SortArray); 
         this.supplier = false;
       },
     });
@@ -114,6 +118,10 @@ export class AddSupplyDemandComponent {
     ).subscribe({
       next: (res) => {
         this.responsibles = res.data;
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.responsibles = this.responsibles.sort(SortArray); 
         this.responsable = false;
       },
     });
@@ -192,7 +200,7 @@ export class AddSupplyDemandComponent {
         name: '.',
         description: this.f['description'].value,
         responsible_id: this.f['responsible_id'].value,
-        //status: this.f['status'].value,
+        demand_date: formatDate(this.f['demand_date'].value,'YYYY-MM-dd', 'en-US'),
         priority: this.f['priority'].value,
         articles : this.supplyDemandArrys,
       };

@@ -26,8 +26,11 @@ export class AddOrderComponent {
   orderForm: UntypedFormGroup;
 
   products: Products[] = [];
+  filteredProducts: Products[] = [];
+  searchProduct: string = "";
   rooms: Rooms[] = [];
   customers: any[] = [];
+  filterCustomers: any[] = [];
   orderArrys: any[] = [];
   numbersOrders = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
   orderData: any;
@@ -37,6 +40,35 @@ export class AddOrderComponent {
   product = false;
   image = "";
   SelectProducts: any[] = []
+  
+  services: any[] = [];
+
+  onInputChange(event: any) {
+
+    const searchInput = event.target.value.toLowerCase();
+    this.filterCustomers = this.customers.filter(({ name }) => {
+      const noms = name.toLowerCase();
+      return noms.includes(searchInput);
+    });
+  }
+
+  onOpenChange(searchInput: any) {
+    searchInput.value = "";
+    this.filterCustomers = this.customers;
+  }
+
+  filterProductsByName() {
+    const search = this.searchProduct.toLowerCase().trim();
+    this.filteredProducts = this.products.filter(({ name }) =>
+      name.toLowerCase().includes(search)
+    );
+  }
+
+  clearProductSearch() {
+    this.searchProduct = "";
+    this.filteredProducts = this.products;
+  }
+
   breadscrums = [
     {
       title: "Add Rating",
@@ -64,10 +96,24 @@ export class AddOrderComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.getProductss();
-    this.getCustomerss();
-    this.getRoomss() 
+  ngOnInit(): void { 
+    this.getServicess()
+  }
+ 
+  getServicess() { 
+    const paylaod = {
+      hotel_id: this.authService.currentUserValue.hotel_id,
+      type: 'Restaurant'
+    }
+    this.servicesService.getObjetss(
+      this.servicesService.route.services[1], paylaod
+    ).subscribe({
+      next: (res) => {
+        this.services = res.data; 
+        this.getCustomerss();
+        this.getProductss();
+      }, 
+    });
   }
 
   addRoom(data : any){
@@ -81,8 +127,8 @@ export class AddOrderComponent {
   getProductss() {
     this.product = true;
     const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      service_id :2,
+      hotel_id : this.authService.currentUserValue.hotel_id, 
+      service_id: this.services[0].id,
     }
     this.servicesService.getObjetss(
       this.servicesService.route.products[1],
@@ -95,43 +141,36 @@ export class AddOrderComponent {
           return x.name.localeCompare(y.name);
         }
         this.products = this.products.sort(SortArray);
+        this.filteredProducts = this.products;
       },
     });
-  }
+  } 
 
   getCustomerss() {
     this.customer = true;
     const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      role_id : 5,
+      hotel_id: this.authService.currentUserValue.hotel_id,
+      role_id: 5,
+      service_id: this.services[0]?.id,
     }
     this.servicesService.getObjetss(
-      this.servicesService.route.users[1],
-      paylaod
+      this.servicesService.route.users[1], paylaod
     ).subscribe({
       next: (res) => {
         this.customers = res.data;
         this.customer = false;
+        function SortArray(x:any, y:any){
+          return x.name.localeCompare(y.name);
+        }
+        this.customers = this.customers.sort(SortArray);
+        this.filterCustomers = this.customers.sort(SortArray);
       },
+      error: (error) => {
+        this.customer = false;
+      }, 
     });
   }
-
-  getRoomss() {
-    this.product = true;
-    const paylaod = {
-      hotel_id : this.authService.currentUserValue.hotel_id,
-      status : "busy",
-    }
-    this.servicesService.getObjetss(
-      this.servicesService.route.rooms[1],
-      paylaod
-    ).subscribe({
-      next: (res) => {
-        this.rooms = res.data;
-        this.room = false;
-      },
-    });
-  }
+ 
 
   getOrders() {
     this.orderArrys = [];
@@ -182,7 +221,7 @@ export class AddOrderComponent {
     }
     const dialogRef = this.dialog.open(AddOrderFormDialogComponent, {
       data: {
-        service_id : 2,
+        service_id : 3,
         orders: this.orderData,
         action: 'edit',
       },
@@ -219,9 +258,7 @@ export class AddOrderComponent {
       if ( order.id === null || order.quantity === null ) {
         this.servicesService.showCustomPositionEchec('vous devez remplir toutes les lignes');
         test = false
-        this.loading = false;
       } else{
-        this.loading = false;
         test = false
         this.orderData = {
           payment_mode: this.f['payment_mode'].value,
