@@ -307,10 +307,10 @@
                               {{"app.type" | translate }}:
                             </span> 
                             <span *ngIf="row.service!=null">
-                              {{row.service.name}}
+                              {{row.service?.name}}
                             </span> 
                             <span *ngIf="row.services!=null && row.service===null">
-                              {{row.services[0].name}}
+                              {{row.services[0]?.name}}
                             </span> 
                           </mat-cell>
                         </ng-container>
@@ -323,12 +323,7 @@
                             <span class="mobile-label">
                               {{"app.type" | translate }}:
                             </span> 
-                            <span *ngIf="row.order!=null">
-                              {{row.order.customer.name}}
-                            </span>
-                            <span *ngIf="row.order===null">
-                              {{row.order}}
-                            </span>
+                            {{row.order?.customer?.name}}
                           </mat-cell>
                         </ng-container> 
                         <ng-container matColumnDef="status">
@@ -365,12 +360,7 @@
                             <span class="mobile-label">
                               {{"app.by" | translate }}:
                             </span>
-                            <span *ngIf="row.creator!=null">
-                              {{row.creator.name}}
-                            </span>
-                            <span *ngIf="row.creator===null">
-                              {{row.creator}}
-                            </span>
+                            {{row.creator?.name}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="total_amount">
@@ -430,9 +420,7 @@
                             <span class="mobile-label">
                               {{"app.type" | translate }}:
                             </span>
-                            <span  *ngIf="row.expense_type_id!= null">
-                              {{row.expense_type_id.name }} 
-                            </span>
+                            {{row.expense_type_id?.name }} 
                           </mat-cell>
                         </ng-container> 
                         <ng-container matColumnDef="disbursement_date">

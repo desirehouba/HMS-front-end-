@@ -114,7 +114,7 @@ export class AddRetraitComponent {
   }
 
   action(hotel : any) {
-    this.idSch = hotel.id
+    this.idSch = hotel.hotel_id
     this.hotel = hotel
     this.vide = true;  
   }

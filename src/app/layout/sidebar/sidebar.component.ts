@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   currentRoute?: string;
   routerObj;
   sections : Sections[] =[];
-  schoolName: any = null;
+  hotelName: any = null;
   scholar_level = ''
 
   constructor(
@@ -45,10 +45,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private fb: UntypedFormBuilder,
-  ) {
-    if(this.authService.currentUserValue.schoolName){
-      this.schoolName = this.authService.currentUserValue.schoolName;
-    }
+  ) { 
+    this.hotelName = this.authService.currentUserValue.hotelName;
+ 
     
     this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {

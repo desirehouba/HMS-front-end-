@@ -317,10 +317,10 @@
                               {{"app.type" | translate }}:
                             </span> 
                             <span *ngIf="row.order!=null">
-                              {{row.order.customer.name}}
+                              {{row.order?.customer?.name}}
                             </span>
                              <span *ngIf="row.booking!=null">
-                              {{row.booking.user.name}}
+                              {{row.booking?.user?.name}}
                             </span>
                           </mat-cell>
                         </ng-container>
@@ -333,12 +333,7 @@
                             <span class="mobile-label">
                               {{"app.type" | translate }}:
                             </span> 
-                            <span *ngIf="row.service!=null">
-                              {{row.service.name}}
-                            </span>
-                            <span *ngIf="row.service===null">
-                              {{row.service}}
-                            </span>
+                            {{row.service?.name}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="order">
@@ -351,10 +346,10 @@
                               {{"app.type" | translate }}:
                             </span>
                             <span *ngIf="row.order!=null">
-                              {{row.order.name}}
+                              {{row.order?.name}}
                             </span>
                             <span *ngIf="row.booking!=null">
-                              {{row.booking.user.name}}
+                              {{row.booking?.user?.name}}
                             </span>
                           </mat-cell>
                         </ng-container>
@@ -368,7 +363,7 @@
                               {{"app.type" | translate }}:
                             </span> 
                             <span *ngIf="row.booking!=null" class="amount">
-                              {{row.booking.booking_rooms[0].name}}
+                              {{row.booking?.booking_rooms[0]?.name}}
                             </span> 
                           </mat-cell>
                         </ng-container>
