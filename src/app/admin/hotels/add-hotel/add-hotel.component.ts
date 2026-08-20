@@ -140,7 +140,6 @@ export class AddHotelComponent {
       manager_id: this.f['founder_id'].value,
       type: "test",
       category: "test",
-
     };
     //this.servicesService.addphoto(photo ).subscribe({ next: (res) => { } });
     this.servicesService.addObjets(

@@ -33,7 +33,7 @@ export class AddRetraitComponent {
   loading = false;
   sommeOM: any = {
     rib: 'test',
-    numero_retrait: '693 620 463',
+    numero_retrait: '',
     sommeRetire_1: 0,
     sommeTotal_1: 0,
     sommeTotalDisponible: 0,
@@ -129,9 +129,9 @@ export class AddRetraitComponent {
       this.servicesService.route.payments[2], this.paylaods
     ).subscribe({
       next: (res) => {
-        console.log(res);
-        this.statistique[0].sommeNet= res.sommeNet
-        this.sommeOM = res;
+        console.log(res); 
+        this.statistique[0].amount = res.sommeTotaleEnCaisse
+        this.sommeOM = res ;
         this.hotels = res.hotels
         this.hide = true;
       },
@@ -154,8 +154,9 @@ export class AddRetraitComponent {
     ).subscribe({
       next: (res) => {
         console.log(res);
-        this.statisMomo = res;
-        this.statistique[1].sommeNet= res.sommeNet
+        this.statistique[1].amount = res.sommeTotaleEnCaisse
+        this.statisMomo = res 
+        this.hotels = res.hotels 
         this.momo = true;
       },
       error: (error) => {
@@ -180,7 +181,7 @@ export class AddRetraitComponent {
   }
 
   AllAmount() {
-    this.retraitForm.get('amount')?.setValue(this.hotel.sommeNet); 
+    this.retraitForm.get('amount')?.setValue(this.hotel.sommeEnCaisse); 
   }
 
   /* getStatus(id: number) {

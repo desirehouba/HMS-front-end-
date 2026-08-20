@@ -19,7 +19,7 @@
                   </div>
                   <div class="col-green">
                     <h3 class="font-weight-bold float-end mb-0">
-                      {{ stat.sommeTotaleEnCaisse | number }} Fcfa
+                      {{ stat.amount   }} Fcfa
                     </h3>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
                   </div>
                   <div class="row">
                     <h5 class="float-end">
-                      {{ stat.sommeTotaleEnCaisse | number }} Fcfa
+                      {{ stat.amount   }} Fcfa
                     </h5>
                   </div>
                 </div>
@@ -257,7 +257,7 @@
                 {{hotel.hotelName}} - {{hotel.address}}
               </h5>
               <h5>
-                <strong> - {{"app.numero_retrait" | translate }} :</strong>
+                <strong> - {{"app.numero_retrait_momo" | translate }} :</strong>
                 {{hotel.momo_withdrawal_number}} 
               </h5>
             </div>

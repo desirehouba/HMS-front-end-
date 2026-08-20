@@ -23,7 +23,7 @@
                         formControlName="filter_value" />
                       <mat-option [value]="user.id"
                         *ngFor="let user of filterUsers">
-                        {{ user.name }}
+                        {{ user.name }} - ({{ user.number_nuite }})
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

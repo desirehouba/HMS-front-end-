@@ -222,6 +222,7 @@
   "Hour": "Heure"
 },
   "app": {  
+    "number_nuite" : "Nombre de nuité",
     "canceled_booking": "Annuler la reservation",
     "search_product" : "Recherche de produit",
     "initiated" : "Initié",
@@ -864,6 +865,7 @@
   "all_retraits_om": "Tous les demandes de retrait",
   "all_ok": "Veuillez cocher cette case si tout est ok",
   "numero_retrait" : "Numéro Remboursement OM",
+  "numero_retrait_momo" : "Numéro Remboursement MoMo",
   "validation_code" : "Entrer le Code de validation reçu par mail",
   "nb_rib_1" : "Des frais bancaires sont applicables si vous avez choisi un remboursement par virement bancaire sur une autre banque qu'UBA.",
   "nb_rib_2" : "Merci de bien verifier vos informations avant de confirmer toute demande de remboursement.",

@@ -40,17 +40,14 @@ export class TransactionsService extends UnsubscribeOnDestroyAdapter {
     if (typeof(data) === 'object') {
       data = null
     }
-
-    if (localStorage.getItem('statusTransactions')) {
-      this.statusTransactions = JSON.parse(localStorage.getItem('statusTransactions') || '')
-    }
+ 
     this.paylaod = {
       filter_value: data,
       pageItems: pageItems+1,
-      nbreItems: nbreItems,
-      date: localStorage.getItem('date_start'),
-      status: this.statusTransactions,
-      //idStudent : 1006
+      nbreItems: nbreItems, 
+      status: localStorage.getItem('statusTransactions') ? JSON.parse(localStorage.getItem('statusTransactions') || '') : '', 
+      start_date: localStorage.getItem('date_start_trans'),
+      end_date: localStorage.getItem('date_end_trans'),  
     }
     this.subs.sink = this.httpClient.post<any>(
       `${environment.apiUrl}/transactions/all`, this.paylaod
@@ -62,8 +59,7 @@ export class TransactionsService extends UnsubscribeOnDestroyAdapter {
         localStorage.setItem('xoms', data.om);
         localStorage.setItem('xcash', data.cash);
         localStorage.setItem('xbank', data.bank); */
-        this.metaChange.next(data.meta);
-        console.log(data);
+        this.metaChange.next(data.meta); 
       },
     });
   }

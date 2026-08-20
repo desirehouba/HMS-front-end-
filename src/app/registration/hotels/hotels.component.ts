@@ -23,7 +23,7 @@ export class HotelsComponent
   hotels! : any[];
   image : any;
   ids: any = null;
-  roles = ['Principale', 'assistant'];
+  roles = ['manager', 'assistant'];
   scholar_level: any;
   constructor(
     private authService: AuthService,
@@ -39,11 +39,12 @@ export class HotelsComponent
   }
 
   ngOnInit() {/* 
-    this.getAllHotelss(); */
-    this.scholar_level = this.authService.currentUserValue.scholar_level;
+    this.getAllHotelss(); */ 
   }
 
   getAllHotelss() {
+    console.log(this.authService.currentUserValue);
+    
     if(this.roles.indexOf(this.authService.currentUserValue.role) != -1 ){
       this.ids = this.authService.currentUserValue.id
     }

@@ -121,7 +121,7 @@ export class ProductsDialogComponent {
       for (let product = 0; product <  this.f['nbrProduct'].value; product++) {
         let paylaod = {
           id: this.products.articles[product]?.id || null,
-          quantity : this.products.articles[product]?.quantity || null, 
+          quantity : this.products.articles[product]?.quantity || 1, 
         };
         this.productArrys.push(paylaod);
       } 

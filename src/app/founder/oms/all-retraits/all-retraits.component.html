@@ -230,7 +230,7 @@
                           <mat-cell *matCellDef="let row; let i=index;"
                             class="pr-0 acti">
                             <button mat-icon-button
-                              *ngIf="row.status === 'pending'"
+                              *ngIf="row.status === 'pending' || row.status === 'initiated' "
                               (click)="$event.stopPropagation()"
                               (click)="About(row)"
                               class="tbl-action-btn">

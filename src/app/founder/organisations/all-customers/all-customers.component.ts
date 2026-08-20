@@ -42,6 +42,7 @@ export class AllCustomersComponent
     'select',
     'photo',
     'name', 
+    'number_nuite',
     'phone',
     'cni',
     'gender',

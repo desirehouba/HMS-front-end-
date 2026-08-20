@@ -104,12 +104,12 @@
                 (onEditCancel)="onEditCancel($event)">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th style="width: 60%; font-size: 18px;">
+                    <th style="width: 100%; font-size: 18px;">
                       {{"app.article" | translate }}
                     </th>
-                    <th style="width: 40%;font-size: 18px;">
+                    <!-- <th style="width: 40%;font-size: 18px;">
                       {{"app.quantity" | translate }}
-                    </th>
+                    </th> -->
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-book>
@@ -131,7 +131,7 @@
                         </div>
                       </p-celleditor>
                     </td>
-                    <td pEditableColumn style="width: 15%; font-size: 18px;">
+                    <!-- <td pEditableColumn style="width: 15%; font-size: 18px;">
                       <p-celleditor>
                         <div
                           class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -143,7 +143,7 @@
                           </mat-form-field>
                         </div>
                       </p-celleditor>
-                    </td>
+                    </td> -->
                   </tr>
                 </ng-template>
               </p-table>

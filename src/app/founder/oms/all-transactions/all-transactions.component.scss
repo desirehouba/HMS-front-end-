@@ -4,11 +4,40 @@
     color: white;
 }
 
-.taille{
-    max-width: 12%;
-}
-.tails{
+
+.taille {
     max-width: 10%;
+}
+
+
+.s-booking {
+    max-width: 8%;
+}
+
+.orang{
+    color: orange;
+}
+
+.momo{
+    color: green;
+}
+.amount{
+    text-align: right !important;
+    width: 100%;
+}
+
+.amounts{
+    text-align: center !important;
+    width: 100%;
+}
+
+.btns {
+    font-size: 14px !important;
+    font-family: inherit;
+    color: white;
+} 
+.tails{
+    max-width: 8%;
 }
 
 .tran{
@@ -16,7 +45,7 @@
 }
 
 .butun {
-    background-color: #0a92d6;
+    background-color: #028b5b;
     border-radius: 3px;
     color: white;
     min-height: 2rem;
@@ -25,10 +54,6 @@
 
 .mag {
     padding-top: 0.7rem;
-}
-
-li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
-    height: 0rem !important;
 }
 
 .date {
@@ -70,6 +95,9 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     color: green;
 }
 
+.bnaks {
+    color: #0a92d6;
+}
 .orang{
     color: orange;
 }
@@ -82,13 +110,7 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     text-align: right !important;
 
 }
-
-.mdc-data-table__cell, .mdc-data-table__header-cell{
-    text-align: right !important;
-    //padding: 0 10px 0 10px !important;
-}
-
-
+ 
 .amount{
     text-align: right !important;
     width: 100%;
@@ -99,7 +121,12 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     width: 100%;
 }
 
-.mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
+.amounts-left{
+    text-align: left !important;
+    width: 100%;
+}
+
+/* .mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
     box-sizing: border-box;
     width: 100%;
     position: relative;
@@ -112,7 +139,7 @@ li .tbl-search-box .mat-mdc-form-field-subscript-wrapper {
     position: relative;
     height: 0px !important;
 }
-
+ */
 .title {
     text-align: center; 
     font-size: 16px;

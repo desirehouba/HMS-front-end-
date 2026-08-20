@@ -23,7 +23,7 @@ export class HotelsComponent
   hotels! : any[];
   image : any;
   ids: any = null;
-  roles = ['Principale', 'assistant'];
+  roles = ['Manager', 'assistant'];
   scholar_level: any;
   constructor(
     private authService: AuthService,
@@ -39,8 +39,7 @@ export class HotelsComponent
   }
 
   ngOnInit() {
-    this.getAllHotelss();
-    this.scholar_level = this.authService.currentUserValue.scholar_level;
+    this.getAllHotelss(); 
   }
 
   getAllHotelss() {
@@ -76,8 +75,7 @@ export class HotelsComponent
     this.authService.currentUserValue.hotel_id= payload.id;
     this.authService.currentUserValue.hotelName= payload.name;
     this.authService.currentUserValue.scholar_level= payload.address;
-    localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUserValue));
-    /* const dialogRef = this.dialog.open( DepartementComponent,{ data: {}, } ); */
+    localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUserValue)); 
 
     this.router.navigate(["/founder/dashboard/main"]);
   }

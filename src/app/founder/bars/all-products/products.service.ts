@@ -52,8 +52,7 @@ export class ProductsService extends UnsubscribeOnDestroyAdapter {
       .subscribe({
         next: (data) => {
           this.isTblLoading = false;
-          this.dataChange.next(data.data);
-          console.log(data);
+          this.dataChange.next(data.data); 
           this.metaChange.next(data.meta);
         },
         error: (error: HttpErrorResponse) => {

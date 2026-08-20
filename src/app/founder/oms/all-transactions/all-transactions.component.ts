@@ -76,13 +76,11 @@ export class AllTransactionsComponent
     translateService.setDefaultLang(
       localStorage.getItem('lang') as string
     );
-    super();
-    if (localStorage.getItem('statusTransactions')) {
-      this.statusTransactions = JSON.parse(localStorage.getItem('statusTransactions') || '')
-    }
+    super(); 
     this.transForms = this.fb.group({
-      date_start: ["", [Validators.required]],
-      status: [this.statusTransactions],
+      date_start: [localStorage.getItem('date_start_trans'), [Validators.required]],
+      date_end: [localStorage.getItem('date_end_trans'), [Validators.required]],
+      status: [localStorage.getItem('statusTransactions') ? JSON.parse(localStorage.getItem('statusTransactions') || '') : ''],
     });
   }
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -109,6 +107,19 @@ export class AllTransactionsComponent
   }
   get f() {
     return this.transForms.controls;
+  }
+
+  setDate(i: boolean) {
+    if (i === true) {
+      localStorage.setItem('date_start_trans', formatDate(this.f['date_start'].value,'yyyy-MM-dd', 'en-US'));
+      localStorage.setItem('date_end_trans', formatDate(this.f['date_end'].value,'yyyy-MM-dd', 'en-US'));
+    } else {
+      this.f['date_start'].reset()
+      this.f['date_end'].reset()
+      localStorage.setItem('date_start_trans', '');
+      localStorage.setItem('date_end_trans', ''); 
+    }
+    this.loadData();
   }
 
   setStatus() {

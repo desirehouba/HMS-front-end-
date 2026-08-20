@@ -32,6 +32,7 @@ export class FormDialogComponent {
   hotels: Hotels;
   fonders! : Fondateurs[];
   packages! : Packages[];
+  fonder = false
   administrative_status = [ 'Public', 'Private' ];
   religious_status = [ 'Catholic', 'Protestant', 'Secular' , 'Pentecostalism'];
   photo : any;
@@ -58,20 +59,27 @@ export class FormDialogComponent {
       : '';
   }
   createContactForm(): UntypedFormGroup {
-    return this.fb.group({
-      id: [this.hotels.id],
+    return this.fb.group({ 
       photo: [this.hotels.logo],
       name: [this.hotels.name],
       phone: [this.hotels.phone],
-      email: [this.hotels.email],
-      country: [],
-      website: [this.hotels.website],
-      package: [],/* 
-      founder: [this.hotels.founder.id], */
-      code_couleur: [],
-      pay_om_fees: [],
-      religious_status: [],
-      administrative_status: [],
+      email: [''],
+      country: [''],
+      website: [''],
+      package_id: ['',],
+      founder_id: [''],
+      rib: ['',],
+      niu: ['',],
+      city: ['',],
+      code_couleur: ['',],
+      pay_om_fees: ['',],
+      assistant_id: [''],
+      manager_id: [this.hotels?.manager?.id],
+      type: [''],
+      creation_date: [''],
+      address: [''],
+      stars: [''],
+      rc: [''],
     });
   }
   submit() {
@@ -86,13 +94,16 @@ export class FormDialogComponent {
     this.getPackagess();
   }
 
-  getFounderss() {
+  getFounderss() { 
     const paylaod = {
-      role_id : 2,
+      role_types : ["Direction", "Staffs"]
     }
-    this.hotelsService.getFounderss(paylaod).subscribe({
+    this.servicesService.getObjetss(
+      this.servicesService.route.users[1], paylaod
+    ).subscribe({
       next: (res) => {
         this.fonders = res.data;
+        this.fonder = false
       },
     });
   }
@@ -126,18 +137,25 @@ export class FormDialogComponent {
       console.log('test 2');
     }
     const payload = {
-      logo : this.photo,
-      name: this.f['name'].value,
-      phone: this.f['phone'].value,
-      email: this.f['email'].value,
-      website: this.f['website'].value,
-      country: this.f['country'].value,
-      idFounder: this.f['founder'].value,
-      idPackage: this.f['package'].value,
-      pay_om_fees: this.f['pay_om_fees'].value,
+       name: this.f['name'].value,
       code_couleur: this.f['code_couleur'].value,
-      administrative_status: this.f['administrative_status'].value,
-      religious_status: this.f['religious_status'].value,
+      phone: this.f['phone'].value,
+      description : "test",
+      email: this.f['email'].value,
+      //website: this.f['website'].value,
+      country: this.f['country'].value,
+      founder_id: this.f['founder_id'].value,
+      package_id: this.f['package_id'].value,
+      city: this.f['city'].value,
+      address: this.f['address'].value,
+      stars: this.f['stars'].value,
+      niu: this.f['niu'].value,
+      rib: this.f['address'].value,
+      rc: this.f['rc'].value, 
+      assistant_id: this.f['assistant_id'].value,
+      manager_id: this.f['founder_id'].value,
+      type: "test",
+      category: "test",
     };
     this.hotelsService.updateHotels(
       this.hotels.id, payload

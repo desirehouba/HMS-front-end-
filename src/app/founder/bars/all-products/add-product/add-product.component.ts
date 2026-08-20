@@ -87,7 +87,7 @@ export class AddProductsComponent {
     for (let product = 1; product <= this.f['nbrProduct'].value; product++) {
       let paylaod = {
         id: null,
-        quantity : null,
+        quantity : 1,
       };
       this.productArrys.push(paylaod);
     }

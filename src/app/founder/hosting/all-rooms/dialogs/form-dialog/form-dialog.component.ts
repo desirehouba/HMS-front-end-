@@ -40,7 +40,7 @@ export class FormDialogRoomComponent {
     private authService : AuthService,
   ) {
     // Set the defaults
-    this.dialogTitle = data.rooms.name;
+    this.dialogTitle = data.rooms?.name;
     this.rooms = data.rooms;
     this.roomForm = this.createContactForm();
     this.image = environment.imageDirectoryPatchs
@@ -55,8 +55,8 @@ export class FormDialogRoomComponent {
       photo: [this.rooms.image],
       name: [this.rooms.name],
       capacity: [this.rooms.capacity],
-      room_type_id: [this.rooms.room_type.id],
-      room_category_id: [this.rooms.room_category.id],
+      room_type_id: [this.rooms?.room_type?.id],
+      room_category_id: [this.rooms?.room_category?.id],
       price: [this.rooms.price],
       status: [this.rooms.status],
       number: [this.rooms.floor],
